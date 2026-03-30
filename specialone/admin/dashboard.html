@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPECIAL ONE | Admin Dashboard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@400;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,700&family=Manrope:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "background": "#fcf9f4","surface-container-low": "#f6f3ee","surface-container": "#f0ede9","surface-container-lowest": "#ffffff","on-primary-container": "#79849b","surface-tint": "#535f74","on-primary": "#ffffff","on-primary-fixed-variant": "#3c475b","on-surface-variant": "#45474c","outline-variant": "#c5c6cd","primary-container": "#101c2e","on-surface": "#1c1c19","primary": "#000000","outline": "#75777d","surface": "#fcf9f4","secondary": "#755b00","secondary-container": "#fed977","surface-container-high": "#ebe8e3"
+        },
+        fontFamily: { "headline": ["Cormorant Garamond", "serif"], "display": ["Bebas Neue", "cursive"], "body": ["Cormorant Garamond", "serif"], "label": ["Montserrat", "sans-serif"] },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; font-size: 20px; }
+  .sidebar-active { border-left: 4px solid #C9A84C; background-color: #f6f3ee; color: #0A1628; }
+  .editorial-shadow { box-shadow: 0 20px 40px rgba(13, 13, 13, 0.03); }
+</style>
+</head>
+<body class="bg-[#fcf9f4] font-body text-on-surface">
+
+<!-- Sidebar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col pt-8 bg-[#fcf9f4] border-r border-[#C9A84C]/20 z-40">
+  <div class="px-8 mb-12">
+    <h1 class="text-lg font-bold tracking-widest text-[#0A1628] font-label uppercase">SPECIAL ONE</h1>
+    <p class="text-[10px] tracking-[0.3em] text-[#C9A84C] font-label uppercase mt-1">Admin Atelier</p>
+  </div>
+  <nav class="flex-1 overflow-y-auto">
+    <ul class="space-y-1">
+      <li class="border-l-4 border-[#C9A84C] bg-[#f6f3ee] text-[#0A1628] px-8 py-3 flex items-center gap-3 cursor-pointer">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Dashboard</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer" onclick="window.location.href='orders.html'">
+        <span class="material-symbols-outlined">shopping_bag</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Orders</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer" onclick="window.location.href='upload.html'">
+        <span class="material-symbols-outlined">upload</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Upload &amp; Products</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer" onclick="window.location.href='products.html'">
+        <span class="material-symbols-outlined">apparel</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Products</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer" onclick="window.location.href='fabrics.html'">
+        <span class="material-symbols-outlined">inventory_2</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Inventory</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer" onclick="window.location.href='customers.html'">
+        <span class="material-symbols-outlined">group</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Customers</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer">
+        <span class="material-symbols-outlined">payments</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Payments</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer">
+        <span class="material-symbols-outlined">local_shipping</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Shipping</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer" onclick="window.location.href='support.html'">
+        <span class="material-symbols-outlined">support_agent</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Support</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer" onclick="window.location.href='analytics.html'">
+        <span class="material-symbols-outlined">analytics</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Analytics</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer mt-8">
+        <span class="material-symbols-outlined">settings</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Settings</span>
+      </li>
+    </ul>
+  </nav>
+  <div class="p-8 border-t border-[#C9A84C]/10 space-y-4">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white text-[10px] font-label">AD</div>
+      <div>
+        <p class="text-[11px] font-semibold font-label uppercase text-[#0A1628]">Admin</p>
+        <p class="text-[9px] text-[#C9A84C] font-label uppercase tracking-tighter">Master Tailor</p>
+      </div>
+    </div>
+    <button onclick="logoutAdmin()" class="w-full flex items-center gap-3 text-[#4A4A4A] hover:text-error transition-colors font-label text-[11px] uppercase tracking-wider">
+      <span class="material-symbols-outlined text-base">logout</span>
+      Sign Out
+    </button>
+  </div>
+</aside>
+
+<!-- Main Content -->
+<main class="ml-64 min-h-screen p-12">
+  <!-- Header -->
+  <header class="flex justify-between items-end mb-16">
+    <div>
+      <p class="font-label text-[12px] uppercase tracking-[0.2em] text-[#C9A84C] mb-2">Dashboard Overview</p>
+      <h2 class="font-headline italic text-5xl text-[#0A1628]">Daily Overview</h2>
+    </div>
+    <div class="flex gap-4">
+      <button class="px-6 py-2 border border-[#C9A84C]/30 text-[10px] font-label uppercase tracking-widest text-[#0A1628] hover:bg-[#f6f3ee] transition-all">
+        Export Report
+      </button>
+      <button class="px-6 py-2 bg-primary-container text-white text-[10px] font-label uppercase tracking-widest hover:opacity-90 transition-all" onclick="window.location.href='orders.html'">
+        New Order
+      </button>
+    </div>
+  </header>
+
+  <!-- Stat Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+    <div class="bg-white p-8 border-t-2 border-[#C9A84C] editorial-shadow">
+      <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-4">Today's Orders</p>
+      <div class="flex items-baseline justify-between">
+        <span class="font-display text-5xl text-[#0A1628]">42</span>
+        <span class="text-green-600 text-[10px] font-label">+12%</span>
+      </div>
+    </div>
+    <div class="bg-white p-8 border-t-2 border-[#C9A84C] editorial-shadow">
+      <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-4">Revenue</p>
+      <div class="flex items-baseline justify-between">
+        <span class="font-display text-5xl text-[#0A1628]">₹1.28L</span>
+        <span class="text-green-600 text-[10px] font-label">+8.4%</span>
+      </div>
+    </div>
+    <div class="bg-white p-8 border-t-2 border-[#C9A84C] editorial-shadow">
+      <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-4">New Customers</p>
+      <div class="flex items-baseline justify-between">
+        <span class="font-display text-5xl text-[#0A1628]">18</span>
+        <span class="text-on-surface-variant text-[10px] font-label">-2%</span>
+      </div>
+    </div>
+    <div class="bg-white p-8 border-t-2 border-[#C9A84C] editorial-shadow">
+      <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-4">Pending Shipments</p>
+      <div class="flex items-baseline justify-between">
+        <span class="font-display text-5xl text-[#0A1628]">07</span>
+        <span class="material-symbols-outlined text-[#C9A84C]/50">local_shipping</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    <!-- Recent Orders Table -->
+    <section class="lg:col-span-8">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="font-headline italic text-3xl text-[#0A1628]">Recent Acquisitions</h3>
+        <a class="font-label text-[10px] uppercase tracking-widest text-[#C9A84C] border-b border-[#C9A84C]" href="orders.html">View All</a>
+      </div>
+      <div class="overflow-x-auto bg-white editorial-shadow">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-primary-container text-white">
+              <th class="px-6 py-4 font-label text-[10px] uppercase tracking-[0.15em]">Order ID</th>
+              <th class="px-6 py-4 font-label text-[10px] uppercase tracking-[0.15em]">Customer</th>
+              <th class="px-6 py-4 font-label text-[10px] uppercase tracking-[0.15em]">Fabric</th>
+              <th class="px-6 py-4 font-label text-[10px] uppercase tracking-[0.15em]">Amount</th>
+              <th class="px-6 py-4 font-label text-[10px] uppercase tracking-[0.15em]">Status</th>
+            </tr>
+          </thead>
+          <tbody class="text-on-surface">
+            <tr class="bg-white border-b border-surface-container hover:bg-surface-container-low">
+              <td class="px-6 py-5 font-label text-[11px] font-semibold">#SO-9281</td>
+              <td class="px-6 py-5 font-body italic text-lg">Alexander Vance</td>
+              <td class="px-6 py-5 font-body text-sm">Egyptian Giza Cotton</td>
+              <td class="px-6 py-5 font-label text-[11px]">₹38,400</td>
+              <td class="px-6 py-5"><span class="px-3 py-1 bg-green-50 text-green-700 text-[9px] font-label uppercase tracking-widest">Tailoring</span></td>
+            </tr>
+            <tr class="bg-[#f6f3ee] border-b border-surface-container hover:bg-surface-container-low">
+              <td class="px-6 py-5 font-label text-[11px] font-semibold">#SO-9280</td>
+              <td class="px-6 py-5 font-body italic text-lg">Rahul Mehta</td>
+              <td class="px-6 py-5 font-body text-sm">Sea Island Royal Blue</td>
+              <td class="px-6 py-5 font-label text-[11px]">₹51,600</td>
+              <td class="px-6 py-5"><span class="px-3 py-1 bg-[#ffe08f] text-[#785d00] text-[9px] font-label uppercase tracking-widest">Measuring</span></td>
+            </tr>
+            <tr class="bg-white border-b border-surface-container hover:bg-surface-container-low">
+              <td class="px-6 py-5 font-label text-[11px] font-semibold">#SO-9279</td>
+              <td class="px-6 py-5 font-body italic text-lg">Arjun Sharma</td>
+              <td class="px-6 py-5 font-body text-sm">White Silk Twill</td>
+              <td class="px-6 py-5 font-label text-[11px]">₹74,200</td>
+              <td class="px-6 py-5"><span class="px-3 py-1 bg-blue-50 text-blue-700 text-[9px] font-label uppercase tracking-widest">Shipping</span></td>
+            </tr>
+            <tr class="bg-[#f6f3ee] border-b border-surface-container hover:bg-surface-container-low">
+              <td class="px-6 py-5 font-label text-[11px] font-semibold">#SO-9278</td>
+              <td class="px-6 py-5 font-body italic text-lg">Vikram Oberoi</td>
+              <td class="px-6 py-5 font-body text-sm">Grey Merino Flannel</td>
+              <td class="px-6 py-5 font-label text-[11px]">₹44,800</td>
+              <td class="px-6 py-5"><span class="px-3 py-1 bg-green-50 text-green-700 text-[9px] font-label uppercase tracking-widest">Tailoring</span></td>
+            </tr>
+            <tr class="bg-white border-b border-surface-container hover:bg-surface-container-low">
+              <td class="px-6 py-5 font-label text-[11px] font-semibold">#SO-9277</td>
+              <td class="px-6 py-5 font-body italic text-lg">Priya Malhotra</td>
+              <td class="px-6 py-5 font-body text-sm">Linen Blend Natural</td>
+              <td class="px-6 py-5 font-label text-[11px]">₹32,900</td>
+              <td class="px-6 py-5"><span class="px-3 py-1 bg-gray-100 text-gray-600 text-[9px] font-label uppercase tracking-widest">Complete</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <aside class="lg:col-span-4 space-y-8">
+      <div>
+        <h3 class="font-headline italic text-3xl text-[#0A1628] mb-6">Quick Actions</h3>
+        <div class="grid grid-cols-1 gap-4">
+          <button class="flex items-center justify-between p-6 bg-white border border-[#C9A84C]/10 editorial-shadow hover:border-[#C9A84C] transition-all group">
+            <div class="flex items-center gap-4">
+              <span class="material-symbols-outlined text-[#C9A84C]">edit_calendar</span>
+              <span class="font-label text-[11px] font-semibold uppercase tracking-widest">Schedule Fitting</span>
+            </div>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+          </button>
+          <button class="flex items-center justify-between p-6 bg-white border border-[#C9A84C]/10 editorial-shadow hover:border-[#C9A84C] transition-all group" onclick="window.location.href='fabrics.html'">
+            <div class="flex items-center gap-4">
+              <span class="material-symbols-outlined text-[#C9A84C]">inventory</span>
+              <span class="font-label text-[11px] font-semibold uppercase tracking-widest">Update Fabric Stock</span>
+            </div>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+          </button>
+          <button class="flex items-center justify-between p-6 bg-white border border-[#C9A84C]/10 editorial-shadow hover:border-[#C9A84C] transition-all group" onclick="window.location.href='support.html'">
+            <div class="flex items-center gap-4">
+              <span class="material-symbols-outlined text-[#C9A84C]">mail</span>
+              <span class="font-label text-[11px] font-semibold uppercase tracking-widest">Contact Client</span>
+            </div>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Artisan Spotlight -->
+      <div class="relative h-64 bg-primary-container p-8 overflow-hidden">
+        <img alt="Bespoke tailor measuring fabric in sunlit atelier" class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBETPCNm53a8K99LEBmCNZr1i-ALUC1ZxqBLtOLNZd8COBKYE_fFM86FADy-RxcvgF7Ieh6_ukA8BssXdoU1yBBDktcbfbOdM6Xpk7M2A-9sD2Tyz4mFfkPi8qKEwjQUJ1Vyy5Jut8JthGSSFPOqvKKwiD6D85kS4_OCjXMjHKD9Qq6y7IebifKfuRGsvUVPMEexut-ZwcO1qAknYEG97384J6DZbSvbtCWViOnUhX0JHwgyWXzQI7GPqLo2mkyVkjFT8_l1Jk48Og"/>
+        <div class="relative z-10 h-full flex flex-col justify-end">
+          <p class="font-label text-[10px] text-[#C9A84C] uppercase tracking-[0.3em] mb-2">Master Tip</p>
+          <h4 class="font-headline italic text-2xl text-white mb-4">Precision is the soul of character.</h4>
+          <button class="text-white font-label text-[10px] uppercase border-b border-white/30 self-start pb-1">Read Studio Notes</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="ml-64 bg-[#0A1628] py-12 px-12 border-t border-[#C9A84C]/10">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+    <div class="text-[#C9A84C] text-2xl font-light tracking-[0.3em] font-label">SPECIAL ONE</div>
+    <div class="flex gap-8">
+      <a class="font-body italic text-[#C9A84C]/80 hover:text-white transition-colors" href="#">Privacy Charter</a>
+      <a class="font-body italic text-[#C9A84C]/80 hover:text-white transition-colors" href="#">Admin Protocol</a>
+      <a class="font-body italic text-[#C9A84C]/80 hover:text-white transition-colors" href="#">Security</a>
+    </div>
+    <div class="font-label text-[10px] tracking-widest text-[#C9A84C]/60 uppercase">© 2024 SPECIAL ONE. ALL RIGHTS RESERVED.</div>
+  </div>
+</footer>
+<script>
+  function logoutAdmin() {
+    sessionStorage.removeItem('so_admin_auth');
+    window.location.href = 'login.html';
+  }
+</script>
+</body>
+</html>

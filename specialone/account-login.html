@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPECIAL ONE | Sign In or Create Account</title>
+<meta name="description" content="Sign in to your Special One account to track orders, manage your bespoke shirts and save your customizations."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@400;600&family=Manrope:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode:"class",
+    theme:{extend:{
+      colors:{
+        "background":"#fcf9f4","surface-container-low":"#f6f3ee","surface-container":"#f0ede9","surface-container-lowest":"#ffffff","on-primary-container":"#79849b","primary-container":"#101c2e","on-surface":"#1c1c19","primary":"#000000","outline-variant":"#c5c6cd","surface":"#fcf9f4","secondary":"#755b00","secondary-container":"#fed977","on-surface-variant":"#45474c","outline":"#75777d"
+      },
+      fontFamily:{"headline":["Cormorant Garamond","serif"],"display":["Bebas Neue","cursive"],"body":["Cormorant Garamond","serif"],"label":["Montserrat","sans-serif"]},
+      borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"}
+    }}
+  }
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 24}
+  .tab-active{border-bottom:2px solid #C9A84C;color:#0A1628}
+  .tab-inactive{border-bottom:2px solid transparent;color:#75777d}
+  .panel-hidden{display:none}
+</style>
+</head>
+<body class="bg-surface-container-low min-h-screen flex flex-col font-body">
+
+<!-- Nav -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-20 bg-white/90 backdrop-blur-xl border-b border-[#C9A84C]/30">
+  <a class="text-xl font-semibold tracking-[0.2em] text-[#0A1628] font-label" href="index.html">SPECIAL ONE</a>
+  <nav class="hidden md:flex gap-10 items-center font-label">
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] font-semibold text-[11px] uppercase tracking-[0.15em]" href="index.html">Home</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] font-semibold text-[11px] uppercase tracking-[0.15em]" href="customizer.html">Customize</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] font-semibold text-[11px] uppercase tracking-[0.15em]" href="about.html">About</a>
+    <a class="text-[#C9A84C] border-b border-[#C9A84C] pb-1 font-semibold text-[11px] uppercase tracking-[0.15em]" href="account-login.html">Account</a>
+  </nav>
+  <a class="bg-primary-container text-white px-6 py-2 font-label font-semibold text-[11px] uppercase tracking-[0.15em] hover:opacity-80 transition-opacity" href="customizer.html">Start Customizing</a>
+</header>
+
+<main class="flex-grow flex items-center justify-center pt-28 pb-20 px-4">
+  <div class="w-full max-w-lg">
+
+    <!-- Tabs -->
+    <div class="flex border-b border-outline-variant/30 mb-10">
+      <button id="tab-signin" class="flex-1 py-4 font-label text-[11px] uppercase tracking-[0.2em] font-semibold tab-active transition-all" onclick="switchTab('signin')">Sign In</button>
+      <button id="tab-register" class="flex-1 py-4 font-label text-[11px] uppercase tracking-[0.2em] font-semibold tab-inactive transition-all" onclick="switchTab('register')">Create Account</button>
+    </div>
+
+    <!-- SIGN IN PANEL -->
+    <div id="panel-signin" class="bg-white p-10 shadow-[0_20px_40px_rgba(13,13,13,0.04)] border border-outline-variant/10">
+      <div class="text-center mb-10">
+        <h1 class="font-display text-5xl tracking-widest text-primary mb-2">SIGN IN</h1>
+        <p class="font-headline italic text-on-surface-variant text-lg">Welcome back to the atelier</p>
+      </div>
+      <form id="signin-form" class="space-y-8" onsubmit="handleSignIn(event)">
+        <div class="relative group">
+          <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Email</label>
+          <input id="signin-email" type="email" required placeholder="you@email.com" autocomplete="email"
+            class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+          <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+        </div>
+        <div class="relative group">
+          <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Password</label>
+          <div class="flex items-center relative">
+            <input id="signin-password" type="password" required placeholder="••••••••" autocomplete="current-password"
+              class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+            <span class="material-symbols-outlined absolute right-0 bottom-3 text-outline-variant/50 cursor-pointer hover:text-secondary" onclick="togglePwd('signin-password',this)">visibility_off</span>
+          </div>
+          <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+        </div>
+        <div class="flex justify-between items-center">
+          <label class="flex items-center gap-2 font-label text-[10px] uppercase tracking-widest text-on-surface-variant cursor-pointer">
+            <input type="checkbox" class="accent-secondary rounded-sm" id="remember-me"> Remember Me
+          </label>
+          <a href="#" class="font-label text-[10px] uppercase tracking-widest text-secondary hover:underline">Forgot Password?</a>
+        </div>
+        <div id="signin-error" class="hidden text-red-600 font-label text-[10px] tracking-widest uppercase flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm">error</span><span id="signin-error-msg">Invalid email or password.</span>
+        </div>
+        <button type="submit" id="signin-btn" class="w-full bg-primary-container text-white py-5 font-label text-[11px] tracking-[0.2em] uppercase hover:bg-black transition-all duration-300 flex items-center justify-center gap-3 active:scale-[0.98]">
+          <span id="signin-btn-text">SIGN IN TO YOUR ACCOUNT</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </button>
+      </form>
+      <div class="mt-8 text-center">
+        <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Don't have an account?
+          <button class="text-secondary hover:underline ml-1" onclick="switchTab('register')">Create one now</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- REGISTER PANEL -->
+    <div id="panel-register" class="panel-hidden bg-white p-10 shadow-[0_20px_40px_rgba(13,13,13,0.04)] border border-outline-variant/10">
+      <div class="text-center mb-10">
+        <h1 class="font-display text-5xl tracking-widest text-primary mb-2">JOIN US</h1>
+        <p class="font-headline italic text-on-surface-variant text-lg">Create your atelier identity</p>
+      </div>
+      <form id="register-form" class="space-y-6" onsubmit="handleRegister(event)">
+        <div class="grid grid-cols-2 gap-6">
+          <div class="relative group">
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">First Name</label>
+            <input id="reg-firstname" type="text" required placeholder="Alexander"
+              class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+            <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+          </div>
+          <div class="relative group">
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Last Name</label>
+            <input id="reg-lastname" type="text" required placeholder="McQueen"
+              class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+            <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+          </div>
+        </div>
+        <div class="relative group">
+          <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Email</label>
+          <input id="reg-email" type="email" required placeholder="you@email.com" autocomplete="email"
+            class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+          <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+        </div>
+        <div class="relative group">
+          <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Phone</label>
+          <input id="reg-phone" type="tel" placeholder="+91 98765 43210"
+            class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+          <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+        </div>
+        <div class="relative group">
+          <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Password</label>
+          <div class="flex items-center relative">
+            <input id="reg-password" type="password" required placeholder="Min. 8 characters"
+              class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+            <span class="material-symbols-outlined absolute right-0 bottom-3 text-outline-variant/50 cursor-pointer hover:text-secondary" onclick="togglePwd('reg-password',this)">visibility_off</span>
+          </div>
+          <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+        </div>
+        <div id="register-error" class="hidden text-red-600 font-label text-[10px] tracking-widest uppercase flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm">error</span><span id="register-error-msg">Please fill all required fields.</span>
+        </div>
+        <button type="submit" id="register-btn" class="w-full bg-primary-container text-white py-5 font-label text-[11px] tracking-[0.2em] uppercase hover:bg-black transition-all duration-300 flex items-center justify-center gap-3 active:scale-[0.98]">
+          <span id="register-btn-text">CREATE MY ACCOUNT</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </button>
+      </form>
+      <div class="mt-8 text-center">
+        <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Already have an account?
+          <button class="text-secondary hover:underline ml-1" onclick="switchTab('signin')">Sign in</button>
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-8 text-center font-headline italic text-on-surface-variant/40 text-sm">"Every master piece begins with a single stitch."</p>
+  </div>
+</main>
+
+<footer class="bg-[#0A1628] py-10 px-12 flex flex-col md:flex-row justify-between items-center gap-4 border-t border-[#C9A84C]/10">
+  <a class="font-label text-[#C9A84C] text-xl tracking-[0.3em]" href="index.html">SPECIAL ONE</a>
+  <div class="flex gap-8">
+    <a class="font-body italic text-[#C9A84C]/70 hover:text-white transition-colors" href="#">Privacy Policy</a>
+    <a class="font-body italic text-[#C9A84C]/70 hover:text-white transition-colors" href="#">Terms of Service</a>
+  </div>
+  <p class="font-label text-[10px] tracking-widest text-[#C9A84C]/40 uppercase">© 2024 SPECIAL ONE.</p>
+</footer>
+
+<script>
+  function switchTab(tab) {
+    const panels = { signin:'panel-signin', register:'panel-register' };
+    const tabs = { signin:'tab-signin', register:'tab-register' };
+    Object.keys(panels).forEach(k => {
+      document.getElementById(panels[k]).classList.toggle('panel-hidden', k !== tab);
+      document.getElementById(tabs[k]).className = document.getElementById(tabs[k]).className
+        .replace(/tab-active|tab-inactive/g,'').trim();
+      document.getElementById(tabs[k]).classList.add(k === tab ? 'tab-active' : 'tab-inactive');
+    });
+  }
+
+  function togglePwd(id, icon) {
+    const input = document.getElementById(id);
+    input.type = input.type === 'password' ? 'text' : 'password';
+    icon.textContent = input.type === 'password' ? 'visibility_off' : 'visibility';
+  }
+
+  function handleSignIn(e) {
+    e.preventDefault();
+    const btn = document.getElementById('signin-btn');
+    const btnText = document.getElementById('signin-btn-text');
+    const errDiv = document.getElementById('signin-error');
+    const email = document.getElementById('signin-email').value.trim();
+    const password = document.getElementById('signin-password').value;
+
+    btn.disabled = true;
+    btnText.textContent = 'SIGNING IN...';
+    errDiv.classList.add('hidden');
+
+    setTimeout(() => {
+      // Demo: stored accounts or guest login
+      const accounts = JSON.parse(localStorage.getItem('so_accounts') || '[]');
+      const match = accounts.find(a => a.email === email && a.password === password);
+      if (match || (email && password.length >= 6)) {
+        const user = match || { email, name: email.split('@')[0], orders: [] };
+        sessionStorage.setItem('so_user', JSON.stringify(user));
+        btnText.textContent = 'WELCOME BACK!';
+        setTimeout(() => { window.location.href = 'account.html'; }, 600);
+      } else {
+        errDiv.classList.remove('hidden');
+        document.getElementById('signin-error-msg').textContent = 'Invalid credentials. Please try again.';
+        btn.disabled = false;
+        btnText.textContent = 'SIGN IN TO YOUR ACCOUNT';
+      }
+    }, 1000);
+  }
+
+  function handleRegister(e) {
+    e.preventDefault();
+    const btn = document.getElementById('register-btn');
+    const btnText = document.getElementById('register-btn-text');
+    const errDiv = document.getElementById('register-error');
+    const first = document.getElementById('reg-firstname').value.trim();
+    const last = document.getElementById('reg-lastname').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const phone = document.getElementById('reg-phone').value.trim();
+    const pwd = document.getElementById('reg-password').value;
+
+    if (!first || !last || !email || pwd.length < 8) {
+      errDiv.classList.remove('hidden');
+      document.getElementById('register-error-msg').textContent = pwd.length < 8
+        ? 'Password must be at least 8 characters.' : 'Please fill all required fields.';
+      return;
+    }
+
+    btn.disabled = true;
+    btnText.textContent = 'CREATING ACCOUNT...';
+    errDiv.classList.add('hidden');
+
+    setTimeout(() => {
+      const accounts = JSON.parse(localStorage.getItem('so_accounts') || '[]');
+      if (accounts.find(a => a.email === email)) {
+        errDiv.classList.remove('hidden');
+        document.getElementById('register-error-msg').textContent = 'An account with this email already exists.';
+        btn.disabled = false;
+        btnText.textContent = 'CREATE MY ACCOUNT';
+        return;
+      }
+      const newUser = { email, password: pwd, name: `${first} ${last}`, phone, orders: [], joined: new Date().toLocaleDateString('en-IN', {year:'numeric',month:'long',day:'numeric'}) };
+      accounts.push(newUser);
+      localStorage.setItem('so_accounts', JSON.stringify(accounts));
+      sessionStorage.setItem('so_user', JSON.stringify(newUser));
+      btnText.textContent = 'ACCOUNT CREATED!';
+      setTimeout(() => { window.location.href = 'account.html'; }, 600);
+    }, 1000);
+  }
+</script>
+</body>
+</html>

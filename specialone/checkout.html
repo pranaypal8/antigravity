@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPECIAL ONE | Checkout</title>
+<meta name="description" content="Complete your bespoke shirt order — enter shipping details and pay securely via Razorpay."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "background": "#fcf9f4","surface-container-low": "#f6f3ee","surface-container": "#f0ede9","surface-container-lowest": "#ffffff","primary-container": "#101c2e","on-surface": "#1c1c19","primary": "#000000","outline-variant": "#c5c6cd","surface": "#fcf9f4","secondary": "#755b00","secondary-container": "#fed977","on-surface-variant": "#45474c","outline": "#75777d","surface-container-high": "#ebe8e3","surface-container-highest": "#e5e2dd"
+        },
+        fontFamily: { "headline": ["Bebas Neue", "sans-serif"], "body": ["Cormorant Garamond", "serif"], "label": ["Montserrat", "sans-serif"] },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24; font-size: 20px; }
+  .serif-italic { font-family: 'Cormorant Garamond'; font-style: italic; }
+  .bebas { font-family: 'Bebas Neue'; }
+  .montserrat { font-family: 'Montserrat'; }
+</style>
+</head>
+<body class="bg-background text-on-surface selection:bg-secondary-container">
+
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-white/90 backdrop-blur-xl border-b border-[#C9A84C]/30">
+  <div class="text-xl font-semibold tracking-[0.2em] text-[#0A1628] montserrat">SPECIAL ONE</div>
+  <div class="hidden md:flex gap-8">
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold uppercase tracking-[0.15em] text-[11px]" href="index.html">Home</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold uppercase tracking-[0.15em] text-[11px]" href="customizer.html">Customize</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold uppercase tracking-[0.15em] text-[11px]" href="about.html">About</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold uppercase tracking-[0.15em] text-[11px]" href="account-login.html">Account</a>
+  </div>
+  <a class="bg-primary-container text-white px-6 py-2 montserrat font-semibold uppercase tracking-[0.15em] text-[11px] hover:opacity-80 transition-opacity" href="cart.html">← Back to Cart</a>
+</nav>
+
+<main class="pt-32 pb-24 px-8 max-w-7xl mx-auto">
+  <h1 class="text-8xl bebas tracking-tight mb-16 text-primary">CHECKOUT</h1>
+  <div class="flex flex-col lg:flex-row gap-16">
+    <!-- Customer Details Form -->
+    <div class="lg:w-[60%]">
+      <h2 class="text-2xl font-body font-bold mb-10 uppercase tracking-widest flex items-center gap-4">
+        <span class="w-8 h-8 rounded-full border border-secondary text-secondary flex items-center justify-center text-sm font-label">01</span>
+        Shipping Information
+      </h2>
+      <form id="checkout-form" class="space-y-8" onsubmit="initiatePayment(event)" novalidate>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="space-y-2">
+            <label class="montserrat font-semibold uppercase tracking-widest text-[10px] text-on-surface-variant">Full Name *</label>
+            <input id="co-name" required class="w-full bg-transparent border-b border-outline-variant py-3 focus:border-secondary focus:ring-0 outline-none font-body text-xl transition-colors" placeholder="Alexander McQueen" type="text"/>
+          </div>
+          <div class="space-y-2">
+            <label class="montserrat font-semibold uppercase tracking-widest text-[10px] text-on-surface-variant">Email Address *</label>
+            <input id="co-email" required class="w-full bg-transparent border-b border-outline-variant py-3 focus:border-secondary focus:ring-0 outline-none font-body text-xl transition-colors" placeholder="alex@specialone.com" type="email"/>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <label class="montserrat font-semibold uppercase tracking-widest text-[10px] text-on-surface-variant">Phone Number *</label>
+          <input id="co-phone" required class="w-full bg-transparent border-b border-outline-variant py-3 focus:border-secondary focus:ring-0 outline-none font-body text-xl transition-colors" placeholder="+91 98765 43210" type="tel"/>
+        </div>
+        <div class="space-y-2">
+          <label class="montserrat font-semibold uppercase tracking-widest text-[10px] text-on-surface-variant">Shipping Address *</label>
+          <input id="co-address" required class="w-full bg-transparent border-b border-outline-variant py-3 focus:border-secondary focus:ring-0 outline-none font-body text-xl transition-colors" placeholder="Studio 14, Arts District, Sector 5" type="text"/>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="space-y-2">
+            <label class="montserrat font-semibold uppercase tracking-widest text-[10px] text-on-surface-variant">City *</label>
+            <input id="co-city" required class="w-full bg-transparent border-b border-outline-variant py-3 focus:border-secondary focus:ring-0 outline-none font-body text-xl transition-colors" placeholder="New Delhi" type="text"/>
+          </div>
+          <div class="space-y-2">
+            <label class="montserrat font-semibold uppercase tracking-widest text-[10px] text-on-surface-variant">State</label>
+            <input id="co-state" class="w-full bg-transparent border-b border-outline-variant py-3 focus:border-secondary focus:ring-0 outline-none font-body text-xl transition-colors" placeholder="Delhi" type="text"/>
+          </div>
+          <div class="space-y-2">
+            <label class="montserrat font-semibold uppercase tracking-widest text-[10px] text-on-surface-variant">Pincode *</label>
+            <input id="co-pin" required pattern="[0-9]{6}" class="w-full bg-transparent border-b border-outline-variant py-3 focus:border-secondary focus:ring-0 outline-none font-body text-xl transition-colors" placeholder="110001" type="text"/>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="pt-8">
+          <h2 class="text-2xl font-body font-bold mb-8 uppercase tracking-widest flex items-center gap-4">
+            <span class="w-8 h-8 rounded-full border border-secondary text-secondary flex items-center justify-center text-sm font-label">02</span>
+            Payment Method
+          </h2>
+          <div class="space-y-3" id="payment-options">
+            <label class="flex items-center gap-4 p-5 border cursor-pointer transition-colors payment-label border-secondary bg-surface-container-low">
+              <input type="radio" name="payment" value="upi" checked class="accent-secondary" onchange="onPaymentChange()"/>
+              <span class="material-symbols-outlined text-secondary" style="font-variation-settings:'FILL' 1">account_balance_wallet</span>
+              <div>
+                <span class="montserrat font-semibold uppercase tracking-widest text-xs block">UPI</span>
+                <span class="font-body italic text-on-surface-variant text-sm">GPay, PhonePe, Paytm</span>
+              </div>
+              <span class="ml-auto material-symbols-outlined text-secondary">check_circle</span>
+            </label>
+            <label class="flex items-center gap-4 p-5 border border-outline-variant/30 cursor-pointer hover:border-secondary/50 transition-colors payment-label">
+              <input type="radio" name="payment" value="card" class="accent-secondary" onchange="onPaymentChange()"/>
+              <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings:'FILL' 1">credit_card</span>
+              <div>
+                <span class="montserrat font-semibold uppercase tracking-widest text-xs block">Credit / Debit Card</span>
+                <span class="font-body italic text-on-surface-variant text-sm">Visa, Mastercard, RuPay</span>
+              </div>
+            </label>
+            <label class="flex items-center gap-4 p-5 border border-outline-variant/30 cursor-pointer hover:border-secondary/50 transition-colors payment-label">
+              <input type="radio" name="payment" value="netbanking" class="accent-secondary" onchange="onPaymentChange()"/>
+              <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings:'FILL' 1">account_balance</span>
+              <div>
+                <span class="montserrat font-semibold uppercase tracking-widest text-xs block">Net Banking</span>
+                <span class="font-body italic text-on-surface-variant text-sm">All major banks supported</span>
+              </div>
+            </label>
+            <label class="flex items-center gap-4 p-5 border border-outline-variant/30 cursor-pointer hover:border-secondary/50 transition-colors payment-label">
+              <input type="radio" name="payment" value="cod" class="accent-secondary" onchange="onPaymentChange()"/>
+              <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings:'FILL' 1">payments</span>
+              <div>
+                <span class="montserrat font-semibold uppercase tracking-widest text-xs block">Cash on Delivery (COD)</span>
+                <span class="font-body italic text-on-surface-variant text-sm">Pay in cash when your order arrives</span>
+              </div>
+              <span class="ml-auto px-3 py-1 bg-amber-50 text-[#C9A84C] font-label text-[9px] uppercase tracking-widest flex-shrink-0">Available</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Validation Error -->
+        <div id="form-error" class="hidden flex items-center gap-3 text-red-600 font-label text-[11px] uppercase tracking-widest">
+          <span class="material-symbols-outlined text-sm">error</span>
+          <span id="form-error-msg">Please fill in all required fields.</span>
+        </div>
+      </form>
+    </div>
+
+    <!-- Sticky Order Summary -->
+    <div class="lg:w-[40%]">
+      <div class="sticky top-32 space-y-8">
+        <div class="bg-surface-container p-10 border border-outline-variant/30">
+          <h2 class="text-2xl font-body font-bold mb-8 uppercase tracking-widest">In Your Bag</h2>
+          <div class="space-y-6 mb-8 border-b border-outline-variant/30 pb-8">
+            <div class="flex gap-4">
+              <div class="w-16 h-20 bg-white flex-shrink-0 overflow-hidden">
+                <img class="w-full h-full object-cover" alt="Artisan Oxford shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtP7OE2uVQmEKo_d7VFYbMq-0K1EUqYj0lEvTHwnuI3delFO11wNPYWjz0DCtjZJ3KEEFcYCAHpSrFyNQsJm1K7P1k12hpoxqFEZI7r4VJgrSVJdmmA7Cst_B0XrwOD4uC1t1wsK0AkxLGcldqf0Z1E5hl0CnkP1MCR4NsR_SakFjmoiiQuUmrsaUWb6MyOYSB52-UX2Ay2LZyOwfE3fxbGMGdzL0wO_O3Ria_BjEh3COOtx0CiX1Ia_JPSxIJLVlHWa51Ihy2A_s"/>
+              </div>
+              <div class="flex-1">
+                <p class="font-body font-bold text-lg">The Artisan Oxford</p>
+                <p class="font-body text-sm serif-italic text-on-surface-variant">Qty: 1 · Size: 40 Regular</p>
+                <p class="font-label text-[9px] uppercase tracking-widest text-green-600 mt-1">Incl. GST &amp; Delivery</p>
+              </div>
+              <p class="font-body font-bold flex-shrink-0">₹3,999</p>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-16 h-20 bg-white flex-shrink-0 overflow-hidden">
+                <img class="w-full h-full object-cover" alt="Summer Linen shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP3jbAtoBPrxB5d3vRYUOgsuOZqkveF8rfXkzH1wRTZbVIo0BXBlPvVa8EUQPNOqsNDQ0dDJi9zQH-k1rIjSiOa2LeqUke_d7XcDhrYujBA5TmTzpbzWzoD9bAFSFQouPx5vt7yhu-FGE_EbGFNf1mwW1-R1itTn9YQJelq28gDDneZUZ3twNMeQPeKGi_bJ8zQovS9CgKkt9kuGJbdwlJ96_8FhcXGrYGozOerVMexK3MsnoPEmCYIPxrfpN6XhRfH81n4WaDG8g"/>
+              </div>
+              <div class="flex-1">
+                <p class="font-body font-bold text-lg">Summer Linen Azure</p>
+                <p class="font-body text-sm serif-italic text-on-surface-variant">Qty: 1 · Size: 42 Slim</p>
+                <p class="font-label text-[9px] uppercase tracking-widest text-green-600 mt-1">Incl. GST &amp; Delivery</p>
+              </div>
+              <p class="font-body font-bold flex-shrink-0">₹3,999</p>
+            </div>
+          </div>
+          <div class="space-y-3 mb-8 font-body text-lg">
+            <div class="flex justify-between">
+              <span class="serif-italic">2 Shirts × ₹3,999</span><span>₹7,998</span>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span class="font-body italic text-on-surface-variant">GST &amp; Delivery</span>
+              <span class="text-green-600 font-label text-xs uppercase tracking-wider">Included</span>
+            </div>
+            <!-- COD fee row — shown only when COD is selected -->
+            <div id="cod-fee-row" class="hidden flex justify-between items-center py-2 px-3 bg-amber-50 border border-[#C9A84C]/20">
+              <div>
+                <span class="font-body italic">COD Handling Fee</span>
+                <p class="font-label text-[9px] uppercase tracking-widest text-on-surface-variant">Platform processing charge</p>
+              </div>
+              <span class="text-[#C9A84C]">+ ₹49</span>
+            </div>
+            <div class="flex justify-between text-xl font-bold border-t border-outline-variant/30 pt-4 mt-2">
+              <span>Total</span><span id="order-total">₹7,998</span>
+            </div>
+          </div>
+          <button
+            id="pay-btn"
+            type="button"
+            onclick="initiatePayment(null)"
+            class="w-full bg-primary-container text-white py-5 montserrat font-semibold uppercase tracking-[0.2em] text-xs hover:opacity-90 transition-all flex items-center justify-center gap-3 active:scale-[0.98] mb-6"
+          >
+            <span id="pay-btn-text">Pay ₹7,998</span>
+            <span class="material-symbols-outlined">lock</span>
+          </button>
+          <div class="flex justify-center items-center gap-8 opacity-50">
+            <div class="flex flex-col items-center gap-1">
+              <span class="material-symbols-outlined text-3xl">payments</span>
+              <span class="montserrat text-[8px] font-bold">RAZORPAY</span>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+              <span class="material-symbols-outlined text-3xl">local_shipping</span>
+              <span class="montserrat text-[8px] font-bold">SHIPROCKET</span>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+              <span class="material-symbols-outlined text-3xl">verified_user</span>
+              <span class="montserrat text-[8px] font-bold">SSL SECURE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-20 px-12 grid grid-cols-1 md:grid-cols-4 gap-12 bg-[#0A1628] border-t border-[#C9A84C]/10 text-[#C9A84C]">
+  <div class="space-y-6">
+    <div class="text-[#C9A84C] text-3xl font-light tracking-[0.3em] montserrat">SPECIAL ONE</div>
+    <p class="italic text-[#C9A84C]/80 max-w-xs" style="font-family:'Cormorant Garamond',serif">Crafting unique identities through bespoke tailoring.</p>
+  </div>
+  <div class="space-y-6">
+    <h4 class="montserrat font-semibold uppercase tracking-widest text-xs text-white">Quick Links</h4>
+    <ul class="space-y-4" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.125rem">
+      <li><a class="hover:text-white" href="customizer.html">Design Your Shirt</a></li>
+      <li><a class="hover:text-white" href="account.html">My Account</a></li>
+    </ul>
+  </div>
+  <div class="space-y-6">
+    <h4 class="montserrat font-semibold uppercase tracking-widest text-xs text-white">Policies</h4>
+    <ul class="space-y-4" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.125rem">
+      <li><a class="hover:text-white" href="#">Perfect Fit Guarantee</a></li>
+      <li><a class="hover:text-white" href="#">Shipping &amp; Returns</a></li>
+    </ul>
+  </div>
+  <div class="space-y-6">
+    <h4 class="montserrat font-semibold uppercase tracking-widest text-xs text-white">Contact</h4>
+    <ul class="space-y-4" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.125rem">
+      <li>Atelier New Delhi</li>
+      <li>concierge@specialone.com</li>
+    </ul>
+  </div>
+  <div class="col-span-1 md:col-span-4 pt-12 border-t border-[#C9A84C]/10 flex justify-between items-center">
+    <p class="montserrat text-[10px] tracking-[0.2em] opacity-60">© 2024 SPECIAL ONE. ALL RIGHTS RESERVED.</p>
+  </div>
+</footer>
+
+<script>
+  const BASE_TOTAL = 7998;
+  const COD_FEE = 49;
+
+  function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
+
+  // Highlight selected payment card & update totals
+  function onPaymentChange() {
+    const selected = document.querySelector('input[name="payment"]:checked').value;
+    document.querySelectorAll('.payment-label').forEach(label => {
+      const isCurrent = label.querySelector('input').value === selected;
+      label.classList.toggle('border-secondary', isCurrent);
+      label.classList.toggle('bg-surface-container-low', isCurrent);
+      label.classList.toggle('border-outline-variant/30', !isCurrent);
+    });
+    const isCod = selected === 'cod';
+    const total = isCod ? BASE_TOTAL + COD_FEE : BASE_TOTAL;
+    document.getElementById('cod-fee-row').classList.toggle('hidden', !isCod);
+    document.getElementById('order-total').textContent = fmt(total);
+    const btnText = document.getElementById('pay-btn-text');
+    btnText.textContent = isCod ? 'Place Order (Pay on Delivery)' : 'Pay ' + fmt(total);
+  }
+
+  function initiatePayment(e) {
+    if (e) e.preventDefault();
+    const name = document.getElementById('co-name').value.trim();
+    const email = document.getElementById('co-email').value.trim();
+    const phone = document.getElementById('co-phone').value.trim();
+    const address = document.getElementById('co-address').value.trim();
+    const city = document.getElementById('co-city').value.trim();
+    const pin = document.getElementById('co-pin').value.trim();
+    const btn = document.getElementById('pay-btn');
+    const btnText = document.getElementById('pay-btn-text');
+    const payMethod = document.querySelector('input[name="payment"]:checked').value;
+
+    if (!name) { showError('Please enter your full name.'); return; }
+    if (!email || !email.includes('@')) { showError('Please enter a valid email address.'); return; }
+    if (!phone || phone.replace(/\D/g,'').length < 10) { showError('Please enter a valid 10-digit phone number.'); return; }
+    if (!address) { showError('Please enter your shipping address.'); return; }
+    if (!city) { showError('Please enter your city.'); return; }
+    if (!pin || !/^\d{6}$/.test(pin)) { showError('Please enter a valid 6-digit pincode.'); return; }
+
+    document.getElementById('form-error').classList.add('hidden');
+    const orderId = '#SO-' + Math.floor(1000 + Math.random() * 9000);
+    const isCod = payMethod === 'cod';
+    const finalTotal = isCod ? BASE_TOTAL + COD_FEE : BASE_TOTAL;
+    const order = {
+      id: orderId, name, email, phone,
+      address: `${address}, ${city}${document.getElementById('co-state').value ? ', ' + document.getElementById('co-state').value : ''} – ${pin}`,
+      payment: isCod ? 'Cash on Delivery' : payMethod.toUpperCase(),
+      items: [
+        { name:'The Artisan Oxford', details:'Oxford White · Cutaway Collar · Size 40 Regular', price:'₹3,999' },
+        { name:'Summer Linen Azure', details:'Fine Linen Blue · Mandarin · Size 42 Slim', price:'₹3,999' }
+      ],
+      total: fmt(finalTotal) + (isCod ? ' (incl. ₹49 COD fee)' : ''),
+      date: new Date().toLocaleDateString('en-IN',{year:'numeric',month:'long',day:'numeric'}),
+      status:'Order Placed'
+    };
+
+    if (isCod) {
+      btnText.textContent = 'ORDER PLACED ✓';
+      sessionStorage.setItem('so_last_order', JSON.stringify(order));
+      setTimeout(() => { window.location.href = 'order-confirmation.html'; }, 600);
+    } else {
+      btn.disabled = true;
+      btnText.textContent = 'PROCESSING PAYMENT...';
+      setTimeout(() => {
+        btnText.textContent = 'PAYMENT SUCCESSFUL ✓';
+        sessionStorage.setItem('so_last_order', JSON.stringify(order));
+        setTimeout(() => { window.location.href = 'order-confirmation.html'; }, 600);
+      }, 2000);
+    }
+  }
+
+  function showError(msg) {
+    document.getElementById('form-error-msg').textContent = msg;
+    document.getElementById('form-error').classList.remove('hidden');
+    document.getElementById('form-error').scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+</script>
+</body>
+</html>

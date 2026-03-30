@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Products — Special One Admin</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div id="cursor-dot"></div><div id="cursor-ring"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-logo"><div class="sidebar-logo__text">SPECIAL <span>ONE</span></div><span class="sidebar-logo__badge">Admin Panel</span></div>
+    <div class="sidebar-user"><div class="sidebar-user__avatar" id="sidebarInitial">?</div><div><div class="sidebar-user__name" id="sidebarName">Loading...</div><div class="sidebar-user__role" id="sidebarRole">—</div></div></div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-nav__section-label">Operations</div>
+      <a href="dashboard.html" class="sidebar-nav__item"><span class="sidebar-nav__icon">📊</span> Dashboard</a>
+      <a href="orders.html"    class="sidebar-nav__item"><span class="sidebar-nav__icon">📦</span> Orders</a>
+      <a href="customers.html" class="sidebar-nav__item"><span class="sidebar-nav__icon">👤</span> Customers</a>
+      <a href="support.html"   class="sidebar-nav__item"><span class="sidebar-nav__icon">🎫</span> Support</a>
+      <div class="sidebar-nav__section-label">Inventory</div>
+      <a href="products.html"  class="sidebar-nav__item active"><span class="sidebar-nav__icon">👔</span> Products</a>
+      <a href="fabrics.html"   class="sidebar-nav__item"><span class="sidebar-nav__icon">🧵</span> Fabrics</a>
+      <div class="sidebar-nav__section-label">Finance</div>
+      <a href="analytics.html" class="sidebar-nav__item"><span class="sidebar-nav__icon">📈</span> Analytics</a>
+      <div class="sidebar-nav__section-label" id="superAdminSection" style="display:none">System</div>
+      <a href="admins.html"    class="sidebar-nav__item" id="nav-admins" style="display:none"><span class="sidebar-nav__icon">🔐</span> Admins</a>
+      <a href="audit.html"     class="sidebar-nav__item" id="nav-audit"  style="display:none"><span class="sidebar-nav__icon">📋</span> Audit</a>
+    </nav>
+    <div class="sidebar-footer"><button class="sidebar-nav__item" id="logoutBtn" style="width:100%"><span class="sidebar-nav__icon">🚪</span> Logout</button></div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <button class="admin-menu-btn" id="adminMenuBtn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="admin-topbar__title">Product Management</div>
+    </header>
+
+    <div class="admin-content">
+
+      <!-- Price Card — the most critical product setting -->
+      <div style="background:var(--charcoal);border:1px solid var(--gold);border-radius:var(--radius-lg);padding:var(--space-xl);margin-bottom:var(--space-xl);display:flex;align-items:center;justify-content:space-between;gap:var(--space-xl);flex-wrap:wrap">
+        <div>
+          <div style="font-family:var(--font-accent);font-size:0.55rem;font-weight:700;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:var(--space-sm)">Base Price (All Shirts)</div>
+          <div style="font-family:var(--font-display);font-size:2.5rem;color:var(--ivory)">₹3,999</div>
+          <div style="font-family:var(--font-accent);font-size:0.65rem;color:var(--text-muted);margin-top:var(--space-sm)">Fixed price · All customizations included · GST extra</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--font-accent);font-size:0.6rem;color:var(--text-muted);margin-bottom:var(--space-sm)">With 18% GST</div>
+          <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--gold)">₹4,718.82</div>
+          <div style="font-family:var(--font-accent);font-size:0.55rem;color:var(--text-muted);margin-top:var(--space-sm)">Customer-facing price</div>
+        </div>
+        <div>
+          <p style="font-family:var(--font-accent);font-size:0.65rem;color:var(--text-muted);max-width:280px;line-height:1.6">
+            ⚠️ The price is hardcoded in <code style="color:var(--gold)">server/routes/payment.js</code> and verified server-side on every transaction. It cannot be changed from the UI to prevent tampering.
+          </p>
+        </div>
+      </div>
+
+      <!-- Customizer Options Management -->
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-xl)">
+
+        <!-- Collar Options -->
+        <div class="admin-table-wrapper">
+          <div class="admin-table-header">
+            <div class="admin-table-title">Collar Styles</div>
+            <button class="btn btn--outline btn--sm" id="addCollarBtn" aria-label="Add collar">+ Add</button>
+          </div>
+          <div id="collarList" style="padding:var(--space-md)">
+            <p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted)">Loading...</p>
+          </div>
+        </div>
+
+        <!-- Cuffs Options -->
+        <div class="admin-table-wrapper">
+          <div class="admin-table-header">
+            <div class="admin-table-title">Cuff Styles</div>
+            <button class="btn btn--outline btn--sm" id="addCuffBtn" aria-label="Add cuff">+ Add</button>
+          </div>
+          <div id="cuffList" style="padding:var(--space-md)">
+            <p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted)">Loading...</p>
+          </div>
+        </div>
+
+        <!-- Button Options -->
+        <div class="admin-table-wrapper">
+          <div class="admin-table-header">
+            <div class="admin-table-title">Button Styles</div>
+            <button class="btn btn--outline btn--sm" id="addButtonBtn" aria-label="Add button style">+ Add</button>
+          </div>
+          <div id="buttonList" style="padding:var(--space-md)">
+            <p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted)">Loading...</p>
+          </div>
+        </div>
+
+        <!-- Promo Codes -->
+        <div class="admin-table-wrapper">
+          <div class="admin-table-header">
+            <div class="admin-table-title">Active Promo Codes</div>
+          </div>
+          <div style="padding:var(--space-lg)">
+            <div style="display:grid;gap:var(--space-md)">
+              <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:var(--space-md) var(--space-lg)">
+                <div>
+                  <div style="font-family:var(--font-display);font-size:1rem;color:var(--gold)">SPECIALONE10</div>
+                  <div style="font-family:var(--font-accent);font-size:0.6rem;color:var(--text-muted)">10% off all orders</div>
+                </div>
+                <span class="badge badge--success">Active</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:var(--space-md) var(--space-lg)">
+                <div>
+                  <div style="font-family:var(--font-display);font-size:1rem;color:var(--gold)">FIRST500</div>
+                  <div style="font-family:var(--font-accent);font-size:0.6rem;color:var(--text-muted)">₹500 flat discount</div>
+                </div>
+                <span class="badge badge--success">Active</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:var(--space-md) var(--space-lg)">
+                <div>
+                  <div style="font-family:var(--font-display);font-size:1rem;color:var(--gold)">NEWUSER</div>
+                  <div style="font-family:var(--font-accent);font-size:0.6rem;color:var(--text-muted)">15% off first order</div>
+                </div>
+                <span class="badge badge--success">Active</span>
+              </div>
+            </div>
+            <p style="font-family:var(--font-accent);font-size:0.6rem;color:var(--text-muted);margin-top:var(--space-md)">To add/modify promo codes, edit <code style="color:var(--gold)">server/routes/payment.js</code> → PROMO_CODES object.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Option Modal (Collar / Cuff / Button) -->
+<div class="modal-overlay" id="optionModal" role="dialog" aria-label="Add product option">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-header">
+      <div class="modal-title" id="optionModalTitle">Add Option</div>
+      <button class="modal-close" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="optionForm" novalidate>
+        <input type="hidden" id="optionType">
+        <div class="form-group">
+          <label class="form-label">Name *</label>
+          <input type="text" id="optionName" class="form-input" placeholder="e.g. Mandarin Collar" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <input type="text" id="optionDesc" class="form-input" placeholder="Brief description">
+        </div>
+        <button type="submit" class="btn btn--primary" style="width:100%" aria-label="Save option">Save Option</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="../js/global.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

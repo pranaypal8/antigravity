@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html class="scroll-smooth light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPECIAL ONE | The Digital Atelier — India's First Identity-Driven Custom Shirt</title>
+<meta name="description" content="Build your bespoke shirt from scratch. Choose fabric, collar, cuffs, monogram and more. Made fresh, made for you — Special One."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Manrope:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "inverse-on-surface": "#f3f0eb",
+          "on-secondary": "#ffffff",
+          "secondary-fixed": "#ffe08f",
+          "on-primary-fixed": "#101c2e",
+          "on-error-container": "#93000a",
+          "background": "#fcf9f4",
+          "on-tertiary-fixed-variant": "#474747",
+          "surface-container-low": "#f6f3ee",
+          "surface-container": "#f0ede9",
+          "surface-container-lowest": "#ffffff",
+          "tertiary": "#000000",
+          "tertiary-container": "#1b1c1c",
+          "on-primary-container": "#79849b",
+          "surface-tint": "#535f74",
+          "on-primary": "#ffffff",
+          "inverse-surface": "#31302d",
+          "on-primary-fixed-variant": "#3c475b",
+          "on-surface-variant": "#45474c",
+          "primary-fixed-dim": "#bbc7df",
+          "outline-variant": "#c5c6cd",
+          "primary-container": "#101c2e",
+          "secondary-fixed-dim": "#e6c364",
+          "surface-container-highest": "#e5e2dd",
+          "on-error": "#ffffff",
+          "on-surface": "#1c1c19",
+          "primary": "#000000",
+          "outline": "#75777d",
+          "tertiary-fixed-dim": "#c8c6c6",
+          "on-tertiary-fixed": "#1b1c1c",
+          "surface-variant": "#e5e2dd",
+          "surface-dim": "#dcdad5",
+          "error": "#ba1a1a",
+          "on-secondary-fixed": "#241a00",
+          "on-secondary-container": "#785d00",
+          "on-background": "#1c1c19",
+          "error-container": "#ffdad6",
+          "surface-bright": "#fcf9f4",
+          "surface-container-high": "#ebe8e3",
+          "on-tertiary-container": "#848483",
+          "primary-fixed": "#d7e3fc",
+          "secondary": "#755b00",
+          "surface": "#fcf9f4",
+          "inverse-primary": "#bbc7df",
+          "on-secondary-fixed-variant": "#584400",
+          "on-tertiary": "#ffffff",
+          "tertiary-fixed": "#e4e2e2",
+          "secondary-container": "#fed977"
+        },
+        fontFamily: {
+          "headline": ["Bebas Neue", "sans-serif"],
+          "body": ["Cormorant Garamond", "serif"],
+          "label": ["Montserrat", "sans-serif"]
+        },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+  }
+  .editorial-line {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #C9A84C, transparent);
+  }
+  .bebas { font-family: 'Bebas Neue', sans-serif; }
+  .cormorant { font-family: 'Cormorant Garamond', serif; }
+  .montserrat { font-family: 'Montserrat', sans-serif; }
+</style>
+</head>
+<body class="bg-background text-on-background selection:bg-secondary-container selection:text-on-secondary-container">
+
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-white/90 backdrop-blur-xl border-b border-[#C9A84C]/30">
+  <div class="text-xl font-semibold tracking-[0.2em] text-[#0A1628] montserrat">SPECIAL ONE</div>
+  <div class="hidden md:flex items-center gap-12">
+    <a class="text-[#C9A84C] border-b border-[#C9A84C] pb-1 montserrat text-[11px] font-semibold uppercase tracking-[0.15em] hover:opacity-80 transition-opacity duration-300" href="index.html">Home</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat text-[11px] font-semibold uppercase tracking-[0.15em] transition-opacity duration-300" href="customizer.html">Customize</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat text-[11px] font-semibold uppercase tracking-[0.15em] transition-opacity duration-300" href="about.html">About</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat text-[11px] font-semibold uppercase tracking-[0.15em] transition-opacity duration-300" href="faq.html">FAQ</a>
+  </div>
+  <button class="bg-primary-container text-white px-8 py-3 montserrat text-[11px] font-semibold uppercase tracking-[0.15em] active:scale-95 transition-all duration-200 hover:opacity-90" onclick="window.location.href='customizer.html'">
+    Start Customizing
+  </button>
+</nav>
+
+<main>
+  <!-- HERO SECTION -->
+  <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-surface">
+    <div class="container mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <!-- Left Content -->
+      <div class="z-10 order-2 md:order-1">
+        <div class="space-y-0 leading-none">
+          <h1 class="font-headline text-8xl md:text-[12rem] text-primary tracking-tight">DON'T WEAR</h1>
+          <h1 class="font-headline text-8xl md:text-[12rem] text-primary tracking-tight">THE BRAND.</h1>
+          <h1 class="font-headline text-8xl md:text-[12rem] text-[#C9A84C] tracking-tight">BE THE BRAND.</h1>
+        </div>
+        <p class="mt-8 font-body italic text-2xl md:text-3xl text-on-surface-variant max-w-lg">
+          India's first identity-driven custom shirt. <br/>Made for you. Made by you.
+        </p>
+        <div class="mt-12">
+          <button class="bg-primary-container text-white px-10 py-5 font-label text-sm tracking-[0.2em] flex items-center gap-4 hover:opacity-90 transition-all active:scale-95 group" onclick="window.location.href='customizer.html'">
+            BUILD YOUR SHIRT
+            <span class="material-symbols-outlined transition-transform group-hover:translate-x-2">arrow_right_alt</span>
+          </button>
+        </div>
+      </div>
+      <!-- Right Image -->
+      <div class="relative h-[614px] md:h-[921px] order-1 md:order-2">
+        <div class="absolute inset-0 bg-surface-container-high translate-x-8 translate-y-8 z-0"></div>
+        <img alt="Bespoke tailoring — confident man in a perfectly fitted white custom shirt" class="relative z-10 w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700 shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE6oGegaQSyEGKWdyoV9SuEdlGCrEEzi4YyWBcgBH8cLrCpQ6oaF1axFXHyjL5mMkkoktjqzZ2D6bHL7hFO2HnJquyJy6Va2KyAj8ds26q9ZIXmwCpjXn6WEJ7lTj9CZ1a6FDYOC9D2KYYjuVQwZg8gbdSDe6RBFURko4YWX6G9wR0oq_RexuwBJI7w_NJcpq0vXSifF2gd8XpCudR9lEk9Epp97h8PVGRbcYwXq_NiCdoDpdpFf_8QEceL6cGHjMB6in2G1WM06g"/>
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 border border-[#C9A84C]/40 z-20 hidden md:block"></div>
+      </div>
+    </div>
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <span class="font-label text-[9px] uppercase tracking-widest">Discover</span>
+      <div class="w-px h-12 bg-on-surface"></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS SECTION -->
+  <section class="py-32 bg-[#F8F5F0]">
+    <div class="container mx-auto px-8">
+      <div class="flex flex-col items-center mb-24">
+        <h2 class="font-headline text-6xl md:text-8xl text-primary mb-4">HOW IT WORKS</h2>
+        <div class="w-24 h-px bg-[#C9A84C]"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-20">
+        <!-- Step 1 -->
+        <div class="flex flex-col items-center text-center group">
+          <div class="relative mb-8">
+            <div class="w-20 h-20 rounded-full border border-[#C9A84C] flex items-center justify-center text-[#C9A84C] font-headline text-3xl transition-colors group-hover:bg-[#C9A84C] group-hover:text-white">01</div>
+            <div class="absolute -right-4 -top-4 bg-white p-2 rounded-full shadow-sm">
+              <span class="material-symbols-outlined text-primary-container">checkroom</span>
+            </div>
+          </div>
+          <h3 class="font-body text-2xl font-bold mb-4 italic">The Blueprint</h3>
+          <p class="font-body text-lg text-on-surface-variant leading-relaxed">Choose your fabric, collar, cuffs, buttons. Every detail is a reflection of your aesthetic.</p>
+        </div>
+        <!-- Step 2 -->
+        <div class="flex flex-col items-center text-center group">
+          <div class="relative mb-8">
+            <div class="w-20 h-20 rounded-full border border-[#C9A84C] flex items-center justify-center text-[#C9A84C] font-headline text-3xl transition-colors group-hover:bg-[#C9A84C] group-hover:text-white">02</div>
+            <div class="absolute -right-4 -top-4 bg-white p-2 rounded-full shadow-sm">
+              <span class="material-symbols-outlined text-primary-container">edit_note</span>
+            </div>
+          </div>
+          <h3 class="font-body text-2xl font-bold mb-4 italic">The Signature</h3>
+          <p class="font-body text-lg text-on-surface-variant leading-relaxed">Add your monogram (optional). A subtle mark of ownership that turns a garment into an heirloom.</p>
+        </div>
+        <!-- Step 3 -->
+        <div class="flex flex-col items-center text-center group">
+          <div class="relative mb-8">
+            <div class="w-20 h-20 rounded-full border border-[#C9A84C] flex items-center justify-center text-[#C9A84C] font-headline text-3xl transition-colors group-hover:bg-[#C9A84C] group-hover:text-white">03</div>
+            <div class="absolute -right-4 -top-4 bg-white p-2 rounded-full shadow-sm">
+              <span class="material-symbols-outlined text-primary-container">diamond</span>
+            </div>
+          </div>
+          <h3 class="font-body text-2xl font-bold mb-4 italic">The Unveiling</h3>
+          <p class="font-body text-lg text-on-surface-variant leading-relaxed">We make it fresh. You wear your identity. Delivered in premium bespoke packaging.</p>
+        </div>
+      </div>
+      <div class="mt-24 flex justify-center">
+        <button class="border-2 border-[#C9A84C] text-[#0A1628] px-12 py-5 font-label text-sm uppercase tracking-[0.2em] hover:bg-primary-container hover:text-white hover:border-primary-container transition-all duration-500" onclick="window.location.href='customizer.html'">
+          Start Customizing
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL BENTO SECTION -->
+  <section class="py-32 bg-surface">
+    <div class="container mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div class="md:col-span-7 h-[600px] bg-surface-container relative overflow-hidden group">
+        <img alt="Macro close-up of premium cotton fabric texture" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVyg-5F8acEQ1EGwfpUT1Zg3JTOyDczL0-YEqKC0uwXZ2xmX309J1LR8MclwwbY1tVPp9Hh8PaqVg5p7LWsd8Hq9hu6ZdVNQs156IwZZZnyLhIDU2fGJ_59F0lOyuzM8xO7ISoEPDEO7HnTjpJgCnaNAgUCzArmOJIu-WpESFihVhh4B7V6XhGB4H_X1y66FXoYkUmYLtKD2mvv0XrsImf6CHYzAtPDbTQiPzqanyionPL9sYs1HtIb9JLDM2Jfic5_8jP0N9B9Fc"/>
+        <div class="absolute inset-0 bg-primary-container/20 backdrop-blur-[2px]"></div>
+        <div class="absolute bottom-12 left-12 text-white">
+          <p class="font-label text-xs uppercase tracking-[0.3em] mb-4">Quality &amp; Origin</p>
+          <h4 class="font-headline text-5xl">PREMIUM FABRICS</h4>
+        </div>
+      </div>
+      <div class="md:col-span-5 flex flex-col gap-8">
+        <div class="h-[284px] bg-[#0A1628] p-12 flex flex-col justify-center">
+          <h4 class="text-[#C9A84C] font-body italic text-3xl mb-4">"The fit is not just about measurements, but about confidence."</h4>
+          <p class="text-white/60 font-label text-[10px] uppercase tracking-widest">— MASTER TAILOR, SPECIAL ONE</p>
+        </div>
+        <div class="h-[284px] bg-surface-container-high relative overflow-hidden group">
+          <img alt="Luxury mother-of-pearl buttons on dark velvet" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZX31FlkvspeQeLmRT-JJelQzFK1dDOO7NJMKu0r5_tzcx4UOSiTlvE_4Gt_GUSFdB3W6eBhDUC0y6qyO0P6qFqUyIyPImsVzOktSZ_i59scD870XVK2XtkHgNFFVCkOpLB_0mTscgdvPsiwx-IIWSgzh27Py0bfIqMN6SvnBIYYq9IeSX5lD6OQOv-DjOYnv1PwHVGkKA3aPw_9FYAM5yz4qLRaPPRkMLeLuef8F0qPn-n1R-w3KxdWvforlODdmfIfQ9F8NkoG8"/>
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+            <span class="text-white font-label text-xs uppercase tracking-widest border border-white px-6 py-2">Explore Accents</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED FABRICS SECTION -->
+  <section class="py-24 px-8 md:px-20 bg-surface-container-lowest">
+    <div class="max-w-7xl mx-auto">
+      <header class="mb-16 text-center">
+        <h2 class="text-5xl md:text-7xl cormorant italic font-bold text-on-surface tracking-tight">CHOOSE YOUR FABRIC</h2>
+        <div class="h-px w-24 bg-[#C9A84C] mx-auto mt-6"></div>
+      </header>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div class="group cursor-pointer">
+          <div class="aspect-square overflow-hidden mb-6 transition-all duration-500 group-hover:outline group-hover:outline-1 group-hover:outline-[#C9A84C] group-hover:outline-offset-8">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Oxford White fabric texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCim680oIkOUWR7ZA2Bfe3xz_4kADpZYvd1YM3tPksAhz4c-bVEbqhvurSZ-u6OIpGrV4cwbr5a-fiKGLu36QBhgs22xT29MWS9huVx6xE_DKfSGmr4HtoWqXfHP0CKmsMrQk3-igFpfOeU6PmBTTBYJxyBjNqhx7DSlqF9pp6ApWqxTbcEupOA9xYvcFRKODjikvjkPBL2m6FgdveQJHMXhxYmLk6B9MrdkHan64h84qrLxXeojV7QjWru7T8StyboAkzMTR0JhS0"/>
+          </div>
+          <p class="montserrat text-[11px] font-semibold uppercase tracking-[0.15em] text-on-surface-variant text-center">Oxford White</p>
+        </div>
+        <div class="group cursor-pointer">
+          <div class="aspect-square overflow-hidden mb-6 transition-all duration-500 group-hover:outline group-hover:outline-1 group-hover:outline-[#C9A84C] group-hover:outline-offset-8">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Chambray Blue fabric texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN1EMRUGQbbToYdoI-cCx90DS2YCCdsgzFPk_Q0qXXAKue2pm_YU-oo-G1cYxlEXwOG41Stdtq_uQia9_w2wD0CZYTYY9P82rMRQ_S4fJLyCb4cXyO0b5WDLjGWJZ5-q9HbVtSBpuL_m687CufHaLd_tF9ckKQHmTfZld0LUA6dx1lCN1rXNoj4EOLX-b4RGnxMz8CSsusAlK-I71EBuJhbGC_vaseSSnEbHLrkg6xp5Ju8Opus0VSjeROlW2QJ3qsEMA8k3cVifo"/>
+          </div>
+          <p class="montserrat text-[11px] font-semibold uppercase tracking-[0.15em] text-on-surface-variant text-center">Chambray Blue</p>
+        </div>
+        <div class="group cursor-pointer">
+          <div class="aspect-square overflow-hidden mb-6 transition-all duration-500 group-hover:outline group-hover:outline-1 group-hover:outline-[#C9A84C] group-hover:outline-offset-8">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Charcoal Herringbone fabric texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqGXjVuAOmmkpDLypP1uBL62oZEiSwr5qHIjLlr1t95SP0iATciVrVWJR-Vhw0jspm-qKaWAgKFQkgS85QsK4boxZ5aERB37j6i9D6DHSoqyRgAjawFYT166HS9ecH1kCTHM-e1VWm5MIWWBY6HF1y1-Ebv7lwE2KFDSRIk74yJ0SUSx31skP-XVifwwkVmxnmylVikLoRuFqM8x2PHO9jDNZyosnvQ7QeW9HEraOhpNsFd3A36gc_NCt8dVX9lY0nosbvuFKqOAE"/>
+          </div>
+          <p class="montserrat text-[11px] font-semibold uppercase tracking-[0.15em] text-on-surface-variant text-center">Charcoal Herringbone</p>
+        </div>
+        <div class="group cursor-pointer">
+          <div class="aspect-square overflow-hidden mb-6 transition-all duration-500 group-hover:outline group-hover:outline-1 group-hover:outline-[#C9A84C] group-hover:outline-offset-8">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Ivory Linen fabric texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKhIQLxM584EtSfpetSHLhfVh09mExdiqCXBn8ZeL-eTQhvX2M40ixmw1Zuj0XAlc_z4D8A3tXnk1pu4RadtHsNd8pdULdT4HIubSOqHI9VbYEwqMApaFwHLgHhoaWdNE8ZnyeaUjgngzbpNlKSd5030kMbg9t1XYJhui2e0W1LHiJrnLEOMF81SaE_8Zad5Fy28j5nDWHGBOGmhStZeb3MxBsmz-y8HhX3V8IvzbMHKOferQMb2-G3B2_sX11qmdF2JYzsmSsW6U"/>
+          </div>
+          <p class="montserrat text-[11px] font-semibold uppercase tracking-[0.15em] text-on-surface-variant text-center">Ivory Linen</p>
+        </div>
+      </div>
+      <div class="mt-20 text-center">
+        <a class="inline-flex items-center gap-2 text-[#C9A84C] montserrat text-[11px] font-semibold uppercase tracking-[0.2em] hover:opacity-70 transition-opacity" href="customizer.html">
+          See all fabrics
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY SPECIAL ONE -->
+  <section class="py-32 bg-[#0A1628] text-white overflow-hidden relative">
+    <div class="absolute top-0 right-0 opacity-10 pointer-events-none">
+      <span class="bebas text-[20rem] leading-none select-none">SPECIAL</span>
+    </div>
+    <div class="max-w-7xl mx-auto px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 border-y border-[#C9A84C]/20">
+        <div class="py-16 lg:px-12 border-b lg:border-b-0 lg:border-r border-[#C9A84C]/20 group">
+          <div class="mb-8 opacity-40 group-hover:opacity-100 transition-opacity duration-500">
+            <span class="bebas text-6xl text-[#C9A84C]">01</span>
+          </div>
+          <h3 class="cormorant text-3xl font-bold mb-6 italic tracking-tight">Zero Dead Stock</h3>
+          <div class="h-px w-12 bg-[#C9A84C] mb-8"></div>
+          <p class="cormorant text-xl text-slate-300 leading-relaxed italic">Made fresh after every order. We eliminate the waste of mass production by creating only what is requested, specifically for you.</p>
+        </div>
+        <div class="py-16 lg:px-12 border-b lg:border-b-0 lg:border-r border-[#C9A84C]/20 group">
+          <div class="mb-8 opacity-40 group-hover:opacity-100 transition-opacity duration-500">
+            <span class="bebas text-6xl text-[#C9A84C]">02</span>
+          </div>
+          <h3 class="cormorant text-3xl font-bold mb-6 italic tracking-tight">Your identity, not a label</h3>
+          <div class="h-px w-12 bg-[#C9A84C] mb-8"></div>
+          <p class="cormorant text-xl text-slate-300 leading-relaxed italic">No logos, no brand stamps. We believe the quality of the garment should speak for itself, keeping the focus entirely on your personal style.</p>
+        </div>
+        <div class="py-16 lg:px-12 group">
+          <div class="mb-8 opacity-40 group-hover:opacity-100 transition-opacity duration-500">
+            <span class="bebas text-6xl text-[#C9A84C]">03</span>
+          </div>
+          <h3 class="cormorant text-3xl font-bold mb-6 italic tracking-tight">Premium craftsmanship</h3>
+          <div class="h-px w-12 bg-[#C9A84C] mb-8"></div>
+          <p class="cormorant text-xl text-slate-300 leading-relaxed italic">Every detail chosen by you. From collar height to cuff width, our master tailors execute your vision with surgical precision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PERFECT GIFT SECTION -->
+  <section class="bg-[#F2EDE6] py-24 md:py-40">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
+        <div class="w-full lg:w-1/2 relative">
+          <div class="absolute -top-10 -left-10 w-40 h-40 border-t border-l border-[#C9A84C]/30 z-0"></div>
+          <div class="relative z-10 shadow-2xl overflow-hidden aspect-[4/5]">
+            <img class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Luxury gift box with cream paper and navy silk ribbon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA16ec9eFxKfX--Pi4QhLGHGh3DrMcPJH9GeKv40m9CQJlmdJn94JgbdrDxPDL4QOlABJIXdryaZB8GJvB4UQ5Hh84BhbFw7SsWMFU4XVsxsrPfcqO2rwh7-y50HiLcGnTsD5Ktb0EtTbQkiioZ3d3CVbitQ7bNE0iAXCMZoGy88Pv0UIxnzlpSZwoGZ1qjIzI0xapTcN-HXCSu28CuI_YRJqGMB3TCuIPvLIRBmudG7MWC9cjZLaf7D3TAwKdZamFojZUNJoQoFMQ"/>
+          </div>
+        </div>
+        <div class="w-full lg:w-1/2 flex flex-col items-start">
+          <span class="montserrat text-[11px] font-semibold uppercase tracking-[0.3em] text-[#C9A84C] mb-6">The Art of Giving</span>
+          <h2 class="text-6xl md:text-8xl cormorant font-bold italic text-[#0A1628] leading-[0.9] mb-8">THE PERFECT GIFT</h2>
+          <p class="cormorant text-2xl text-[#4A4A4A] leading-relaxed mb-12 italic max-w-lg">Give the luxury of choice. Our signature gift experience allows them to design their own masterpiece, guided by our heritage tailoring.</p>
+          <a class="group inline-flex flex-col" href="customizer.html">
+            <span class="montserrat text-[11px] font-semibold uppercase tracking-[0.2em] text-[#0A1628] mb-1">Explore Gifting Options</span>
+            <div class="h-px w-full bg-[#C9A84C] transition-transform origin-left group-hover:scale-x-110"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-16 px-12 grid grid-cols-1 md:grid-cols-4 gap-12 bg-[#0A1628] border-t border-[#C9A84C]/10">
+  <div class="flex flex-col gap-6">
+    <div class="text-[#C9A84C] text-2xl font-light tracking-[0.3em] montserrat">SPECIAL ONE</div>
+    <p class="cormorant italic text-[#C9A84C]/80 text-lg">Crafting identities, one stitch at a time. The modern atelier for the self-made individual.</p>
+  </div>
+  <div class="flex flex-col gap-4">
+    <span class="montserrat font-semibold text-white text-xs tracking-widest mb-2 uppercase">About</span>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="about.html">Our Story</a>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="about.html">Craftsmanship</a>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="about.html">Ethical Sourcing</a>
+  </div>
+  <div class="flex flex-col gap-4">
+    <span class="montserrat font-semibold text-white text-xs tracking-widest mb-2 uppercase">Quick Links</span>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="customizer.html">Customize Shirt</a>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="#">Fabric Guide</a>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="#">Measurement Guide</a>
+  </div>
+  <div class="flex flex-col gap-4">
+    <span class="montserrat font-semibold text-white text-xs tracking-widest mb-2 uppercase">Contact</span>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="mailto:concierge@specialone.com">concierge@specialone.com</a>
+    <div class="flex gap-4 mt-4">
+      <span class="material-symbols-outlined text-[#C9A84C] cursor-pointer hover:text-white transition-colors">share</span>
+      <span class="material-symbols-outlined text-[#C9A84C] cursor-pointer hover:text-white transition-colors">location_on</span>
+    </div>
+  </div>
+  <div class="col-span-1 md:col-span-4 mt-12 pt-8 border-t border-[#C9A84C]/10 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="text-[#C9A84C]/40 font-label text-[10px] tracking-widest">© 2024 SPECIAL ONE. ALL RIGHTS RESERVED.</p>
+    <div class="flex gap-8">
+      <a class="text-[#C9A84C]/40 font-label text-[10px] tracking-widest hover:text-white transition-colors" href="#">POLICIES</a>
+      <a class="text-[#C9A84C]/40 font-label text-[10px] tracking-widest hover:text-white transition-colors" href="#">TERMS OF SERVICE</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

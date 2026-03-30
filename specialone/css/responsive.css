@@ -1,0 +1,355 @@
+/* ============================================================
+   RESPONSIVE.CSS — Special One
+   Master responsive overrides for ALL pages
+   Breakpoints:
+     xs:  <480px   (small phones)
+     sm:  480–767px (phones)
+     md:  768–1023px (tablets)
+     lg:  1024–1279px (small desktop)
+     xl:  1280px+  (desktop)
+   ============================================================ */
+
+/* ── 1. CART PAGE ─────────────────────────────────────────── */
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--space-2xl);
+  align-items: flex-start;
+}
+
+.cart-summary-sticky {
+  position: sticky;
+  top: 96px;
+}
+
+.cart-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.cart-page-wrapper {
+  padding-top: 72px;
+  min-height: 100vh;
+}
+
+.cart-inner {
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+/* Cart Item Card */
+.cart-item {
+  background: var(--charcoal);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-lg);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-lg);
+  align-items: start;
+  transition: border-color var(--transition-base);
+}
+.cart-item:hover { border-color: var(--gold); }
+.cart-item-details { display: flex; flex-direction: column; gap: var(--space-sm); }
+.cart-item-name { font-family: var(--font-display); font-size: 1.2rem; color: var(--ivory); letter-spacing: 0.05em; }
+.cart-item-specs { font-family: var(--font-accent); font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.1em; }
+.cart-item-spec-tag {
+  display: inline-block; background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+  padding: 0.2rem 0.5rem; margin: 0.15rem 0.15rem 0 0;
+}
+.cart-item-price { font-family: var(--font-display); font-size: 1.4rem; color: var(--gold); white-space: nowrap; }
+.cart-item-remove { font-family: var(--font-accent); font-size: 0.6rem; color: var(--text-muted); cursor: pointer; margin-top: var(--space-sm); transition: color var(--transition-fast); background: none; border: none; padding: 0; }
+.cart-item-remove:hover { color: #fc8181; }
+
+/* Promo row */
+.promo-row {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: 0.4rem;
+}
+.promo-row input { flex: 1; }
+
+@media (max-width: 900px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+  .cart-summary-sticky { position: static; }
+}
+
+@media (max-width: 600px) {
+  .cart-inner { padding: var(--space-xl) var(--space-md); }
+  .cart-page-wrapper { padding-top: 60px; }
+  .cart-item {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+  }
+  .cart-item-details { grid-column: 1; }
+  .cart-item-price  { grid-column: 2; grid-row: 1; }
+  .cart-item-remove { grid-column: 1; grid-row: 2; }
+}
+
+@media (max-width: 400px) {
+  .cart-item { padding: var(--space-md); gap: var(--space-sm); }
+  .cart-item-price { font-size: 1.1rem; }
+}
+
+/* ── 2. CHECKOUT PAGE ─────────────────────────────────────── */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--space-2xl);
+  align-items: flex-start;
+}
+
+.checkout-summary-sticky {
+  position: sticky;
+  top: 96px;
+}
+
+.checkout-page-wrapper {
+  padding-top: 72px;
+  min-height: 100vh;
+}
+
+.checkout-inner {
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+/* Form grid inside checkout */
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-md);
+}
+
+@media (max-width: 900px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+  .checkout-summary-sticky {
+    position: static;
+    order: -1; /* Summary appears above form on mobile */
+  }
+}
+
+@media (max-width: 600px) {
+  .checkout-inner { padding: var(--space-xl) var(--space-md); }
+  .checkout-page-wrapper { padding-top: 60px; }
+  .form-row-2 { grid-template-columns: 1fr; }
+  .form-row-3 { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 400px) {
+  .form-row-3 { grid-template-columns: 1fr; }
+}
+
+/* ── 3. ADMIN PANEL FULL RESPONSIVE ──────────────────────── */
+
+/* Topbar search stack on tablet */
+@media (max-width: 900px) {
+  .admin-topbar {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .admin-topbar__actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .admin-search {
+    width: 100%;
+  }
+
+  .admin-search-input {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+/* Full mobile admin */
+@media (max-width: 768px) {
+  .admin-content { padding: var(--space-md); }
+
+  .admin-table-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  /* Make search inputs full-width on mobile */
+  .admin-search { flex-direction: column; width: 100%; }
+  .admin-search .admin-search-input { width: 100%; }
+  .admin-search select.admin-search-input { width: 100%; }
+
+  /* Table wrapper gets min-width so columns stay readable */
+  .admin-table-wrapper { overflow-x: auto; }
+  table { min-width: 600px; }
+
+  /* Modal: bottom sheet on mobile */
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .modal {
+    width: 100%;
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  /* Stat cards: 2-column */
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-sm); }
+  .stat-card { padding: var(--space-md); }
+  .stat-card__value { font-size: 1.5rem; }
+
+  /* KPI analytics row */
+  .kpi-row { grid-template-columns: repeat(2, 1fr); gap: var(--space-sm); }
+
+  /* Analytics charts: full span */
+  .analytics-grid { grid-template-columns: 1fr !important; }
+  [style*="grid-column: span 2"] { grid-column: span 1 !important; }
+  .chart-card [style*="grid-column: span 2"] { grid-column: span 1 !important; }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-xs); }
+  .stat-card__value { font-size: 1.3rem; }
+  .stat-card__label { font-size: 0.5rem; }
+
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+
+  .admin-topbar__title { font-size: 1rem; }
+
+  .table-actions { flex-direction: column; gap: 0.25rem; }
+  .btn-action-view, .btn-action-edit, .btn-action-danger {
+    font-size: 0.55rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .pagination {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  /* Donut chart: stack on mobile */
+  .donut-wrap { flex-direction: column; align-items: center; }
+}
+
+/* ── 4. ANALYTICS PAGE SPECIFIC ──────────────────────────── */
+@media (max-width: 768px) {
+  .analytics-grid { grid-template-columns: 1fr !important; }
+
+  /* Force the "span 2" bar chart to full width */
+  .chart-card[style*="span 2"],
+  .analytics-grid > div:first-child { grid-column: 1 !important; }
+
+  .chart-bar-container { height: 100px; }
+  .chart-bar-label { font-size: 0.4rem; }
+}
+
+/* ── 5. ADMIN LOGIN PAGE ─────────────────────────────────── */
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-md);
+  background: var(--navy);
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 440px;
+}
+
+@media (max-width: 480px) {
+  .admin-login-page { padding: var(--space-md); }
+  .admin-login-card { max-width: 100%; }
+}
+
+/* ── 6. ORDER SUCCESS PAGE ───────────────────────────────── */
+.success-page {
+  padding-top: 72px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+@media (max-width: 600px) {
+  .success-page { padding-top: 60px; }
+}
+
+/* ── 7. FAQ / ABOUT PAGES ────────────────────────────────── */
+.faq-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.faq-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+@media (max-width: 900px) {
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+  .faq-sidebar { position: static; }
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
+
+/* ── 8. GLOBAL TOUCH IMPROVEMENTS ───────────────────────── */
+
+/* Minimum 44px tap target on all interactive elements */
+@media (hover: none) {
+  button, a, .option-card, .size-btn, .sidebar-nav__item {
+    min-height: 44px;
+  }
+  .sidebar-nav__item { min-height: 48px; }
+  .btn { min-height: 48px; }
+  .btn--sm { min-height: 40px; }
+}
+
+/* Prevent iOS rubber-band scroll on body */
+@media (max-width: 1024px) {
+  .admin-sidebar { -webkit-overflow-scrolling: touch; }
+}
+
+/* ── 9. PRINT STYLES ─────────────────────────────────────── */
+@media print {
+  .nav, .nav__hamburger, .admin-sidebar, .admin-menu-btn,
+  #cursor-dot, #cursor-ring, .promo-banner { display: none !important; }
+  body { background: white; color: black; }
+  .admin-main { margin-left: 0; }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Support Tickets — Special One Admin</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div id="cursor-dot"></div><div id="cursor-ring"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-logo"><div class="sidebar-logo__text">SPECIAL <span>ONE</span></div><span class="sidebar-logo__badge">Admin Panel</span></div>
+    <div class="sidebar-user"><div class="sidebar-user__avatar" id="sidebarInitial">?</div><div><div class="sidebar-user__name" id="sidebarName">Loading...</div><div class="sidebar-user__role" id="sidebarRole">—</div></div></div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-nav__section-label">Operations</div>
+      <a href="dashboard.html" class="sidebar-nav__item"><span class="sidebar-nav__icon">📊</span> Dashboard</a>
+      <a href="orders.html"    class="sidebar-nav__item"><span class="sidebar-nav__icon">📦</span> Orders</a>
+      <a href="customers.html" class="sidebar-nav__item"><span class="sidebar-nav__icon">👤</span> Customers</a>
+      <a href="support.html"   class="sidebar-nav__item active"><span class="sidebar-nav__icon">🎫</span> Support</a>
+      <div class="sidebar-nav__section-label">Inventory</div>
+      <a href="products.html"  class="sidebar-nav__item"><span class="sidebar-nav__icon">👔</span> Products</a>
+      <a href="fabrics.html"   class="sidebar-nav__item"><span class="sidebar-nav__icon">🧵</span> Fabrics</a>
+      <div class="sidebar-nav__section-label">Finance</div>
+      <a href="analytics.html" class="sidebar-nav__item"><span class="sidebar-nav__icon">📈</span> Analytics</a>
+      <div class="sidebar-nav__section-label" id="superAdminSection" style="display:none">System</div>
+      <a href="admins.html"    class="sidebar-nav__item" id="nav-admins" style="display:none"><span class="sidebar-nav__icon">🔐</span> Admins</a>
+      <a href="audit.html"     class="sidebar-nav__item" id="nav-audit"  style="display:none"><span class="sidebar-nav__icon">📋</span> Audit</a>
+    </nav>
+    <div class="sidebar-footer"><button class="sidebar-nav__item" id="logoutBtn" style="width:100%"><span class="sidebar-nav__icon">🚪</span> Logout</button></div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <button class="admin-menu-btn" id="adminMenuBtn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="admin-topbar__title">Support Tickets</div>
+      <div class="admin-topbar__actions">
+        <select id="ticketStatusFilter" class="admin-search-input" style="width:auto" aria-label="Filter by status">
+          <option value="">All Status</option>
+          <option value="open">Open</option>
+          <option value="in_progress">In Progress</option>
+          <option value="resolved">Resolved</option>
+          <option value="closed">Closed</option>
+        </select>
+        <select id="ticketPriorityFilter" class="admin-search-input" style="width:auto" aria-label="Filter by priority">
+          <option value="">All Priority</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+          <option value="urgent">Urgent</option>
+        </select>
+      </div>
+    </header>
+
+    <div class="admin-content">
+      <div class="admin-table-wrapper">
+        <div class="admin-table-header">
+          <div class="admin-table-title">All Tickets</div>
+          <span class="pagination__info" id="ticketCount">Loading...</span>
+        </div>
+        <div style="overflow-x:auto">
+          <table aria-label="Support tickets table">
+            <thead>
+              <tr><th>Ticket ID</th><th>Customer</th><th>Subject</th><th>Type</th><th>Priority</th><th>Status</th><th>Created</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="ticketsTableBody">
+              <tr><td colspan="8" style="text-align:center;padding:3rem;color:var(--text-muted);font-family:var(--font-accent);font-size:0.75rem">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Ticket Detail Modal -->
+<div class="modal-overlay" id="ticketModal" role="dialog" aria-label="Ticket details">
+  <div class="modal" style="max-width:720px">
+    <div class="modal-header">
+      <div class="modal-title" id="ticketModalTitle">Ticket Details</div>
+      <button class="modal-close" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="ticketModalBody">Loading...</div>
+  </div>
+</div>
+
+<script src="../js/global.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

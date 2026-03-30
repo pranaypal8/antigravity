@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Orders — Special One Admin</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="admin-layout">
+  <!-- Sidebar (same as dashboard) -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-logo"><div class="sidebar-logo__text">SPECIAL <span>ONE</span></div><span class="sidebar-logo__badge">Admin Panel</span></div>
+    <div class="sidebar-user"><div class="sidebar-user__avatar" id="sidebarInitial">?</div><div><div class="sidebar-user__name" id="sidebarName">Loading...</div><div class="sidebar-user__role" id="sidebarRole">—</div></div></div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-nav__section-label">Operations</div>
+      <a href="dashboard.html"  class="sidebar-nav__item" id="nav-dashboard"><span class="sidebar-nav__icon">📊</span> Dashboard</a>
+      <a href="orders.html"     class="sidebar-nav__item active" id="nav-orders"><span class="sidebar-nav__icon">📦</span> Orders</a>
+      <a href="customers.html"  class="sidebar-nav__item" id="nav-customers"><span class="sidebar-nav__icon">👤</span> Customers</a>
+      <a href="support.html"    class="sidebar-nav__item" id="nav-support"><span class="sidebar-nav__icon">🎫</span> Support</a>
+      <div class="sidebar-nav__section-label">Inventory</div>
+      <a href="products.html"   class="sidebar-nav__item" id="nav-products"><span class="sidebar-nav__icon">👔</span> Products</a>
+      <a href="fabrics.html"    class="sidebar-nav__item" id="nav-fabrics"><span class="sidebar-nav__icon">🧵</span> Fabrics</a>
+      <div class="sidebar-nav__section-label">Finance</div>
+      <a href="analytics.html"  class="sidebar-nav__item" id="nav-analytics"><span class="sidebar-nav__icon">📈</span> Analytics</a>
+      <div class="sidebar-nav__section-label" id="superAdminSection" style="display:none">System</div>
+      <a href="admins.html"     class="sidebar-nav__item" id="nav-admins" style="display:none"><span class="sidebar-nav__icon">🔐</span> Admins</a>
+      <a href="audit.html"      class="sidebar-nav__item" id="nav-audit"  style="display:none"><span class="sidebar-nav__icon">📋</span> Audit</a>
+    </nav>
+    <div class="sidebar-footer"><button class="sidebar-nav__item" id="logoutBtn" style="width:100%"><span class="sidebar-nav__icon">🚪</span> Logout</button></div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <button class="admin-menu-btn" id="adminMenuBtn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="admin-topbar__title">Orders</div>
+      <div class="admin-topbar__actions">
+        <div class="admin-search">
+          <input type="text" id="orderSearch" class="admin-search-input" placeholder="Search name, email, order ID..." aria-label="Search orders">
+          <select id="statusFilter" class="admin-search-input" style="width:auto" aria-label="Filter by status">
+            <option value="">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="payment_received">Payment Received</option>
+            <option value="in_production">In Production</option>
+            <option value="quality_check">Quality Check</option>
+            <option value="dispatched">Dispatched</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <div class="admin-content">
+      <div class="admin-table-wrapper">
+        <div class="admin-table-header">
+          <div class="admin-table-title">All Orders</div>
+          <span style="font-family:var(--font-accent);font-size:0.65rem;color:var(--text-muted)" id="paginationInfo">Loading...</span>
+        </div>
+        <div style="overflow-x:auto">
+          <table aria-label="Orders table">
+            <thead>
+              <tr>
+                <th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th>
+                <th>Status</th><th>AWB</th><th>Date</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <tr><td colspan="8" style="text-align:center;padding:3rem;color:var(--text-muted);font-family:var(--font-accent);font-size:0.75rem">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Order Detail Modal -->
+<div class="modal-overlay" id="orderModal" role="dialog" aria-label="Order details">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Order Details</div>
+      <button class="modal-close" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="orderModalBody">Loading...</div>
+  </div>
+</div>
+
+<!-- Status Update Modal -->
+<div class="modal-overlay" id="statusModal" role="dialog" aria-label="Update order status">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Update Status</div>
+      <button class="modal-close" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-family:var(--font-accent);font-size:0.65rem;color:var(--text-muted);margin-bottom:var(--space-md)">Order: <span id="statusModalOrderId" style="color:var(--gold)"></span></p>
+      <div class="form-group">
+        <label class="form-label">New Status</label>
+        <select id="statusSelect" class="form-select" aria-label="Select new order status">
+          <option value="pending">Pending</option>
+          <option value="payment_received">Payment Received</option>
+          <option value="in_production">In Production</option>
+          <option value="quality_check">Quality Check</option>
+          <option value="dispatched">Dispatched</option>
+          <option value="delivered">Delivered</option>
+          <option value="cancelled">Cancelled</option>
+          <option value="refund_initiated">Refund Initiated</option>
+          <option value="refunded">Refunded</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">AWB / Tracking Number <span style="color:var(--text-muted)">(optional)</span></label>
+        <input type="text" id="awbInput" class="form-input" placeholder="Shiprocket AWB number" aria-label="AWB tracking number">
+      </div>
+      <button id="saveStatusBtn" class="btn btn--primary" style="width:100%;margin-top:var(--space-md)" aria-label="Save order status">Save Status ✓</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/global.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

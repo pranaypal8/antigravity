@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPECIAL ONE | Frequently Asked Questions</title>
+<meta name="description" content="Answers to your questions about customization, sizing, delivery, returns, and gifting at Special One."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&family=Montserrat:wght@300;400;500;600;700&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "inverse-on-surface": "#f3f0eb","background": "#fcf9f4","surface-container-low": "#f6f3ee","surface-container": "#f0ede9","surface-container-lowest": "#ffffff","on-primary-container": "#79849b","on-primary": "#ffffff","on-surface-variant": "#45474c","outline-variant": "#c5c6cd","primary-container": "#101c2e","on-surface": "#1c1c19","primary": "#000000","outline": "#75777d","surface-variant": "#e5e2dd","surface": "#fcf9f4","secondary": "#755b00","secondary-container": "#fed977","on-secondary-container": "#785d00"
+        },
+        fontFamily: { "headline": ["Cormorant Garamond", "serif"], "display": ["Bebas Neue", "cursive"], "body": ["Cormorant Garamond", "serif"], "label": ["Montserrat", "sans-serif"] },
+        borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; font-size: 20px; }
+  .bebas-neue { font-family: 'Bebas Neue', cursive; }
+  .cormorant { font-family: 'Cormorant Garamond', serif; }
+  .montserrat { font-family: 'Montserrat', sans-serif; }
+  .faq-answer { display: none; }
+  .faq-item.open .faq-answer { display: block; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-icon { transition: transform 0.3s ease; }
+</style>
+</head>
+<body class="bg-background text-on-background selection:bg-secondary-container selection:text-on-secondary-container">
+
+<!-- Navigation -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-white/90 backdrop-blur-xl border-b border-[#C9A84C]/30">
+  <div class="text-xl font-semibold tracking-[0.2em] text-[#0A1628] montserrat">SPECIAL ONE</div>
+  <nav class="hidden md:flex gap-10 items-center">
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold text-[11px] uppercase tracking-[0.15em]" href="index.html">Home</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold text-[11px] uppercase tracking-[0.15em]" href="customizer.html">Customize</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold text-[11px] uppercase tracking-[0.15em]" href="about.html">About</a>
+    <a class="text-[#C9A84C] border-b border-[#C9A84C] pb-1 montserrat font-semibold text-[11px] uppercase tracking-[0.15em]" href="faq.html">FAQ</a>
+  </nav>
+  <button class="bg-primary-container text-white px-6 py-2 montserrat font-semibold text-[11px] uppercase tracking-[0.15em] hover:opacity-80 transition-opacity active:scale-95" onclick="window.location.href='customizer.html'">
+    Start Customizing
+  </button>
+</header>
+
+<main class="pt-20">
+  <section class="bg-[#F8F5F0] py-24 px-8">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-20">
+        <span class="montserrat text-[10px] tracking-[0.4em] text-secondary font-bold uppercase mb-4 block">Information Desk</span>
+        <h1 class="cormorant italic text-5xl text-primary font-bold">FREQUENTLY ASKED QUESTIONS</h1>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div class="space-y-4">
+        <div class="faq-item bg-surface border-b border-[#C9A84C]/10 p-6 cursor-pointer group hover:bg-surface-container-low transition-colors duration-300" onclick="toggleFAQ(this)">
+          <div class="flex justify-between items-center">
+            <h3 class="montserrat font-semibold text-xs tracking-widest uppercase text-primary">How extensive is the customization?</h3>
+            <span class="material-symbols-outlined text-[#C9A84C] font-light faq-icon">add</span>
+          </div>
+          <div class="faq-answer mt-4 cormorant text-xl text-on-surface-variant leading-relaxed max-w-2xl">
+            From collar spread to cuff barrel and initial monograms, every detail of our shirts can be tailored to your preference. Our interactive configurator allows for over 10,000 unique combinations.
+          </div>
+        </div>
+
+        <div class="faq-item bg-surface border-b border-[#C9A84C]/10 p-6 cursor-pointer group hover:bg-surface-container-low transition-colors duration-300" onclick="toggleFAQ(this)">
+          <div class="flex justify-between items-center">
+            <h3 class="montserrat font-semibold text-xs tracking-widest uppercase text-primary">What if the fit isn't perfect?</h3>
+            <span class="material-symbols-outlined text-[#C9A84C] font-light faq-icon">add</span>
+          </div>
+          <div class="faq-answer mt-4 cormorant text-xl text-on-surface-variant leading-relaxed max-w-2xl">
+            We offer a Perfect Fit Guarantee. If your first shirt doesn't fit exactly as desired, we will remake it from scratch free of charge, or cover local alterations up to ₹3,500.
+          </div>
+        </div>
+
+        <div class="faq-item bg-surface border-b border-[#C9A84C]/10 p-6 cursor-pointer group hover:bg-surface-container-low transition-colors duration-300" onclick="toggleFAQ(this)">
+          <div class="flex justify-between items-center">
+            <h3 class="montserrat font-semibold text-xs tracking-widest uppercase text-primary">What is the delivery timeline?</h3>
+            <span class="material-symbols-outlined text-[#C9A84C] font-light faq-icon">add</span>
+          </div>
+          <div class="faq-answer mt-4 cormorant text-xl text-on-surface-variant leading-relaxed max-w-2xl">
+            Each shirt is made fresh after your order is placed. Standard delivery takes 10–14 business days. Express production (7 days) is available for an additional charge. We ship pan-India via Shiprocket with real-time tracking.
+          </div>
+        </div>
+
+        <div class="faq-item bg-surface border-b border-[#C9A84C]/10 p-6 cursor-pointer group hover:bg-surface-container-low transition-colors duration-300" onclick="toggleFAQ(this)">
+          <div class="flex justify-between items-center">
+            <h3 class="montserrat font-semibold text-xs tracking-widest uppercase text-primary">Are custom items returnable?</h3>
+            <span class="material-symbols-outlined text-[#C9A84C] font-light faq-icon">add</span>
+          </div>
+          <div class="faq-answer mt-4 cormorant text-xl text-on-surface-variant leading-relaxed max-w-2xl">
+            Because every garment is made specifically for you, we do not accept returns due to change of mind. However, if there is a quality defect or a sizing error on our part, we will remake the garment at no charge.
+          </div>
+        </div>
+
+        <div class="faq-item bg-surface border-b border-[#C9A84C]/10 p-6 cursor-pointer group hover:bg-surface-container-low transition-colors duration-300" onclick="toggleFAQ(this)">
+          <div class="flex justify-between items-center">
+            <h3 class="montserrat font-semibold text-xs tracking-widest uppercase text-primary">Do you offer Bespoke Gift Sets?</h3>
+            <span class="material-symbols-outlined text-[#C9A84C] font-light faq-icon">add</span>
+          </div>
+          <div class="faq-answer mt-4 cormorant text-xl text-on-surface-variant leading-relaxed max-w-2xl">
+            Yes. Our signature gift experience allows the recipient to design their own masterpiece. Gift cards come with premium packaging and a handwritten note from our atelier.
+          </div>
+        </div>
+
+        <div class="faq-item bg-surface border-b border-[#C9A84C]/10 p-6 cursor-pointer group hover:bg-surface-container-low transition-colors duration-300" onclick="toggleFAQ(this)">
+          <div class="flex justify-between items-center">
+            <h3 class="montserrat font-semibold text-xs tracking-widest uppercase text-primary">Which payment methods are accepted?</h3>
+            <span class="material-symbols-outlined text-[#C9A84C] font-light faq-icon">add</span>
+          </div>
+          <div class="faq-answer mt-4 cormorant text-xl text-on-surface-variant leading-relaxed max-w-2xl">
+            We accept all major payment methods through Razorpay — UPI, Net Banking, Credit/Debit Cards, and EMI options. All transactions are 256-bit SSL encrypted.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-16 px-12 grid grid-cols-1 md:grid-cols-4 gap-12 bg-[#0A1628] border-t border-[#C9A84C]/10">
+  <div class="flex flex-col gap-6">
+    <div class="text-[#C9A84C] text-2xl font-light tracking-[0.3em] montserrat">SPECIAL ONE</div>
+    <p class="cormorant italic text-[#C9A84C]/80 text-lg leading-relaxed">Defining individual excellence since 2024. Your identity, bespoke.</p>
+  </div>
+  <div class="flex flex-col gap-4">
+    <span class="montserrat font-bold text-[10px] tracking-[0.2em] text-[#C9A84C] uppercase mb-2">About</span>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="about.html">Our Story</a>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="about.html">The Atelier</a>
+  </div>
+  <div class="flex flex-col gap-4">
+    <span class="montserrat font-bold text-[10px] tracking-[0.2em] text-[#C9A84C] uppercase mb-2">Quick Links</span>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="customizer.html">Customize Now</a>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="#">Fabric Gallery</a>
+    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="#">Size Guide</a>
+  </div>
+  <div class="flex flex-col gap-4">
+    <span class="montserrat font-bold text-[10px] tracking-[0.2em] text-[#C9A84C] uppercase mb-2">Connect</span>
+    <a class="cormorant italic text-[#C9A84C]/80 text-lg" href="mailto:atelier@specialone.com">atelier@specialone.com</a>
+    <div class="flex gap-4 mt-2">
+      <span class="material-symbols-outlined text-[#C9A84C] cursor-pointer hover:text-white">photo_camera</span>
+      <span class="material-symbols-outlined text-[#C9A84C] cursor-pointer hover:text-white">mail</span>
+    </div>
+  </div>
+  <div class="md:col-span-4 mt-12 pt-8 border-t border-[#C9A84C]/10 flex flex-col md:flex-row justify-between items-center gap-4">
+    <span class="montserrat font-semibold text-[9px] tracking-[0.2em] text-[#C9A84C]/60 uppercase">© 2024 SPECIAL ONE. ALL RIGHTS RESERVED.</span>
+    <div class="flex gap-8">
+      <a class="montserrat font-semibold text-[9px] tracking-[0.2em] text-[#C9A84C]/60 hover:text-white uppercase transition-colors" href="#">Privacy Policy</a>
+      <a class="montserrat font-semibold text-[9px] tracking-[0.2em] text-[#C9A84C]/60 hover:text-white uppercase transition-colors" href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleFAQ(el) {
+    el.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

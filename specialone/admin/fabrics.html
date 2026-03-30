@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Fabrics — Special One Admin</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div id="cursor-dot"></div><div id="cursor-ring"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-logo"><div class="sidebar-logo__text">SPECIAL <span>ONE</span></div><span class="sidebar-logo__badge">Admin Panel</span></div>
+    <div class="sidebar-user"><div class="sidebar-user__avatar" id="sidebarInitial">?</div><div><div class="sidebar-user__name" id="sidebarName">Loading...</div><div class="sidebar-user__role" id="sidebarRole">—</div></div></div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-nav__section-label">Operations</div>
+      <a href="dashboard.html" class="sidebar-nav__item"><span class="sidebar-nav__icon">📊</span> Dashboard</a>
+      <a href="orders.html"    class="sidebar-nav__item"><span class="sidebar-nav__icon">📦</span> Orders</a>
+      <a href="customers.html" class="sidebar-nav__item"><span class="sidebar-nav__icon">👤</span> Customers</a>
+      <a href="support.html"   class="sidebar-nav__item"><span class="sidebar-nav__icon">🎫</span> Support</a>
+      <div class="sidebar-nav__section-label">Inventory</div>
+      <a href="products.html"  class="sidebar-nav__item"><span class="sidebar-nav__icon">👔</span> Products</a>
+      <a href="fabrics.html"   class="sidebar-nav__item active"><span class="sidebar-nav__icon">🧵</span> Fabrics</a>
+      <div class="sidebar-nav__section-label">Finance</div>
+      <a href="analytics.html" class="sidebar-nav__item"><span class="sidebar-nav__icon">📈</span> Analytics</a>
+      <div class="sidebar-nav__section-label" id="superAdminSection" style="display:none">System</div>
+      <a href="admins.html"    class="sidebar-nav__item" id="nav-admins" style="display:none"><span class="sidebar-nav__icon">🔐</span> Admins</a>
+      <a href="audit.html"     class="sidebar-nav__item" id="nav-audit"  style="display:none"><span class="sidebar-nav__icon">📋</span> Audit</a>
+    </nav>
+    <div class="sidebar-footer"><button class="sidebar-nav__item" id="logoutBtn" style="width:100%"><span class="sidebar-nav__icon">🚪</span> Logout</button></div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <button class="admin-menu-btn" id="adminMenuBtn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="admin-topbar__title">Fabric Inventory</div>
+      <div class="admin-topbar__actions">
+        <button class="btn btn--primary btn--sm" id="addFabricBtn" aria-label="Add new fabric">+ Add Fabric</button>
+      </div>
+    </header>
+
+    <div class="admin-content">
+      <div class="admin-table-wrapper">
+        <div class="admin-table-header">
+          <div class="admin-table-title">All Fabrics</div>
+          <input type="text" id="fabricSearch" class="admin-search-input" placeholder="Search by name or type..." aria-label="Search fabrics">
+        </div>
+        <div style="overflow-x:auto">
+          <table aria-label="Fabrics inventory table">
+            <thead>
+              <tr><th>Name</th><th>Type</th><th>Color Swatch</th><th>Stock (m)</th><th>Low Stock Threshold</th><th>Status</th><th>Available</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="fabricsTableBody">
+              <tr><td colspan="8" style="text-align:center;padding:3rem;color:var(--text-muted);font-family:var(--font-accent);font-size:0.75rem">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add / Edit Fabric Modal -->
+<div class="modal-overlay" id="fabricModal" role="dialog" aria-label="Add or edit fabric">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="fabricModalTitle">Add Fabric</div>
+      <button class="modal-close" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="fabricForm" novalidate>
+        <input type="hidden" id="fabricId">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md)">
+          <div class="form-group">
+            <label class="form-label">Name *</label>
+            <input type="text" id="fabricName" class="form-input" placeholder="e.g. Oxford Navy" required aria-required="true">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Type *</label>
+            <select id="fabricType" class="form-select" required aria-required="true">
+              <option value="">Select type...</option>
+              <option value="cotton">Cotton</option>
+              <option value="linen">Linen</option>
+              <option value="poplin">Poplin</option>
+              <option value="oxford">Oxford</option>
+              <option value="chambray">Chambray</option>
+              <option value="herringbone">Herringbone</option>
+              <option value="twill">Twill</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <input type="text" id="fabricDescription" class="form-input" placeholder="Short description shown in customizer">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-md)">
+          <div class="form-group">
+            <label class="form-label">Color Hex *</label>
+            <div style="display:flex;gap:var(--space-sm);align-items:center">
+              <input type="color" id="fabricColorPicker" value="#1C1C2E" style="width:40px;height:38px;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);background:transparent;cursor:pointer;padding:2px">
+              <input type="text" id="fabricColor" class="form-input" placeholder="#1C1C2E" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Stock (metres) *</label>
+            <input type="number" id="fabricStock" class="form-input" placeholder="50" min="0" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Low Stock Alert at (m)</label>
+            <input type="number" id="fabricThreshold" class="form-input" placeholder="10" min="0" value="10">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tags <span style="color:var(--text-muted)">(comma-separated, e.g. formal, breathable)</span></label>
+          <input type="text" id="fabricTags" class="form-input" placeholder="formal, breathable, summer">
+        </div>
+        <div class="form-group">
+          <label style="display:flex;align-items:center;gap:var(--space-md);cursor:pointer">
+            <input type="checkbox" id="fabricAvailable" checked style="accent-color:var(--gold);width:16px;height:16px">
+            <span class="form-label" style="margin:0">Show in Customizer</span>
+          </label>
+        </div>
+        <div id="fabricFormError" style="display:none;background:rgba(252,129,129,0.1);border:1px solid rgba(252,129,129,0.3);border-radius:var(--radius-md);padding:0.75rem 1rem;font-family:var(--font-accent);font-size:0.75rem;color:#fc8181;margin-bottom:var(--space-md)"></div>
+        <button type="submit" id="saveFabricBtn" class="btn btn--primary" style="width:100%" aria-label="Save fabric">Save Fabric</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" id="deleteFabricModal" role="dialog" aria-label="Confirm delete">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-header"><div class="modal-title">Delete Fabric?</div><button class="modal-close" aria-label="Close">×</button></div>
+    <div class="modal-body">
+      <p style="font-family:var(--font-body);color:var(--text-muted);margin-bottom:var(--space-lg)">Are you sure you want to delete <strong id="deleteFabricName" style="color:var(--ivory)"></strong>? This cannot be undone.</p>
+      <div style="display:flex;gap:var(--space-md)">
+        <button class="btn btn--outline" style="flex:1" onclick="document.getElementById('deleteFabricModal').classList.remove('active')">Cancel</button>
+        <button class="btn btn--primary" id="confirmDeleteFabricBtn" style="flex:1;background:rgba(252,129,129,0.2);border-color:rgba(252,129,129,0.5);color:#fc8181" aria-label="Confirm delete">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/global.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

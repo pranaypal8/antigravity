@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Account | SPECIAL ONE</title>
+<meta name="description" content="Manage your Special One account, view your bespoke shirt orders and saved customizations."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@400;600&family=Manrope:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode:"class",
+    theme:{extend:{
+      colors:{"background":"#fcf9f4","surface-container-low":"#f6f3ee","surface-container":"#f0ede9","surface-container-lowest":"#ffffff","on-primary-container":"#79849b","primary-container":"#101c2e","on-surface":"#1c1c19","primary":"#000000","outline-variant":"#c5c6cd","surface":"#fcf9f4","secondary":"#755b00","secondary-container":"#fed977","on-surface-variant":"#45474c","outline":"#75777d"},
+      fontFamily:{"headline":["Cormorant Garamond","serif"],"display":["Bebas Neue","cursive"],"body":["Cormorant Garamond","serif"],"label":["Montserrat","sans-serif"]},
+      borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"}
+    }}
+  }
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 24;font-size:20px}
+  .panel-hidden{display:none}
+  .section-tab.active{border-left:3px solid #C9A84C;background:#f6f3ee;color:#0A1628}
+  .section-tab{padding:0.75rem 1.5rem;cursor:pointer;font-family:'Montserrat';font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;color:#75777d;border-left:3px solid transparent;transition:all 0.2s}
+  .section-tab:hover{background:#f0ede9;color:#0A1628}
+</style>
+</head>
+<body class="bg-surface-container-low min-h-screen flex flex-col font-body">
+
+<!-- Nav -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-20 bg-white/90 backdrop-blur-xl border-b border-[#C9A84C]/30">
+  <a class="text-xl font-semibold tracking-[0.2em] text-[#0A1628] font-label" href="index.html">SPECIAL ONE</a>
+  <nav class="hidden md:flex gap-10 items-center font-label">
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] font-semibold text-[11px] uppercase tracking-[0.15em]" href="index.html">Home</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] font-semibold text-[11px] uppercase tracking-[0.15em]" href="customizer.html">Customize</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] font-semibold text-[11px] uppercase tracking-[0.15em]" href="about.html">About</a>
+    <a class="text-[#C9A84C] border-b border-[#C9A84C] pb-1 font-semibold text-[11px] uppercase tracking-[0.15em]" href="account.html">My Account</a>
+  </nav>
+  <button onclick="signOut()" class="bg-primary-container text-white px-6 py-2 font-label font-semibold text-[11px] uppercase tracking-[0.15em] hover:opacity-80 transition-opacity flex items-center gap-2">
+    <span class="material-symbols-outlined text-sm">logout</span>Sign Out
+  </button>
+</header>
+
+<main class="flex-grow pt-28 pb-20 px-6 max-w-7xl mx-auto w-full">
+
+  <!-- Welcome Header -->
+  <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+    <div>
+      <p class="font-label text-[11px] uppercase tracking-[0.3em] text-[#C9A84C] mb-2">Your Atelier</p>
+      <h1 id="account-welcome" class="font-display text-6xl md:text-8xl text-primary tracking-tight">WELCOME BACK</h1>
+    </div>
+    <a href="customizer.html" class="self-start md:self-auto bg-primary-container text-white px-10 py-4 font-label text-xs uppercase tracking-[0.2em] hover:opacity-90 transition-all flex items-center gap-3">
+      <span class="material-symbols-outlined text-sm">add</span> New Bespoke Shirt
+    </a>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-8">
+    <!-- Sidebar Nav -->
+    <aside class="lg:w-56 flex-shrink-0">
+      <div class="bg-white border border-outline-variant/20 py-4">
+        <div class="section-tab active" id="nav-orders" onclick="showSection('orders')">
+          <span class="material-symbols-outlined text-sm mr-2" style="vertical-align:middle">shopping_bag</span>My Orders
+        </div>
+        <div class="section-tab" id="nav-profile" onclick="showSection('profile')">
+          <span class="material-symbols-outlined text-sm mr-2" style="vertical-align:middle">person</span>Profile
+        </div>
+        <div class="section-tab" id="nav-addresses" onclick="showSection('addresses')">
+          <span class="material-symbols-outlined text-sm mr-2" style="vertical-align:middle">location_on</span>Addresses
+        </div>
+        <div class="section-tab" id="nav-saved" onclick="showSection('saved')">
+          <span class="material-symbols-outlined text-sm mr-2" style="vertical-align:middle">checkroom</span>Saved Shirts
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 space-y-6">
+
+      <!-- ORDERS SECTION -->
+      <div id="section-orders">
+        <div class="bg-white border border-outline-variant/20 p-8 mb-6">
+          <h2 class="font-display text-4xl tracking-widest text-primary mb-8">MY ORDERS</h2>
+          <div id="orders-list" class="space-y-6">
+            <!-- Demo orders (real orders would load from sessionStorage) -->
+            <div class="border border-outline-variant/20 p-6 flex flex-col md:flex-row md:items-center gap-6 hover:bg-surface-container-low transition-colors">
+              <div class="w-20 h-24 bg-surface-container overflow-hidden flex-shrink-0">
+                <img class="w-full h-full object-cover" alt="Artisan Oxford shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZWbzyBBMSCsNGB3W0wi_5Ustvfz8r6yzml4UmZmLSLllTtj_Z9VvbGlf0fNx5YHVt6H1RUdfKDeNC9GiCosjl-oSUlKwT2hqaA4vRs13RltATS9fudKXGUkG2DS5tDSDMMPAEOeiF-PcIWKxKBO4N4LHPdP17-WbTClMTQJLt9vyd_6lgkDVuTvOTnspYMb8RCJjsKs-aQgbdofFyRs1w7KmGAyNbgd3HY7xrvxQ9GN9rxHMQUkzQmBEG6fTYBxbmBV4yBLdYU0I"/>
+              </div>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-start gap-4 justify-between">
+                  <div>
+                    <p class="font-label font-semibold text-xs tracking-widest text-on-surface-variant mb-1">#SO-9281</p>
+                    <p class="font-headline italic text-2xl text-primary">The Artisan Oxford</p>
+                    <p class="font-body text-on-surface-variant mt-1">Oxford White · Cutaway Collar · Size 40 Regular</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="font-display text-2xl text-primary">₹3,999</p>
+                    <span class="inline-block mt-2 px-3 py-1 bg-amber-50 text-amber-700 font-label text-[9px] uppercase tracking-widest">In Tailoring</span>
+                  </div>
+                </div>
+                <div class="mt-4 flex gap-4">
+                  <div class="flex-1 h-1 bg-[#C9A84C]/30 rounded-full relative">
+                    <div class="absolute left-0 top-0 w-1/2 h-full bg-[#C9A84C] rounded-full"></div>
+                  </div>
+                </div>
+                <div class="mt-2 flex justify-between font-label text-[9px] uppercase tracking-widest text-on-surface-variant">
+                  <span>Order Placed</span><span>Tailoring</span><span>Quality Check</span><span>Shipped</span><span>Delivered</span>
+                </div>
+              </div>
+            </div>
+            <div class="border border-outline-variant/20 p-6 flex flex-col md:flex-row md:items-center gap-6 hover:bg-surface-container-low transition-colors">
+              <div class="w-20 h-24 bg-surface-container overflow-hidden flex-shrink-0">
+                <img class="w-full h-full object-cover" alt="Linen Azure shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNZ_ImqMhJlWDihrqDIXOMheBiy1J6dALFPaTugwcFPHWb300N7SVK-hDgfzIlIEpEjn8sgHojcSWRXFSrnMAV6bjWvCcMdOp_rdrA64jTb4vTrYo7Ojtnmz4W1KKT5eC6ZiP5MPk6QmGrypcOqbH0oN8U4oAGRuYNVTekJklUz0A5eze-2KeUlqs9vMXswhfPeQiGHhHkH56dXOupGzTLzmZdHZ0W4wBUakJSnYzIAPcxgTP_9kLCXCF1R1RuHymtSULqJWphZqw"/>
+              </div>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-start gap-4 justify-between">
+                  <div>
+                    <p class="font-label font-semibold text-xs tracking-widest text-on-surface-variant mb-1">#SO-9263</p>
+                    <p class="font-headline italic text-2xl text-primary">Summer Linen Azure</p>
+                    <p class="font-body text-on-surface-variant mt-1">Fine Linen Blue · Mandarin · Size 42 Slim</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="font-display text-2xl text-primary">₹3,999</p>
+                    <span class="inline-block mt-2 px-3 py-1 bg-green-50 text-green-700 font-label text-[9px] uppercase tracking-widest">Delivered</span>
+                  </div>
+                </div>
+                <div class="mt-4 flex gap-4">
+                  <div class="flex-1 h-1 bg-[#C9A84C]/30 rounded-full relative">
+                    <div class="absolute left-0 top-0 w-full h-full bg-[#C9A84C] rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 text-center">
+            <a href="customizer.html" class="inline-flex items-center gap-2 font-label text-[11px] uppercase tracking-widest text-secondary border-b border-secondary pb-1 hover:opacity-70 transition-opacity">
+              Design a new shirt <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE SECTION -->
+      <div id="section-profile" class="panel-hidden">
+        <div class="bg-white border border-outline-variant/20 p-8">
+          <h2 class="font-display text-4xl tracking-widest text-primary mb-8">PROFILE</h2>
+          <form class="space-y-8 max-w-xl" onsubmit="saveProfile(event)">
+            <div class="grid grid-cols-2 gap-8">
+              <div class="relative group">
+                <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">First Name</label>
+                <input id="prof-firstname" type="text" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors"/>
+                <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+              </div>
+              <div class="relative group">
+                <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Last Name</label>
+                <input id="prof-lastname" type="text" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors"/>
+                <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+              </div>
+            </div>
+            <div class="relative group">
+              <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Email</label>
+              <input id="prof-email" type="email" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors"/>
+              <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+            </div>
+            <div class="relative group">
+              <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Phone</label>
+              <input id="prof-phone" type="tel" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors"/>
+              <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+            </div>
+            <div id="prof-success" class="hidden text-green-700 font-label text-[10px] tracking-widest uppercase flex items-center gap-2">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">check_circle</span>Profile saved!
+            </div>
+            <button type="submit" class="bg-primary-container text-white px-10 py-4 font-label text-[11px] uppercase tracking-[0.2em] hover:opacity-90 transition-all active:scale-[0.98]">Save Changes</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ADDRESSES SECTION -->
+      <div id="section-addresses" class="panel-hidden">
+        <div class="bg-white border border-outline-variant/20 p-8">
+          <h2 class="font-display text-4xl tracking-widest text-primary mb-8">SAVED ADDRESSES</h2>
+          <div id="addresses-list" class="space-y-4 mb-8">
+            <div class="border border-[#C9A84C]/30 bg-surface-container-low p-6">
+              <div class="flex justify-between items-start mb-3">
+                <p class="font-label font-semibold text-xs uppercase tracking-widest text-[#C9A84C]">Default</p>
+                <div class="flex gap-3">
+                  <button class="font-label text-[10px] uppercase tracking-widest text-secondary hover:underline">Edit</button>
+                  <button class="font-label text-[10px] uppercase tracking-widest text-red-500 hover:underline">Remove</button>
+                </div>
+              </div>
+              <p class="font-headline italic text-xl text-primary" id="default-addr-name">—</p>
+              <p class="font-body text-on-surface-variant" id="default-addr-line">No address saved yet.</p>
+            </div>
+          </div>
+          <button onclick="document.getElementById('add-address-form').classList.toggle('panel-hidden')" class="flex items-center gap-2 border border-secondary text-secondary px-8 py-3 font-label text-xs uppercase tracking-widest hover:bg-secondary hover:text-white transition-all">
+            <span class="material-symbols-outlined text-sm">add</span>Add New Address
+          </button>
+          <form id="add-address-form" class="panel-hidden mt-8 space-y-6 max-w-xl" onsubmit="saveAddress(event)">
+            <div class="grid grid-cols-2 gap-6">
+              <div class="relative group">
+                <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Full Name</label>
+                <input id="addr-name" type="text" required class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl focus:border-secondary focus:ring-0 transition-colors"/>
+                <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+              </div>
+              <div class="relative group">
+                <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Phone</label>
+                <input id="addr-phone" type="tel" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl focus:border-secondary focus:ring-0 transition-colors"/>
+                <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+              </div>
+            </div>
+            <div class="relative group">
+              <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Address Line</label>
+              <input id="addr-line" type="text" required class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl focus:border-secondary focus:ring-0 transition-colors"/>
+              <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+            </div>
+            <div class="grid grid-cols-3 gap-6">
+              <div class="relative group">
+                <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">City</label>
+                <input id="addr-city" type="text" required class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl focus:border-secondary focus:ring-0 transition-colors"/>
+                <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+              </div>
+              <div class="relative group">
+                <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">State</label>
+                <input id="addr-state" type="text" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl focus:border-secondary focus:ring-0 transition-colors"/>
+                <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+              </div>
+              <div class="relative group">
+                <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Pincode</label>
+                <input id="addr-pin" type="text" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl focus:border-secondary focus:ring-0 transition-colors"/>
+                <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+              </div>
+            </div>
+            <button type="submit" class="bg-primary-container text-white px-10 py-4 font-label text-[11px] uppercase tracking-[0.2em] hover:opacity-90 transition-all active:scale-[0.98]">Save Address</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- SAVED SHIRTS SECTION -->
+      <div id="section-saved" class="panel-hidden">
+        <div class="bg-white border border-outline-variant/20 p-8">
+          <h2 class="font-display text-4xl tracking-widest text-primary mb-8">SAVED CUSTOMIZATIONS</h2>
+          <div class="text-center py-16">
+            <span class="material-symbols-outlined text-5xl text-outline-variant mb-4 block">checkroom</span>
+            <p class="font-headline italic text-2xl text-on-surface-variant mb-6">No saved shirts yet.</p>
+            <a href="customizer.html" class="inline-flex items-center gap-2 bg-primary-container text-white px-10 py-4 font-label text-xs uppercase tracking-[0.2em] hover:opacity-90 transition-all">
+              Start Designing <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="bg-[#0A1628] py-10 px-12 flex flex-col md:flex-row justify-between items-center gap-4 border-t border-[#C9A84C]/10">
+  <a class="font-label text-[#C9A84C] text-xl tracking-[0.3em]" href="index.html">SPECIAL ONE</a>
+  <div class="flex gap-8">
+    <a class="font-body italic text-[#C9A84C]/70 hover:text-white transition-colors" href="#">Privacy Policy</a>
+    <a class="font-body italic text-[#C9A84C]/70 hover:text-white transition-colors" href="#">Terms of Service</a>
+  </div>
+  <p class="font-label text-[10px] tracking-widest text-[#C9A84C]/40 uppercase">© 2024 SPECIAL ONE.</p>
+</footer>
+
+<script>
+  // Load user or redirect
+  const user = JSON.parse(sessionStorage.getItem('so_user') || 'null');
+  if (!user) { window.location.href = 'account-login.html'; }
+  else {
+    const parts = user.name ? user.name.split(' ') : [user.email.split('@')[0]];
+    document.getElementById('account-welcome').textContent = `WELCOME, ${parts[0].toUpperCase()}`;
+    if (document.getElementById('prof-firstname')) {
+      document.getElementById('prof-firstname').value = parts[0] || '';
+      document.getElementById('prof-lastname').value = parts.slice(1).join(' ') || '';
+      document.getElementById('prof-email').value = user.email || '';
+      document.getElementById('prof-phone').value = user.phone || '';
+    }
+  }
+
+  function showSection(name) {
+    ['orders','profile','addresses','saved'].forEach(s => {
+      document.getElementById('section-' + s).classList.toggle('panel-hidden', s !== name);
+      document.getElementById('nav-' + s).classList.toggle('active', s === name);
+    });
+  }
+
+  function signOut() {
+    sessionStorage.removeItem('so_user');
+    window.location.href = 'account-login.html';
+  }
+
+  function saveProfile(e) {
+    e.preventDefault();
+    const name = document.getElementById('prof-firstname').value + ' ' + document.getElementById('prof-lastname').value;
+    const updated = { ...user, name, email: document.getElementById('prof-email').value, phone: document.getElementById('prof-phone').value };
+    sessionStorage.setItem('so_user', JSON.stringify(updated));
+    // Update in localStorage too
+    const accounts = JSON.parse(localStorage.getItem('so_accounts') || '[]');
+    const idx = accounts.findIndex(a => a.email === user.email);
+    if (idx >= 0) { accounts[idx] = { ...accounts[idx], ...updated }; localStorage.setItem('so_accounts', JSON.stringify(accounts)); }
+    document.getElementById('prof-success').classList.remove('hidden');
+    setTimeout(() => document.getElementById('prof-success').classList.add('hidden'), 3000);
+  }
+
+  function saveAddress(e) {
+    e.preventDefault();
+    const name = document.getElementById('addr-name').value;
+    const line = `${document.getElementById('addr-line').value}, ${document.getElementById('addr-city').value}, ${document.getElementById('addr-state').value} - ${document.getElementById('addr-pin').value}`;
+    document.getElementById('default-addr-name').textContent = name;
+    document.getElementById('default-addr-line').textContent = line;
+    document.getElementById('add-address-form').classList.add('panel-hidden');
+    e.target.reset();
+  }
+</script>
+</body>
+</html>

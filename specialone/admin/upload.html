@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Upload & Products | Special One Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@400;600&family=Manrope:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode:"class",
+    theme:{extend:{
+      colors:{"background":"#fcf9f4","surface-container-low":"#f6f3ee","surface-container":"#f0ede9","surface-container-lowest":"#ffffff","primary-container":"#101c2e","on-surface":"#1c1c19","primary":"#000000","outline-variant":"#c5c6cd","surface":"#fcf9f4","secondary":"#755b00"},
+      fontFamily:{"headline":["Cormorant Garamond","serif"],"display":["Bebas Neue","cursive"],"body":["Cormorant Garamond","serif"],"label":["Montserrat","sans-serif"],"sans":["Manrope","sans-serif"]},
+      borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem"}
+    }}
+  }
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 24;font-size:20px}
+  .sidebar-active{border-left:4px solid #C9A84C;background:#f6f3ee;color:#0A1628}
+  .drag-over{border-color:#C9A84C;background:#fffef5}
+  .tab-active{border-bottom:2px solid #C9A84C;color:#0A1628}
+  .tab-inactive{border-bottom:2px solid transparent;color:#75777d}
+  .panel-hidden{display:none}
+</style>
+</head>
+<body class="bg-[#fcf9f4] font-body text-on-surface">
+
+<!-- Sidebar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col pt-8 bg-[#fcf9f4] border-r border-[#C9A84C]/20 z-40">
+  <div class="px-8 mb-12">
+    <h1 class="text-lg font-bold tracking-widest text-[#0A1628] font-label uppercase">SPECIAL ONE</h1>
+    <p class="text-[10px] tracking-[0.3em] text-[#C9A84C] font-label uppercase mt-1">Admin Atelier</p>
+  </div>
+  <nav class="flex-1 overflow-y-auto">
+    <ul class="space-y-1">
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer" onclick="window.location.href='dashboard.html'">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Dashboard</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer" onclick="window.location.href='orders.html'">
+        <span class="material-symbols-outlined">shopping_bag</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Orders</span>
+      </li>
+      <li class="border-l-4 border-[#C9A84C] bg-[#f6f3ee] text-[#0A1628] px-8 py-3 flex items-center gap-3 cursor-pointer">
+        <span class="material-symbols-outlined">upload</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Upload &amp; Products</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer">
+        <span class="material-symbols-outlined">apparel</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Fabrics</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer" onclick="window.location.href='customers.html'">
+        <span class="material-symbols-outlined">group</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Customers</span>
+      </li>
+      <li class="text-[#4A4A4A] px-8 py-3 flex items-center gap-3 hover:bg-[#f0ede9] cursor-pointer">
+        <span class="material-symbols-outlined">analytics</span>
+        <span class="font-label font-semibold uppercase tracking-wider text-[11px]">Analytics</span>
+      </li>
+    </ul>
+  </nav>
+  <div class="p-8 border-t border-[#C9A84C]/10 space-y-4">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white text-[10px] font-label">AD</div>
+      <div>
+        <p class="text-[11px] font-semibold font-label uppercase text-[#0A1628]">Admin</p>
+        <p class="text-[9px] text-[#C9A84C] font-label uppercase tracking-tighter">Master Tailor</p>
+      </div>
+    </div>
+    <button onclick="window.location.href='login.html'" class="w-full flex items-center gap-3 text-[#4A4A4A] hover:text-red-500 transition-colors font-label text-[11px] uppercase tracking-wider">
+      <span class="material-symbols-outlined text-base">logout</span>Sign Out
+    </button>
+  </div>
+</aside>
+
+<!-- Main -->
+<main class="ml-64 min-h-screen p-12">
+  <header class="flex justify-between items-end mb-12">
+    <div>
+      <p class="font-label text-[12px] uppercase tracking-[0.2em] text-[#C9A84C] mb-2">Inventory Management</p>
+      <h2 class="font-headline italic text-5xl text-[#0A1628]">Upload &amp; Products</h2>
+    </div>
+    <button onclick="saveAll()" class="px-8 py-3 bg-primary-container text-white font-label text-[11px] uppercase tracking-widest hover:opacity-90 transition-all flex items-center gap-2">
+      <span class="material-symbols-outlined text-sm">save</span>Save All Changes
+    </button>
+  </header>
+
+  <!-- Tabs -->
+  <div class="flex border-b border-outline-variant/30 mb-8">
+    <button id="tab-fabrics" class="px-8 py-4 font-label text-[11px] uppercase tracking-[0.2em] font-semibold tab-active transition-all" onclick="switchTab('fabrics')">Fabrics</button>
+    <button id="tab-collars" class="px-8 py-4 font-label text-[11px] uppercase tracking-[0.2em] font-semibold tab-inactive transition-all" onclick="switchTab('collars')">Collar Styles</button>
+    <button id="tab-cuffs" class="px-8 py-4 font-label text-[11px] uppercase tracking-[0.2em] font-semibold tab-inactive transition-all" onclick="switchTab('cuffs')">Cuff Styles</button>
+    <button id="tab-buttons" class="px-8 py-4 font-label text-[11px] uppercase tracking-[0.2em] font-semibold tab-inactive transition-all" onclick="switchTab('buttons')">Button Styles</button>
+  </div>
+
+  <!-- FABRICS TAB -->
+  <div id="panel-fabrics">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Upload Zone -->
+      <div>
+        <h3 class="font-display text-3xl text-primary mb-6">ADD NEW FABRIC</h3>
+        <form id="fabric-form" onsubmit="addFabric(event)" class="space-y-6 bg-white border border-outline-variant/20 p-8">
+          <!-- Image Upload -->
+          <div>
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-3">Fabric Image / Swatch *</label>
+            <div id="fabric-drop" class="border-2 border-dashed border-outline-variant/50 p-10 flex flex-col items-center gap-3 transition-colors cursor-pointer hover:border-[#C9A84C]" ondragover="handleDragOver(event,'fabric-drop')" ondragleave="handleDragLeave(event,'fabric-drop')" ondrop="handleDrop(event,'fabric-img','fabric-preview-wrap')" onclick="document.getElementById('fabric-img').click()">
+              <span class="material-symbols-outlined text-4xl text-outline-variant">add_photo_alternate</span>
+              <p class="font-label text-[11px] uppercase tracking-widest text-on-surface-variant">Drag &amp; drop or click to upload</p>
+              <p class="font-label text-[9px] text-on-surface-variant/60">JPG, PNG, WEBP · Max 5MB</p>
+              <input id="fabric-img" type="file" accept="image/*" class="hidden" onchange="handleFilePreview(this,'fabric-preview-wrap')"/>
+            </div>
+            <div id="fabric-preview-wrap" class="hidden mt-4 relative">
+              <img id="fabric-preview-img" alt="fabric preview" class="w-full h-48 object-cover border border-outline-variant/20"/>
+              <button type="button" onclick="clearPreview('fabric-img','fabric-preview-wrap')" class="absolute top-2 right-2 bg-white border border-outline-variant/30 p-1 hover:border-red-400 transition-colors">
+                <span class="material-symbols-outlined text-sm">close</span>
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="relative group">
+              <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Fabric Name *</label>
+              <input id="fabric-name" type="text" required placeholder="e.g. Egyptian Giza Cotton" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+              <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+            </div>
+            <div class="relative group">
+              <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">SKU</label>
+              <input id="fabric-sku" type="text" placeholder="e.g. FAB-EGY-001" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+              <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="relative group">
+              <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Category</label>
+              <select id="fabric-category" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors">
+                <option>Cotton</option><option>Linen</option><option>Silk</option><option>Wool</option><option>Blend</option><option>Synthetic</option>
+              </select>
+              <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+            </div>
+            <div class="relative group">
+              <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Stock (metres)</label>
+              <input id="fabric-stock" type="number" min="0" placeholder="e.g. 50" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+              <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+            </div>
+          </div>
+          <div class="relative group">
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Description</label>
+            <textarea id="fabric-desc" rows="3" placeholder="Describe the fabric — thread count, feel, ideal occasions…" class="w-full bg-transparent border border-outline-variant/30 p-3 font-body text-lg text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40 resize-none"></textarea>
+          </div>
+          <div class="flex gap-4">
+            <label class="flex items-center gap-2 font-label text-[10px] uppercase tracking-widest text-on-surface-variant cursor-pointer">
+              <input type="checkbox" id="fabric-featured" class="accent-secondary"> Featured in Customizer
+            </label>
+            <label class="flex items-center gap-2 font-label text-[10px] uppercase tracking-widest text-on-surface-variant cursor-pointer">
+              <input type="checkbox" id="fabric-active" checked class="accent-secondary"> Active / Visible
+            </label>
+          </div>
+          <div id="fabric-success" class="hidden font-label text-[10px] uppercase tracking-widest text-green-700 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">check_circle</span>Fabric added successfully!
+          </div>
+          <button type="submit" class="w-full bg-primary-container text-white py-4 font-label text-[11px] uppercase tracking-[0.2em] hover:opacity-90 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-sm">add</span>Add Fabric to Catalogue
+          </button>
+        </form>
+      </div>
+
+      <!-- Fabric List -->
+      <div>
+        <h3 class="font-display text-3xl text-primary mb-6">FABRIC CATALOGUE</h3>
+        <div id="fabric-list" class="space-y-3">
+          <!-- Populated by JS -->
+        </div>
+        <p id="fabric-empty" class="font-headline italic text-on-surface-variant text-xl text-center py-12">No fabrics added yet. Upload your first swatch.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLLARS TAB -->
+  <div id="panel-collars" class="panel-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div>
+        <h3 class="font-display text-3xl text-primary mb-6">ADD COLLAR STYLE</h3>
+        <form id="collar-form" onsubmit="addOption(event,'collar')" class="space-y-6 bg-white border border-outline-variant/20 p-8">
+          <div>
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-3">Collar Image *</label>
+            <div id="collar-drop" class="border-2 border-dashed border-outline-variant/50 p-10 flex flex-col items-center gap-3 transition-colors cursor-pointer hover:border-[#C9A84C]" ondragover="handleDragOver(event,'collar-drop')" ondragleave="handleDragLeave(event,'collar-drop')" ondrop="handleDrop(event,'collar-img','collar-preview-wrap')" onclick="document.getElementById('collar-img').click()">
+              <span class="material-symbols-outlined text-4xl text-outline-variant">add_photo_alternate</span>
+              <p class="font-label text-[11px] uppercase tracking-widest text-on-surface-variant">Drag &amp; drop or click</p>
+              <input id="collar-img" type="file" accept="image/*" class="hidden" onchange="handleFilePreview(this,'collar-preview-wrap')"/>
+            </div>
+            <div id="collar-preview-wrap" class="hidden mt-4 relative">
+              <img id="collar-preview-img" alt="collar preview" class="w-full h-40 object-cover border border-outline-variant/20"/>
+              <button type="button" onclick="clearPreview('collar-img','collar-preview-wrap')" class="absolute top-2 right-2 bg-white border border-outline-variant/30 p-1">
+                <span class="material-symbols-outlined text-sm">close</span>
+              </button>
+            </div>
+          </div>
+          <div class="relative group">
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Collar Name *</label>
+            <input id="collar-name" type="text" required placeholder="e.g. Cutaway Collar" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+            <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+          </div>
+          <div class="relative group">
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Description</label>
+            <input id="collar-desc" type="text" placeholder="Brief description of the style" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+            <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+          </div>
+          <div id="collar-success" class="hidden font-label text-[10px] uppercase tracking-widest text-green-700 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">check_circle</span>Collar style added!
+          </div>
+          <button type="submit" class="w-full bg-primary-container text-white py-4 font-label text-[11px] uppercase tracking-[0.2em] hover:opacity-90 transition-all flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-sm">add</span>Add Collar Style
+          </button>
+        </form>
+      </div>
+      <div>
+        <h3 class="font-display text-3xl text-primary mb-6">COLLAR STYLES LIST</h3>
+        <div id="collar-list" class="space-y-3"></div>
+        <p id="collar-empty" class="font-headline italic text-on-surface-variant text-xl text-center py-12">No collar styles added yet.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUFFS TAB -->
+  <div id="panel-cuffs" class="panel-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div>
+        <h3 class="font-display text-3xl text-primary mb-6">ADD CUFF STYLE</h3>
+        <form id="cuff-form" onsubmit="addOption(event,'cuff')" class="space-y-6 bg-white border border-outline-variant/20 p-8">
+          <div>
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-3">Cuff Image</label>
+            <div id="cuff-drop" class="border-2 border-dashed border-outline-variant/50 p-10 flex flex-col items-center gap-3 transition-colors cursor-pointer hover:border-[#C9A84C]" ondragover="handleDragOver(event,'cuff-drop')" ondragleave="handleDragLeave(event,'cuff-drop')" ondrop="handleDrop(event,'cuff-img','cuff-preview-wrap')" onclick="document.getElementById('cuff-img').click()">
+              <span class="material-symbols-outlined text-4xl text-outline-variant">add_photo_alternate</span>
+              <p class="font-label text-[11px] uppercase tracking-widest text-on-surface-variant">Drag &amp; drop or click</p>
+              <input id="cuff-img" type="file" accept="image/*" class="hidden" onchange="handleFilePreview(this,'cuff-preview-wrap')"/>
+            </div>
+            <div id="cuff-preview-wrap" class="hidden mt-4">
+              <img id="cuff-preview-img" alt="cuff preview" class="w-full h-40 object-cover border border-outline-variant/20"/>
+            </div>
+          </div>
+          <div class="relative group">
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Cuff Name *</label>
+            <input id="cuff-name" type="text" required placeholder="e.g. French Cuff" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+            <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+          </div>
+          <div class="relative group">
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Description</label>
+            <input id="cuff-desc" type="text" placeholder="Brief description" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+            <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+          </div>
+          <div id="cuff-success" class="hidden font-label text-[10px] uppercase tracking-widest text-green-700 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">check_circle</span>Cuff style added!
+          </div>
+          <button type="submit" class="w-full bg-primary-container text-white py-4 font-label text-[11px] uppercase tracking-[0.2em] hover:opacity-90 transition-all flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-sm">add</span>Add Cuff Style
+          </button>
+        </form>
+      </div>
+      <div>
+        <h3 class="font-display text-3xl text-primary mb-6">CUFF STYLES LIST</h3>
+        <div id="cuff-list" class="space-y-3"></div>
+        <p id="cuff-empty" class="font-headline italic text-on-surface-variant text-xl text-center py-12">No cuff styles added yet.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUTTONS TAB -->
+  <div id="panel-buttons" class="panel-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div>
+        <h3 class="font-display text-3xl text-primary mb-6">ADD BUTTON STYLE</h3>
+        <form id="button-form" onsubmit="addOption(event,'button')" class="space-y-6 bg-white border border-outline-variant/20 p-8">
+          <div>
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-3">Button Image</label>
+            <div class="border-2 border-dashed border-outline-variant/50 p-8 flex flex-col items-center gap-3 cursor-pointer hover:border-[#C9A84C] transition-colors" onclick="document.getElementById('button-img').click()">
+              <span class="material-symbols-outlined text-4xl text-outline-variant">add_photo_alternate</span>
+              <p class="font-label text-[11px] uppercase tracking-widest text-on-surface-variant">Click to upload</p>
+              <input id="button-img" type="file" accept="image/*" class="hidden" onchange="handleFilePreview(this,'button-preview-wrap')"/>
+            </div>
+            <div id="button-preview-wrap" class="hidden mt-4">
+              <img id="button-preview-img" alt="button preview" class="w-full h-32 object-cover border border-outline-variant/20"/>
+            </div>
+          </div>
+          <div class="relative group">
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Button Name *</label>
+            <input id="button-name" type="text" required placeholder="e.g. Mother of Pearl" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+            <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+          </div>
+          <div class="relative group">
+            <label class="block font-label text-[10px] tracking-widest uppercase text-on-surface-variant mb-2">Material / Description</label>
+            <input id="button-desc" type="text" placeholder="e.g. Natural shell button, grey color" class="w-full bg-transparent border-0 border-b border-outline-variant/40 py-3 px-0 font-body text-xl text-primary focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant/40"/>
+            <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-secondary group-focus-within:w-full transition-all duration-500"></div>
+          </div>
+          <div id="button-success" class="hidden font-label text-[10px] uppercase tracking-widest text-green-700 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">check_circle</span>Button style added!
+          </div>
+          <button type="submit" class="w-full bg-primary-container text-white py-4 font-label text-[11px] uppercase tracking-[0.2em] hover:opacity-90 transition-all flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-sm">add</span>Add Button Style
+          </button>
+        </form>
+      </div>
+      <div>
+        <h3 class="font-display text-3xl text-primary mb-6">BUTTON STYLES LIST</h3>
+        <div id="button-list" class="space-y-3"></div>
+        <p id="button-empty" class="font-headline italic text-on-surface-variant text-xl text-center py-12">No button styles added yet.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-8 right-8 z-50 hidden">
+  <div class="bg-primary-container text-white px-6 py-4 font-label text-[11px] uppercase tracking-widest flex items-center gap-3 shadow-xl">
+    <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">check_circle</span>
+    <span id="toast-msg">Saved successfully!</span>
+  </div>
+</div>
+
+<script>
+  // Tab switcher
+  function switchTab(name) {
+    ['fabrics','collars','cuffs','buttons'].forEach(t => {
+      document.getElementById('panel-' + t).classList.toggle('panel-hidden', t !== name);
+      const tab = document.getElementById('tab-' + t);
+      tab.classList.toggle('tab-active', t === name);
+      tab.classList.toggle('tab-inactive', t !== name);
+    });
+  }
+
+  // File preview
+  function handleFilePreview(input, wrapId) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const wrap = document.getElementById(wrapId);
+        const img = document.getElementById(wrapId.replace('-wrap', '-img'));
+        if (img) { img.src = e.target.result; wrap.classList.remove('hidden'); }
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // Drag & drop
+  function handleDragOver(e, dropId) {
+    e.preventDefault();
+    document.getElementById(dropId).classList.add('drag-over');
+  }
+  function handleDragLeave(e, dropId) {
+    document.getElementById(dropId).classList.remove('drag-over');
+  }
+  function handleDrop(e, inputId, previewId) {
+    e.preventDefault();
+    const files = e.dataTransfer.files;
+    if (files.length) {
+      const input = document.getElementById(inputId);
+      const dt = new DataTransfer();
+      dt.items.add(files[0]);
+      input.files = dt.files;
+      handleFilePreview(input, previewId);
+    }
+  }
+
+  function clearPreview(inputId, wrapId) {
+    document.getElementById(inputId).value = '';
+    document.getElementById(wrapId).classList.add('hidden');
+  }
+
+  // State
+  const state = {
+    fabrics: JSON.parse(localStorage.getItem('so_fabrics') || '[]'),
+    collarOptions: JSON.parse(localStorage.getItem('so_collars') || '[]'),
+    cuffOptions: JSON.parse(localStorage.getItem('so_cuffs') || '[]'),
+    buttonOptions: JSON.parse(localStorage.getItem('so_buttons') || '[]')
+  };
+
+  // Add fabric
+  function addFabric(e) {
+    e.preventDefault();
+    const name = document.getElementById('fabric-name').value.trim();
+    if (!name) return;
+    const imgInput = document.getElementById('fabric-img');
+    const imgSrc = imgInput.files[0] ? document.getElementById('fabric-preview-img').src : null;
+    const fabric = {
+      id: Date.now(), name,
+      sku: document.getElementById('fabric-sku').value.trim(),
+      category: document.getElementById('fabric-category').value,
+      stock: document.getElementById('fabric-stock').value || '—',
+      desc: document.getElementById('fabric-desc').value.trim(),
+      featured: document.getElementById('fabric-featured').checked,
+      active: document.getElementById('fabric-active').checked,
+      img: imgSrc
+    };
+    state.fabrics.push(fabric);
+    renderFabrics();
+    e.target.reset();
+    clearPreview('fabric-img','fabric-preview-wrap');
+    showSuccess('fabric-success');
+  }
+
+  function renderFabrics() {
+    const list = document.getElementById('fabric-list');
+    const empty = document.getElementById('fabric-empty');
+    if (!state.fabrics.length) { list.innerHTML = ''; empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+    list.innerHTML = state.fabrics.map((f,i) => `
+      <div class="flex items-center gap-4 bg-white border border-outline-variant/20 p-4 hover:border-[#C9A84C]/50 transition-colors">
+        ${f.img ? `<img src="${f.img}" alt="${f.name}" class="w-16 h-16 object-cover border border-outline-variant/20 flex-shrink-0"/>` : `<div class="w-16 h-16 bg-surface-container flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-outline-variant">texture</span></div>`}
+        <div class="flex-1 min-w-0">
+          <p class="font-headline italic text-lg text-primary truncate">${f.name}</p>
+          <p class="font-label text-[9px] uppercase tracking-widest text-on-surface-variant">${f.category} · SKU: ${f.sku || '—'} · Stock: ${f.stock}m</p>
+          <div class="flex gap-2 mt-1">
+            ${f.featured ? '<span class="px-2 py-0.5 bg-amber-50 text-[#C9A84C] font-label text-[8px] uppercase tracking-widest">Featured</span>' : ''}
+            <span class="px-2 py-0.5 font-label text-[8px] uppercase tracking-widest ${f.active ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500'}">${f.active ? 'Active' : 'Inactive'}</span>
+          </div>
+        </div>
+        <button onclick="removeFabric(${i})" class="text-outline-variant hover:text-red-500 transition-colors p-2">
+          <span class="material-symbols-outlined">delete</span>
+        </button>
+      </div>`).join('');
+  }
+
+  function removeFabric(i) {
+    if (confirm('Remove this fabric?')) { state.fabrics.splice(i, 1); renderFabrics(); }
+  }
+
+  // Generic option add (collar / cuff / button)
+  function addOption(e, type) {
+    e.preventDefault();
+    const name = document.getElementById(type + '-name').value.trim();
+    if (!name) return;
+    const imgEl = document.getElementById(type + '-preview-img');
+    const item = {
+      id: Date.now(), name,
+      desc: document.getElementById(type + '-desc').value.trim(),
+      img: imgEl && !imgEl.parentElement.classList.contains('hidden') ? imgEl.src : null
+    };
+    const key = type + 'Options';
+    state[key].push(item);
+    renderOptions(type);
+    e.target.reset();
+    const wrap = document.getElementById(type + '-preview-wrap');
+    if (wrap) wrap.classList.add('hidden');
+    showSuccess(type + '-success');
+  }
+
+  function renderOptions(type) {
+    const key = type + 'Options';
+    const list = document.getElementById(type + '-list');
+    const empty = document.getElementById(type + '-empty');
+    if (!state[key].length) { list.innerHTML = ''; empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+    list.innerHTML = state[key].map((item, i) => `
+      <div class="flex items-center gap-4 bg-white border border-outline-variant/20 p-4 hover:border-[#C9A84C]/50 transition-colors">
+        ${item.img ? `<img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover border border-outline-variant/20 flex-shrink-0"/>` : `<div class="w-16 h-16 bg-surface-container flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-outline-variant">apparel</span></div>`}
+        <div class="flex-1 min-w-0">
+          <p class="font-headline italic text-lg text-primary">${item.name}</p>
+          ${item.desc ? `<p class="font-body text-sm text-on-surface-variant">${item.desc}</p>` : ''}
+        </div>
+        <button onclick="removeOption('${type}',${i})" class="text-outline-variant hover:text-red-500 transition-colors p-2">
+          <span class="material-symbols-outlined">delete</span>
+        </button>
+      </div>`).join('');
+  }
+
+  function removeOption(type, i) {
+    const key = type + 'Options';
+    if (confirm('Remove this option?')) { state[key].splice(i, 1); renderOptions(type); }
+  }
+
+  function showSuccess(id) {
+    const el = document.getElementById(id);
+    el.classList.remove('hidden');
+    setTimeout(() => el.classList.add('hidden'), 3000);
+  }
+
+  function saveAll() {
+    localStorage.setItem('so_fabrics', JSON.stringify(state.fabrics));
+    localStorage.setItem('so_collars', JSON.stringify(state.collarOptions));
+    localStorage.setItem('so_cuffs', JSON.stringify(state.cuffOptions));
+    localStorage.setItem('so_buttons', JSON.stringify(state.buttonOptions));
+    showToast('All changes saved to catalogue!');
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    toast.classList.remove('hidden');
+    setTimeout(() => toast.classList.add('hidden'), 3000);
+  }
+
+  // Initial render
+  renderFabrics();
+  renderOptions('collar');
+  renderOptions('cuff');
+  renderOptions('button');
+</script>
+</body>
+</html>

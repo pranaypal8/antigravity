@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Confirmed | SPECIAL ONE</title>
+<meta name="description" content="Your bespoke shirt order has been placed. Thank you for choosing Special One."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode:"class",
+    theme:{extend:{
+      colors:{"background":"#fcf9f4","surface-container-low":"#f6f3ee","surface-container":"#f0ede9","primary-container":"#101c2e","on-surface":"#1c1c19","primary":"#000000","outline-variant":"#c5c6cd","secondary":"#755b00"},
+      fontFamily:{"headline":["Cormorant Garamond","serif"],"display":["Bebas Neue","cursive"],"body":["Cormorant Garamond","serif"],"label":["Montserrat","sans-serif"]},
+      borderRadius:{"DEFAULT":"0.125rem"}
+    }}
+  }
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 24}
+  @keyframes checkIn{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
+  .check-animate{animation:checkIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.3s both}
+  @keyframes fadeUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .fade-up{animation:fadeUp 0.6s ease both}
+</style>
+</head>
+<body class="bg-surface-container-low min-h-screen flex flex-col font-body">
+
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-20 bg-white/90 backdrop-blur-xl border-b border-[#C9A84C]/30">
+  <a class="text-xl font-semibold tracking-[0.2em] text-[#0A1628] font-label" href="index.html">SPECIAL ONE</a>
+  <nav class="hidden md:flex gap-8 font-label">
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] font-semibold text-[11px] uppercase tracking-[0.15em]" href="index.html">Home</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] font-semibold text-[11px] uppercase tracking-[0.15em]" href="customizer.html">Customize</a>
+    <a class="text-[#4A4A4A] hover:text-[#0A1628] font-semibold text-[11px] uppercase tracking-[0.15em]" href="account.html">My Account</a>
+  </nav>
+</header>
+
+<main class="flex-grow pt-32 pb-20 px-6">
+  <div class="max-w-2xl mx-auto">
+
+    <!-- Success Icon -->
+    <div class="text-center mb-12 fade-up">
+      <div class="check-animate inline-flex items-center justify-center w-24 h-24 bg-amber-50 border-2 border-[#C9A84C] mb-8">
+        <span class="material-symbols-outlined text-5xl text-[#C9A84C]" style="font-variation-settings:'FILL' 1">check_circle</span>
+      </div>
+      <h1 class="font-display text-7xl md:text-8xl tracking-tight text-primary mb-4">ORDER PLACED</h1>
+      <p class="font-headline italic text-2xl text-on-surface-variant" id="conf-tagline">Your bespoke shirt is now being prepared with care.</p>
+    </div>
+
+    <!-- Order Card -->
+    <div class="bg-white border border-outline-variant/20 p-8 md:p-12 mb-8 fade-up" style="animation-delay:0.2s">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-8 pb-8 border-b border-outline-variant/20">
+        <div>
+          <p class="font-label text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mb-1">Order ID</p>
+          <p class="font-display text-3xl text-primary" id="conf-orderid">#SO-0000</p>
+        </div>
+        <div class="text-right md:text-left">
+          <p class="font-label text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mb-1">Order Date</p>
+          <p class="font-headline italic text-xl" id="conf-date">—</p>
+        </div>
+        <div>
+          <p class="font-label text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mb-1">Status</p>
+          <span class="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 font-label text-[10px] uppercase tracking-widest text-[#C9A84C]">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">radio_button_checked</span>
+            Order Placed
+          </span>
+        </div>
+      </div>
+
+      <!-- Items -->
+      <h3 class="font-label text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mb-6">Items Ordered</h3>
+      <div id="conf-items" class="space-y-4 mb-8 pb-8 border-b border-outline-variant/20"></div>
+
+      <div class="flex justify-between font-display text-3xl text-primary">
+        <span>Total Paid</span>
+        <span id="conf-total">₹0</span>
+      </div>
+
+      <!-- Delivery Info -->
+      <div class="mt-8 pt-8 border-t border-outline-variant/20 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <p class="font-label text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mb-3">Shipping To</p>
+          <p class="font-headline italic text-xl" id="conf-name">—</p>
+          <p class="font-body text-on-surface-variant" id="conf-address">—</p>
+          <p class="font-body text-on-surface-variant" id="conf-phone">—</p>
+        </div>
+        <div>
+          <p class="font-label text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mb-3">Payment</p>
+          <p class="font-headline italic text-xl" id="conf-payment">—</p>
+          <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-1 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm text-secondary" style="font-variation-settings:'FILL' 1">verified_user</span>
+            Payment Verified
+          </p>
+          <p class="font-label text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mt-4 mb-1">Estimated Delivery</p>
+          <p class="font-headline italic text-xl">10–14 Business Days</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Timeline -->
+    <div class="bg-white border border-outline-variant/20 p-8 mb-8 fade-up" style="animation-delay:0.3s">
+      <h3 class="font-label text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mb-8">Your Order's Journey</h3>
+      <div class="relative">
+        <div class="absolute left-4 top-0 h-full w-[1px] bg-outline-variant/30"></div>
+        <div class="space-y-8">
+          <div class="flex gap-6 items-start">
+            <div class="w-8 h-8 bg-primary-container flex-shrink-0 flex items-center justify-center z-10">
+              <span class="material-symbols-outlined text-white text-sm" style="font-variation-settings:'FILL' 1">check</span>
+            </div>
+            <div>
+              <p class="font-label font-semibold text-xs uppercase tracking-widest text-primary">Order Placed</p>
+              <p class="font-body italic text-on-surface-variant" id="conf-date-placed">—</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start opacity-40">
+            <div class="w-8 h-8 border border-outline-variant flex-shrink-0 flex items-center justify-center z-10 bg-white">
+              <span class="material-symbols-outlined text-sm">content_cut</span>
+            </div>
+            <div>
+              <p class="font-label font-semibold text-xs uppercase tracking-widest">Cutting &amp; Tailoring</p>
+              <p class="font-body italic text-on-surface-variant">2–5 business days</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start opacity-40">
+            <div class="w-8 h-8 border border-outline-variant flex-shrink-0 flex items-center justify-center z-10 bg-white">
+              <span class="material-symbols-outlined text-sm">verified</span>
+            </div>
+            <div>
+              <p class="font-label font-semibold text-xs uppercase tracking-widest">Quality Check</p>
+              <p class="font-body italic text-on-surface-variant">1–2 business days</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start opacity-40">
+            <div class="w-8 h-8 border border-outline-variant flex-shrink-0 flex items-center justify-center z-10 bg-white">
+              <span class="material-symbols-outlined text-sm">local_shipping</span>
+            </div>
+            <div>
+              <p class="font-label font-semibold text-xs uppercase tracking-widest">Dispatched</p>
+              <p class="font-body italic text-on-surface-variant">Shiprocket tracking sent to email</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start opacity-40">
+            <div class="w-8 h-8 border border-outline-variant flex-shrink-0 flex items-center justify-center z-10 bg-white">
+              <span class="material-symbols-outlined text-sm">home</span>
+            </div>
+            <div>
+              <p class="font-label font-semibold text-xs uppercase tracking-widest">Delivered</p>
+              <p class="font-body italic text-on-surface-variant">Your bespoke shirt arrives</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 fade-up" style="animation-delay:0.4s">
+      <a href="account.html" class="flex flex-col items-center gap-3 p-6 bg-white border border-outline-variant/20 hover:border-[#C9A84C] transition-all group text-center">
+        <span class="material-symbols-outlined text-2xl text-[#C9A84C] group-hover:scale-110 transition-transform">shopping_bag</span>
+        <p class="font-label font-semibold text-xs uppercase tracking-widest">Track My Order</p>
+      </a>
+      <a href="customizer.html" class="flex flex-col items-center gap-3 p-6 bg-primary-container text-white hover:opacity-90 transition-all group text-center">
+        <span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">add</span>
+        <p class="font-label font-semibold text-xs uppercase tracking-widest">Order Another</p>
+      </a>
+      <a href="index.html" class="flex flex-col items-center gap-3 p-6 bg-white border border-outline-variant/20 hover:border-[#C9A84C] transition-all group text-center">
+        <span class="material-symbols-outlined text-2xl text-[#C9A84C] group-hover:scale-110 transition-transform">home</span>
+        <p class="font-label font-semibold text-xs uppercase tracking-widest">Back to Store</p>
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="bg-[#0A1628] py-10 px-12 flex flex-col md:flex-row justify-between items-center gap-4 border-t border-[#C9A84C]/10">
+  <a href="index.html" class="font-label text-[#C9A84C] text-xl tracking-[0.3em]">SPECIAL ONE</a>
+  <p class="font-label text-[10px] tracking-widest text-[#C9A84C]/40 uppercase">© 2024 SPECIAL ONE. ALL RIGHTS RESERVED.</p>
+</footer>
+
+<script>
+  const order = JSON.parse(sessionStorage.getItem('so_last_order') || 'null');
+  if (!order) {
+    document.querySelector('h1').textContent = 'NO ORDER FOUND';
+    document.getElementById('conf-tagline').textContent = 'It looks like you navigated here directly.';
+  } else {
+    document.getElementById('conf-orderid').textContent = order.id;
+    document.getElementById('conf-date').textContent = order.date;
+    document.getElementById('conf-date-placed').textContent = order.date;
+    document.getElementById('conf-name').textContent = order.name;
+    document.getElementById('conf-address').textContent = order.address;
+    document.getElementById('conf-phone').textContent = order.phone;
+    document.getElementById('conf-payment').textContent = order.payment.toUpperCase();
+    document.getElementById('conf-total').textContent = order.total;
+    const itemsEl = document.getElementById('conf-items');
+    order.items.forEach(item => {
+      itemsEl.innerHTML += `
+        <div class="flex justify-between items-start gap-4 py-3 border-b border-outline-variant/10 last:border-0">
+          <div>
+            <p class="font-headline italic text-xl text-primary">${item.name}</p>
+            <p class="font-body text-sm text-on-surface-variant">${item.details}</p>
+          </div>
+          <p class="font-display text-2xl text-primary flex-shrink-0">${item.price}</p>
+        </div>`;
+    });
+  }
+</script>
+</body>
+</html>

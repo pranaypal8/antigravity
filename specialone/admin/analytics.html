@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Analytics — Special One Admin</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <style>
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+    @media (max-width: 900px) { .analytics-grid { grid-template-columns: 1fr; } }
+
+    .chart-card {
+      background: var(--charcoal);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+    }
+    .chart-card__title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      color: var(--ivory);
+      margin-bottom: var(--space-lg);
+    }
+    .chart-bar-container {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 140px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 6px;
+    }
+    .chart-bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      height: 100%;
+      justify-content: flex-end;
+    }
+    .chart-bar {
+      width: 100%;
+      background: linear-gradient(to top, var(--gold), var(--gold-light));
+      border-radius: 2px 2px 0 0;
+      min-height: 2px;
+      transition: height 0.6s ease;
+      cursor: pointer;
+    }
+    .chart-bar:hover { opacity: 0.85; }
+    .chart-bar-label {
+      font-family: var(--font-accent);
+      font-size: 0.45rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .donut-wrap {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+    .donut-legend { flex: 1; }
+    .donut-legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .donut-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .donut-legend-label { font-family: var(--font-accent); font-size: 0.7rem; color: var(--ivory); flex: 1; }
+    .donut-legend-pct   { font-family: var(--font-accent); font-size: 0.7rem; color: var(--gold); font-weight: 700; }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    @media (max-width: 1100px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+<div id="cursor-dot"></div><div id="cursor-ring"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-logo"><div class="sidebar-logo__text">SPECIAL <span>ONE</span></div><span class="sidebar-logo__badge">Admin Panel</span></div>
+    <div class="sidebar-user"><div class="sidebar-user__avatar" id="sidebarInitial">?</div><div><div class="sidebar-user__name" id="sidebarName">Loading...</div><div class="sidebar-user__role" id="sidebarRole">—</div></div></div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-nav__section-label">Operations</div>
+      <a href="dashboard.html" class="sidebar-nav__item"><span class="sidebar-nav__icon">📊</span> Dashboard</a>
+      <a href="orders.html"    class="sidebar-nav__item"><span class="sidebar-nav__icon">📦</span> Orders</a>
+      <a href="customers.html" class="sidebar-nav__item"><span class="sidebar-nav__icon">👤</span> Customers</a>
+      <a href="support.html"   class="sidebar-nav__item"><span class="sidebar-nav__icon">🎫</span> Support</a>
+      <div class="sidebar-nav__section-label">Inventory</div>
+      <a href="products.html"  class="sidebar-nav__item"><span class="sidebar-nav__icon">👔</span> Products</a>
+      <a href="fabrics.html"   class="sidebar-nav__item"><span class="sidebar-nav__icon">🧵</span> Fabrics</a>
+      <div class="sidebar-nav__section-label">Finance</div>
+      <a href="analytics.html" class="sidebar-nav__item active"><span class="sidebar-nav__icon">📈</span> Analytics</a>
+      <div class="sidebar-nav__section-label" id="superAdminSection" style="display:none">System</div>
+      <a href="admins.html"    class="sidebar-nav__item" id="nav-admins" style="display:none"><span class="sidebar-nav__icon">🔐</span> Admins</a>
+      <a href="audit.html"     class="sidebar-nav__item" id="nav-audit"  style="display:none"><span class="sidebar-nav__icon">📋</span> Audit</a>
+    </nav>
+    <div class="sidebar-footer"><button class="sidebar-nav__item" id="logoutBtn" style="width:100%"><span class="sidebar-nav__icon">🚪</span> Logout</button></div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <button class="admin-menu-btn" id="adminMenuBtn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="admin-topbar__title">Analytics</div>
+      <div class="admin-topbar__actions">
+        <select id="periodFilter" class="admin-search-input" style="width:auto" aria-label="Period filter">
+          <option value="7">Last 7 Days</option>
+          <option value="30" selected>Last 30 Days</option>
+          <option value="90">Last 90 Days</option>
+        </select>
+        <button class="btn btn--outline btn--sm" id="exportBtn" aria-label="Export CSV">⬇ Export</button>
+      </div>
+    </header>
+
+    <div class="admin-content">
+
+      <!-- KPI Row -->
+      <div class="kpi-row" id="kpiRow">
+        <div class="stat-card"><div class="stat-card__label">Total Revenue</div><div class="stat-card__value" id="kpi-revenue">—</div><div class="stat-card__sub">All time</div></div>
+        <div class="stat-card"><div class="stat-card__label">Period Revenue</div><div class="stat-card__value" id="kpi-period">—</div><div class="stat-card__sub" id="kpi-period-label">Last 30 days</div></div>
+        <div class="stat-card"><div class="stat-card__label">Avg Order Value</div><div class="stat-card__value" id="kpi-aov">—</div><div class="stat-card__sub">Per order</div></div>
+        <div class="stat-card"><div class="stat-card__label">Total GST Collected</div><div class="stat-card__value" id="kpi-gst">—</div><div class="stat-card__sub">18% rate</div></div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="analytics-grid">
+        <!-- Revenue Bar Chart -->
+        <div class="chart-card" style="grid-column: span 2">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg)">
+            <div class="chart-card__title">Daily Revenue</div>
+            <div style="font-family:var(--font-accent);font-size:0.6rem;color:var(--text-muted)" id="chartSubtitle">Last 30 days</div>
+          </div>
+          <div class="chart-bar-container" id="revenueBarChart">
+            <div style="width:100%;text-align:center;font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted);align-self:center">Loading chart...</div>
+          </div>
+        </div>
+
+        <!-- Order Status Breakdown -->
+        <div class="chart-card">
+          <div class="chart-card__title">Order Status Breakdown</div>
+          <div class="donut-wrap">
+            <div style="flex-shrink:0">
+              <svg id="statusDonut" width="120" height="120" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="var(--border-subtle)" stroke-width="16"/>
+                <text x="60" y="64" text-anchor="middle" font-family="var(--font-display)" font-size="14" fill="var(--gold)" id="donutCenter">0</text>
+              </svg>
+            </div>
+            <div class="donut-legend" id="statusLegend">
+              <p style="font-family:var(--font-accent);font-size:0.7rem;color:var(--text-muted)">Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Fabrics -->
+        <div class="chart-card">
+          <div class="chart-card__title">Top Fabrics by Orders</div>
+          <div id="topFabrics">
+            <p style="font-family:var(--font-accent);font-size:0.7rem;color:var(--text-muted)">Loading...</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="../js/global.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>
