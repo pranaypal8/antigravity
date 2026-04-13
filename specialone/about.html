@@ -1,167 +1,154 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>SPECIAL ONE | About — Our Story & Philosophy</title>
-<meta name="description" content="The story behind Special One — India's first identity-driven custom shirt brand. Learn about our heritage, philosophy, and master tailors."/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&family=Montserrat:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "inverse-on-surface": "#f3f0eb","on-secondary": "#ffffff","secondary-fixed": "#ffe08f","on-primary-fixed": "#101c2e","on-error-container": "#93000a","background": "#fcf9f4","on-tertiary-fixed-variant": "#474747","surface-container-low": "#f6f3ee","surface-container": "#f0ede9","surface-container-lowest": "#ffffff","tertiary": "#000000","tertiary-container": "#1b1c1c","on-primary-container": "#79849b","surface-tint": "#535f74","on-primary": "#ffffff","inverse-surface": "#31302d","on-primary-fixed-variant": "#3c475b","on-surface-variant": "#45474c","primary-fixed-dim": "#bbc7df","outline-variant": "#c5c6cd","primary-container": "#101c2e","secondary-fixed-dim": "#e6c364","surface-container-highest": "#e5e2dd","on-error": "#ffffff","on-surface": "#1c1c19","primary": "#000000","outline": "#75777d","tertiary-fixed-dim": "#c8c6c6","on-tertiary-fixed": "#1b1c1c","surface-variant": "#e5e2dd","surface-dim": "#dcdad5","error": "#ba1a1a","on-secondary-fixed": "#241a00","on-secondary-container": "#785d00","on-background": "#1c1c19","error-container": "#ffdad6","surface-bright": "#fcf9f4","surface-container-high": "#ebe8e3","on-tertiary-container": "#848483","primary-fixed": "#d7e3fc","secondary": "#755b00","surface": "#fcf9f4","inverse-primary": "#bbc7df","on-secondary-fixed-variant": "#584400","on-tertiary": "#ffffff","tertiary-fixed": "#e4e2e2","secondary-container": "#fed977"
-        },
-        fontFamily: { "headline": ["Cormorant Garamond", "serif"], "display": ["Bebas Neue", "cursive"], "body": ["Cormorant Garamond", "serif"], "label": ["Montserrat", "sans-serif"] },
-        borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
-      },
-    },
-  }
-</script>
-<style>
-  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; font-size: 20px; }
-  .bebas-neue { font-family: 'Bebas Neue', cursive; }
-  .cormorant { font-family: 'Cormorant Garamond', serif; }
-  .montserrat { font-family: 'Montserrat', sans-serif; }
-</style>
-</head>
-<body class="bg-background text-on-background selection:bg-secondary-container selection:text-on-secondary-container">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Our Story & Philosophy | SPECIAL ONE</title>
+  <meta name="description" content="The story behind Special One — India's first identity-driven custom shirt brand. Learn about our heritage, philosophy, and master tailors.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/responsive.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>`n</head>
+<body>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
 
-<!-- Navigation -->
-<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-white/90 backdrop-blur-xl border-b border-[#C9A84C]/30">
-  <div class="text-xl font-semibold tracking-[0.2em] text-[#0A1628] montserrat">SPECIAL ONE</div>
-  <nav class="hidden md:flex gap-10 items-center">
-    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold text-[11px] uppercase tracking-[0.15em]" href="index.html">Home</a>
-    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold text-[11px] uppercase tracking-[0.15em]" href="customizer.html">Customize</a>
-    <a class="text-[#C9A84C] border-b border-[#C9A84C] pb-1 montserrat font-semibold text-[11px] uppercase tracking-[0.15em]" href="about.html">About</a>
-    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold text-[11px] uppercase tracking-[0.15em]" href="faq.html">FAQ</a>
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <a href="index.html" class="nav__logo">SPECIAL <span>ONE</span></a>
+    <div class="nav__hamburger" aria-label="Toggle Navigation">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="nav__links">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="customizer.html" class="nav__link">Customize</a>
+      <a href="about.html" class="nav__link" style="color: var(--ivory);">About</a>
+      <a href="faq.html" class="nav__link">FAQ</a>
+    </div>
   </nav>
-  <button class="bg-primary-container text-white px-6 py-2 montserrat font-semibold text-[11px] uppercase tracking-[0.15em] hover:opacity-80 transition-opacity active:scale-95" onclick="window.location.href='customizer.html'">
-    Start Customizing
-  </button>
-</header>
 
-<main class="pt-20">
-  <!-- Hero -->
-  <section class="relative h-[819px] w-full flex items-center justify-center overflow-hidden" id="about-hero">
-    <img alt="Skilled artisan hands cutting premium white shirt fabric with professional shears in sunlit atelier" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA7bK5csi_U9S9RmQ6YfOARM497u0xNBMTrgJVQpqkNsU1pSZyA60IXNPyZ5sW3R6giKAgkCTIOnL9PQv0XcU5RWxI9GsOn1bQwQqz0-IhcOzY1CPMyczjiM6mQQwDNEF_mOgx4c92Vv6vPqs3oo7J4zVkme0_N1LrwPV-V6coSZ8Qw55WM5aRvGqi0voVoy4_0scqYCVtaFg5RJ1OtnafXrtopiHcYj_oGkVPkDYXEg4FV-nsceIEGl3ZjLnFOYFasJtrh3KSzxU"/>
-    <div class="absolute inset-0 bg-primary-container/40 backdrop-blur-[2px]"></div>
-    <div class="relative z-10 text-center px-4 max-w-5xl">
-      <h1 class="bebas-neue text-white text-6xl md:text-9xl tracking-tight leading-none drop-shadow-2xl">
-        WE DON'T MAKE SHIRTS.<br/>WE MAKE IDENTITIES.
-      </h1>
-    </div>
-  </section>
-
-  <!-- Brand Story -->
-  <section class="py-24 px-8 md:px-24 bg-surface max-w-7xl mx-auto grid md:grid-cols-12 gap-12">
-    <div class="md:col-start-3 md:col-span-8">
-      <h2 class="cormorant italic font-bold text-4xl mb-12 text-center text-primary">A Legacy of the Bespoke</h2>
-      <div class="cormorant text-2xl leading-relaxed text-on-surface-variant space-y-8">
-        <p>In a world of mass-produced silhouettes, Special One was born from a singular obsession: the architecture of the individual. We believe that a shirt is not merely a garment, but the first chapter of a man's story. Every stitch we place and every fabric we select is a testament to the artisan's touch—a rejection of the industrial for the sake of the exceptional.</p>
-        <p>Founded in the pursuit of perfection, our atelier merges centuries-old tailoring traditions with a modern digital soul. We source only the finest long-staple cottons and rare blends from the world's most prestigious mills, ensuring that every Special One piece feels like a second skin. This is not fast fashion; this is the enduring art of the tailor, redefined for the contemporary visionary.</p>
+  <main style="padding-top: 72px;">
+    <!-- Hero -->
+    <section style="position: relative; height: 60vh; min-height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDA7bK5csi_U9S9RmQ6YfOARM497u0xNBMTrgJVQpqkNsU1pSZyA60IXNPyZ5sW3R6giKAgkCTIOnL9PQv0XcU5RWxI9GsOn1bQwQqz0-IhcOzY1CPMyczjiM6mQQwDNEF_mOgx4c92Vv6vPqs3oo7J4zVkme0_N1LrwPV-V6coSZ8Qw55WM5aRvGqi0voVoy4_0scqYCVtaFg5RJ1OtnafXrtopiHcYj_oGkVPkDYXEg4FV-nsceIEGl3ZjLnFOYFasJtrh3KSzxU') center/cover; filter: grayscale(1) brightness(0.4);"></div>
+      <div style="position: relative; z-index: 10; text-align: center; max-width: 900px; padding: 0 var(--space-xl);">
+        <h1 style="font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6rem); letter-spacing: 0.05em; color: var(--ivory); line-height: 1.1;">
+          WE DON'T MAKE SHIRTS.<br>
+          <span style="color: var(--gold);">WE MAKE IDENTITIES.</span>
+        </h1>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Philosophy -->
-  <section class="py-24 bg-surface-container-low px-8 md:px-12 border-y border-[#C9A84C]/10">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="bebas-neue text-5xl tracking-widest text-primary mb-16 text-center">OUR PHILOSOPHY</h2>
-      <div class="grid md:grid-cols-3 gap-16">
-        <div class="text-center">
-          <div class="mb-6 flex justify-center">
-            <span class="material-symbols-outlined text-[#C9A84C] text-5xl font-light">architecture</span>
-          </div>
-          <h3 class="montserrat font-semibold text-xs tracking-[0.2em] uppercase mb-4 text-primary">Precision Cut</h3>
-          <p class="cormorant text-xl text-on-surface-variant">Every curve and angle is measured to the millimeter, ensuring a fit that honors your unique physique.</p>
-        </div>
-        <div class="text-center">
-          <div class="mb-6 flex justify-center">
-            <span class="material-symbols-outlined text-[#C9A84C] text-5xl font-light">eco</span>
-          </div>
-          <h3 class="montserrat font-semibold text-xs tracking-[0.2em] uppercase mb-4 text-primary">Noble Materials</h3>
-          <p class="cormorant text-xl text-on-surface-variant">We only work with natural fibers that breathe, move, and age with grace, respecting both skin and earth.</p>
-        </div>
-        <div class="text-center">
-          <div class="mb-6 flex justify-center">
-            <span class="material-symbols-outlined text-[#C9A84C] text-5xl font-light">history_edu</span>
-          </div>
-          <h3 class="montserrat font-semibold text-xs tracking-[0.2em] uppercase mb-4 text-primary">Heritage Soul</h3>
-          <p class="cormorant text-xl text-on-surface-variant">Modern aesthetics meets old-world craftsmanship, creating pieces that transcend seasonal trends.</p>
+    <!-- Brand Story -->
+    <section class="section">
+      <div class="container container--narrow" style="text-align: center;">
+        <h2 style="font-family: var(--font-body); font-style: italic; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: var(--space-xl); color: var(--ivory);">A Legacy of the Bespoke</h2>
+        <div class="gold-line gold-line--center" style="margin-bottom: var(--space-2xl);"></div>
+        <div style="font-family: var(--font-body); font-size: 1.2rem; color: var(--text-muted); line-height: 2; text-align: left;">
+          <p style="margin-bottom: var(--space-lg);">In a world of mass-produced silhouettes, Special One was born from a singular obsession: the architecture of the individual. We believe that a shirt is not merely a garment, but the first chapter of a man's story. Every stitch we place and every fabric we select is a testament to the artisan's touch—a rejection of the industrial for the sake of the exceptional.</p>
+          <p>Founded in the pursuit of perfection, our atelier merges centuries-old tailoring traditions with a modern digital soul. We source only the finest long-staple cottons and rare blends from the world's most prestigious mills, ensuring that every Special One piece feels like a second skin. This is not fast fashion; this is the enduring art of the tailor, redefined for the contemporary visionary.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Team Section -->
-  <section class="py-24 px-8 bg-surface">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="bebas-neue text-5xl tracking-widest text-primary mb-16 text-center">THE TEAM</h2>
-      <div class="grid md:grid-cols-3 gap-12">
-        <div class="relative group overflow-hidden">
-          <div class="aspect-[3/4] bg-surface-container mb-6 overflow-hidden">
-            <img alt="Pranay — Creative Director" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHj9N5Z4r1WeOCTEukXsgdPjti_O6NHw79XcZD2GnLOAukl5KMCITOmvd5C_vMIXNFa31rsQROlx7yNU2giiu6U2NQ_r6eTzr6Yjpw28Q-cNL71eTp_wr5q-nznU6OaL_x1EJqhTyJMF-btBA1BiXoL3BQFkV6iIPDQOpy2UnkeXAT3Bm1B2z8HPRWdIDMLZNfha6MmN6mi4mo5QA9d9vsUgLuk8Ebas_8Fu15AlD0QbtzBaE_zgA9SI0ya8on9-0JfZC7la9rJd0"/>
+    <!-- Philosophy -->
+    <section class="section section--dark">
+      <div class="container">
+        <h2 class="section__title" style="text-align: center; margin-bottom: var(--space-2xl);">OUR PHILOSOPHY</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-2xl); text-align: center;">
+          <div class="glass-card" style="border: none; background: transparent; padding: 0;">
+            <div style="font-size: 3rem; margin-bottom: var(--space-md); color: var(--gold);">📐</div>
+            <h3 style="font-family: var(--font-accent); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ivory); margin-bottom: var(--space-sm);">Precision Cut</h3>
+            <p style="font-family: var(--font-body); font-size: 1.1rem; color: var(--text-muted);">Every curve and angle is measured to the millimeter, ensuring a fit that honors your unique physique.</p>
           </div>
-          <h4 class="montserrat font-bold text-sm tracking-widest uppercase text-primary">PRANAY</h4>
-          <p class="cormorant italic text-lg text-secondary">Creative Director</p>
+          <div class="glass-card" style="border: none; background: transparent; padding: 0;">
+            <div style="font-size: 3rem; margin-bottom: var(--space-md); color: var(--gold);">🌿</div>
+            <h3 style="font-family: var(--font-accent); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ivory); margin-bottom: var(--space-sm);">Noble Materials</h3>
+            <p style="font-family: var(--font-body); font-size: 1.1rem; color: var(--text-muted);">We only work with natural fibers that breathe, move, and age with grace, respecting both skin and earth.</p>
+          </div>
+          <div class="glass-card" style="border: none; background: transparent; padding: 0;">
+            <div style="font-size: 3rem; margin-bottom: var(--space-md); color: var(--gold);">🏛️</div>
+            <h3 style="font-family: var(--font-accent); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ivory); margin-bottom: var(--space-sm);">Heritage Soul</h3>
+            <p style="font-family: var(--font-body); font-size: 1.1rem; color: var(--text-muted);">Modern aesthetics meets old-world craftsmanship, creating pieces that transcend seasonal trends.</p>
+          </div>
         </div>
-        <div class="relative group overflow-hidden md:mt-12">
-          <div class="aspect-[3/4] bg-surface-container mb-6 overflow-hidden">
-            <img alt="Shreyansh — Master Tailor" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdryU8tlQwWD5t1hBOVeBw_9TNwR2ASvaQyGAAKdcYL5d3UlRAHo8IdvXOBQbXmwJ_wE7MdjicwhSOscmPcFOLNyDZVU5vSnxDDJzSS8wERX0qG74zYIYuG4qjPsjhaQ7xlELDdRiO-Yodi9ycOo0H9M6CPWvmmuFpwNUjS-IWdnk3oem1bs7yRJDPTL-iXPaQv9XfDSjQBDiZ2P8TyZEkGSG-VKB_Tqd6dn8MPK08NzAQHZ3Ds45Wwn3M04netCdZUN6Cvkw2sa8"/>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section__title" style="text-align: center; margin-bottom: var(--space-2xl);">THE TEAM</h2>
+        
+        <div class="about-grid" style="grid-template-columns: repeat(3, 1fr); align-items: start;">
+          <div style="text-align: center;">
+            <div style="aspect-ratio: 3/4; overflow: hidden; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-bottom: var(--space-md);">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHj9N5Z4r1WeOCTEukXsgdPjti_O6NHw79XcZD2GnLOAukl5KMCITOmvd5C_vMIXNFa31rsQROlx7yNU2giiu6U2NQ_r6eTzr6Yjpw28Q-cNL71eTp_wr5q-nznU6OaL_x1EJqhTyJMF-btBA1BiXoL3BQFkV6iIPDQOpy2UnkeXAT3Bm1B2z8HPRWdIDMLZNfha6MmN6mi4mo5QA9d9vsUgLuk8Ebas_8Fu15AlD0QbtzBaE_zgA9SI0ya8on9-0JfZC7la9rJd0" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter 0.5s ease;" onmouseover="this.style.filter='grayscale(0)'" onmouseout="this.style.filter='grayscale(1)'">
+            </div>
+            <h4 style="font-family: var(--font-accent); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ivory); margin-bottom: var(--space-xs);">Pranay</h4>
+            <p style="font-family: var(--font-body); font-size: 1rem; font-style: italic; color: var(--gold);">Creative Director</p>
           </div>
-          <h4 class="montserrat font-bold text-sm tracking-widest uppercase text-primary">SHREYANSH</h4>
-          <p class="cormorant italic text-lg text-secondary">Master Tailor</p>
+          
+          <div style="text-align: center; margin-top: var(--space-xl);">
+            <div style="aspect-ratio: 3/4; overflow: hidden; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-bottom: var(--space-md);">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdryU8tlQwWD5t1hBOVeBw_9TNwR2ASvaQyGAAKdcYL5d3UlRAHo8IdvXOBQbXmwJ_wE7MdjicwhSOscmPcFOLNyDZVU5vSnxDDJzSS8wERX0qG74zYIYuG4qjPsjhaQ7xlELDdRiO-Yodi9ycOo0H9M6CPWvmmuFpwNUjS-IWdnk3oem1bs7yRJDPTL-iXPaQv9XfDSjQBDiZ2P8TyZEkGSG-VKB_Tqd6dn8MPK08NzAQHZ3Ds45Wwn3M04netCdZUN6Cvkw2sa8" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter 0.5s ease;" onmouseover="this.style.filter='grayscale(0)'" onmouseout="this.style.filter='grayscale(1)'">
+            </div>
+            <h4 style="font-family: var(--font-accent); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ivory); margin-bottom: var(--space-xs);">Shreyansh</h4>
+            <p style="font-family: var(--font-body); font-size: 1rem; font-style: italic; color: var(--gold);">Master Tailor</p>
+          </div>
+
+          <div style="text-align: center;">
+            <div style="aspect-ratio: 3/4; overflow: hidden; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-bottom: var(--space-md);">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-qFGt__xMh2h-7fBA9OaoYOwMo61TTDvHsGaVfS5l6ryihDiwT2lR9RFf4OOSkhY-dHP31tjqbfRinlslLqTh_CWEo-tIZq038_ahpiUPUxrQUMXKhEwWR_gmLsMytAoiDp5KXHL0XeCljeRMkkrAgejz0YbXXYvS0zMXmMb7JhMJLaeTdHvGsNITUBylU-Dd-KqBm45dwvNxvqrKWGCVlTWogT-BaVTx5QJ3bFXx4ke2TdQDu_TjgJjWVi5f5QMCVcYhiRlx4ns" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter 0.5s ease;" onmouseover="this.style.filter='grayscale(0)'" onmouseout="this.style.filter='grayscale(1)'">
+            </div>
+            <h4 style="font-family: var(--font-accent); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ivory); margin-bottom: var(--space-xs);">Kunal</h4>
+            <p style="font-family: var(--font-body); font-size: 1rem; font-style: italic; color: var(--gold);">Head of Operations</p>
+          </div>
         </div>
-        <div class="relative group overflow-hidden">
-          <div class="aspect-[3/4] bg-surface-container mb-6 overflow-hidden">
-            <img alt="Kunal — Head of Operations" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-qFGt__xMh2h-7fBA9OaoYOwMo61TTDvHsGaVfS5l6ryihDiwT2lR9RFf4OOSkhY-dHP31tjqbfRinlslLqTh_CWEo-tIZq038_ahpiUPUxrQUMXKhEwWR_gmLsMytAoiDp5KXHL0XeCljeRMkkrAgejz0YbXXYvS0zMXmMb7JhMJLaeTdHvGsNITUBylU-Dd-KqBm45dwvNxvqrKWGCVlTWogT-BaVTx5QJ3bFXx4ke2TdQDu_TjgJjWVi5f5QMCVcYhiRlx4ns"/>
-          </div>
-          <h4 class="montserrat font-bold text-sm tracking-widest uppercase text-primary">KUNAL</h4>
-          <p class="cormorant italic text-lg text-secondary">Head of Operations</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-name">SPECIAL <span>ONE</span></div>
+        <p class="footer__tagline">Crafting identities, one stitch at a time. The modern atelier for the self-made individual.</p>
+      </div>
+      <div>
+        <h4 class="footer__heading">About</h4>
+        <div class="footer__links">
+          <a href="about.html">Our Story</a>
+          <a href="about.html">Craftsmanship</a>
+          <a href="#">Ethical Sourcing</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Quick Links</h4>
+        <div class="footer__links">
+          <a href="customizer.html">Customize Shirt</a>
+          <a href="#">Fabric Guide</a>
+          <a href="#">Measurement Guide</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Contact</h4>
+        <div class="footer__links">
+          <a href="mailto:concierge@specialone.com" style="color: var(--gold)">concierge@specialone.com</a>
         </div>
       </div>
     </div>
-  </section>
-</main>
+    <div class="footer__bottom">
+      <div class="footer__copyright">© 2026 SPECIAL ONE. ALL RIGHTS RESERVED.</div>
+      <div class="footer__policy-links">
+        <a href="#">POLICIES</a>
+        <a href="#">TERMS OF SERVICE</a>
+      </div>
+    </div>
+  </footer>
 
-<!-- Footer -->
-<footer class="w-full py-16 px-12 grid grid-cols-1 md:grid-cols-4 gap-12 bg-[#0A1628] border-t border-[#C9A84C]/10">
-  <div class="flex flex-col gap-6">
-    <div class="text-[#C9A84C] text-2xl font-light tracking-[0.3em] montserrat">SPECIAL ONE</div>
-    <p class="cormorant italic text-[#C9A84C]/80 text-lg leading-relaxed">Defining individual excellence since 2024. Your identity, bespoke.</p>
-  </div>
-  <div class="flex flex-col gap-4">
-    <span class="montserrat font-bold text-[10px] tracking-[0.2em] text-[#C9A84C] uppercase mb-2">About</span>
-    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="about.html">Our Story</a>
-    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="about.html">The Atelier</a>
-    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="#">Philanthropy</a>
-  </div>
-  <div class="flex flex-col gap-4">
-    <span class="montserrat font-bold text-[10px] tracking-[0.2em] text-[#C9A84C] uppercase mb-2">Quick Links</span>
-    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="customizer.html">Customize Now</a>
-    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="#">Fabric Gallery</a>
-    <a class="cormorant italic text-[#C9A84C]/80 hover:text-white transition-colors text-lg" href="#">Size Guide</a>
-  </div>
-  <div class="flex flex-col gap-4">
-    <span class="montserrat font-bold text-[10px] tracking-[0.2em] text-[#C9A84C] uppercase mb-2">Connect</span>
-    <a class="cormorant italic text-[#C9A84C]/80 text-lg" href="mailto:atelier@specialone.com">atelier@specialone.com</a>
-    <div class="flex gap-4 mt-2">
-      <span class="material-symbols-outlined text-[#C9A84C] cursor-pointer hover:text-white">photo_camera</span>
-      <span class="material-symbols-outlined text-[#C9A84C] cursor-pointer hover:text-white">mail</span>
-    </div>
-  </div>
-  <div class="md:col-span-4 mt-12 pt-8 border-t border-[#C9A84C]/10 flex flex-col md:flex-row justify-between items-center gap-4">
-    <span class="montserrat font-semibold text-[9px] tracking-[0.2em] text-[#C9A84C]/60 uppercase">© 2024 SPECIAL ONE. ALL RIGHTS RESERVED.</span>
-    <div class="flex gap-8">
-      <a class="montserrat font-semibold text-[9px] tracking-[0.2em] text-[#C9A84C]/60 hover:text-white uppercase transition-colors" href="#">Privacy Policy</a>
-      <a class="montserrat font-semibold text-[9px] tracking-[0.2em] text-[#C9A84C]/60 hover:text-white uppercase transition-colors" href="#">Terms of Service</a>
-    </div>
-  </div>
-</footer>
+  <script src="js/global.js"></script>
 </body>
 </html>
+

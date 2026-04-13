@@ -8,6 +8,8 @@ const Customer = require('../models/Customer');
 const Ticket   = require('../models/Ticket');
 const Fabric   = require('../models/Fabric');
 const { verifyToken, requireRole } = require('../middleware/auth');
+const { validate } = require('../middleware/validate');
+const { analyticsValidator } = require('../validators/analyticsValidator');
 
 const router = express.Router();
 
@@ -60,7 +62,7 @@ router.get('/dashboard', verifyToken, requireRole(['admin', 'superadmin']), asyn
 });
 
 // GET /api/analytics/revenue — Revenue chart data
-router.get('/revenue', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.get('/revenue', verifyToken, requireRole(['admin', 'superadmin']), analyticsValidator, validate, async (req, res) => {
   try {
     const { period = '30' } = req.query;
     const days = Math.min(Number(period), 365);
@@ -140,7 +142,7 @@ router.get('/promo-usage', verifyToken, requireRole(['admin', 'superadmin']), as
 });
 
 // GET /api/analytics/gst-report — GST report for export
-router.get('/gst-report', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.get('/gst-report', verifyToken, requireRole(['admin', 'superadmin']), analyticsValidator, validate, async (req, res) => {
   try {
     const { month, year } = req.query;
     const startDate = new Date(year || new Date().getFullYear(), (month || new Date().getMonth() + 1) - 1, 1);

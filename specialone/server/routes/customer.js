@@ -8,11 +8,18 @@ const Customer = require('../models/Customer');
 const Order    = require('../models/Order');
 const AuditLog = require('../models/AuditLog');
 const { verifyToken, requireRole } = require('../middleware/auth');
+const { validate } = require('../middleware/validate');
+const {
+  getCustomersValidator,
+  customerIdValidator,
+  toggleBlacklistValidator,
+  updateNotesValidator,
+} = require('../validators/customerValidator');
 
 const router = express.Router();
 
 // GET /api/customers — All customers (admin)
-router.get('/', verifyToken, requireRole(['admin', 'superadmin', 'support']), async (req, res) => {
+router.get('/', verifyToken, requireRole(['admin', 'superadmin', 'support']), getCustomersValidator, validate, async (req, res) => {
   try {
     const { page = 1, limit = 20, search } = req.query;
     const filter = {};
@@ -55,7 +62,7 @@ router.get('/export', verifyToken, requireRole(['admin', 'superadmin']), async (
 });
 
 // GET /api/customers/:id — Customer detail with order history
-router.get('/:id', verifyToken, requireRole(['admin', 'superadmin', 'support']), async (req, res) => {
+router.get('/:id', verifyToken, requireRole(['admin', 'superadmin', 'support']), customerIdValidator, validate, async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id).lean();
     if (!customer) return res.status(404).json({ success: false, message: 'Customer not found.' });
@@ -72,7 +79,7 @@ router.get('/:id', verifyToken, requireRole(['admin', 'superadmin', 'support']),
 });
 
 // PATCH /api/customers/:id/blacklist — Toggle blacklist
-router.patch('/:id/blacklist', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.patch('/:id/blacklist', verifyToken, requireRole(['admin', 'superadmin']), toggleBlacklistValidator, validate, async (req, res) => {
   try {
     const { isBlacklisted, reason } = req.body;
     const customer = await Customer.findByIdAndUpdate(
@@ -94,7 +101,7 @@ router.patch('/:id/blacklist', verifyToken, requireRole(['admin', 'superadmin'])
 });
 
 // PATCH /api/customers/:id/notes — Update internal notes
-router.patch('/:id/notes', verifyToken, requireRole(['admin', 'superadmin', 'support']), async (req, res) => {
+router.patch('/:id/notes', verifyToken, requireRole(['admin', 'superadmin', 'support']), updateNotesValidator, validate, async (req, res) => {
   try {
     const customer = await Customer.findByIdAndUpdate(
       req.params.id,

@@ -155,7 +155,7 @@
         return;
       }
 
-      tbody.innerHTML = data.orders.map(order => `
+      tbody.innerHTML = DOMPurify.sanitize(data.orders.map(order => `
         <tr>
           <td><span class="table-id">${order.orderId || order._id?.slice(-8)}</span></td>
           <td>
@@ -173,7 +173,7 @@
             </div>
           </td>
         </tr>
-      `).join('');
+      `).join(''));
     } catch (err) {
       tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:2rem;color:#fc8181;font-family:var(--font-accent);font-size:0.75rem">Error loading orders.</td></tr>`;
     }
@@ -191,14 +191,14 @@
       const days = data.data || [];
       const maxRevenue = Math.max(...days.map(d => d.revenue), 1);
 
-      container.innerHTML = days.map(day => {
+      container.innerHTML = DOMPurify.sanitize(days.map(day => {
         const heightPct = Math.max(4, Math.round((day.revenue / maxRevenue) * 100));
         return `
           <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px" title="${fmtInr(day.revenue)} on ${fmtDate(day.date)}">
             <div style="width:100%;height:${heightPct}%;background:${day.revenue > 0 ? 'linear-gradient(to top,var(--gold),var(--gold-light))' : 'var(--border-subtle)'};border-radius:2px 2px 0 0;transition:height 0.5s ease;opacity:${day.revenue > 0 ? 1 : 0.3}"></div>
           </div>
         `;
-      }).join('');
+      }).join(''));
     } catch (err) {
       console.error('Revenue chart error:', err);
     }
@@ -216,7 +216,7 @@
         return;
       }
 
-      container.innerHTML = data.fabrics.map(f => `
+      container.innerHTML = DOMPurify.sanitize(data.fabrics.map(f => `
         <div style="display:flex;align-items:center;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--border-subtle);margin-bottom:0.3rem">
           <div>
             <div style="font-family:var(--font-accent);font-size:0.75rem;color:var(--ivory)">${f.name}</div>
@@ -224,7 +224,7 @@
           </div>
           <span class="badge ${f.stockStatus === 'out_of_stock' ? 'badge--danger' : 'badge--warning'}">${f.stockStatus === 'out_of_stock' ? 'Out' : 'Low'}</span>
         </div>
-      `).join('');
+      `).join(''));
     } catch (err) {
       container.innerHTML = `<p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted)">Could not load stock data.</p>`;
     }
@@ -264,7 +264,7 @@
           return;
         }
 
-        tbody.innerHTML = data.orders.map(order => `
+        tbody.innerHTML = DOMPurify.sanitize(data.orders.map(order => `
           <tr>
             <td><span class="table-id">${order.orderId || order._id?.slice(-8)}</span></td>
             <td>
@@ -283,7 +283,7 @@
               </div>
             </td>
           </tr>
-        `).join('');
+        `).join(''));
 
         // Pagination
         const paginationInfo = document.getElementById('paginationInfo');
@@ -308,7 +308,7 @@
         const overlay = document.getElementById('orderModal');
         if (!overlay) return;
 
-        document.getElementById('orderModalBody').innerHTML = `
+        document.getElementById('orderModalBody').innerHTML = DOMPurify.sanitize(`
           <div style="display:grid;gap:var(--space-lg)">
             <div style="display:flex;justify-content:space-between;align-items:center">
               <div>
@@ -349,7 +349,7 @@
               <div style="font-family:var(--font-display);font-size:1rem;color:#68d391">${o.shipping.awb}</div>
             </div>` : ''}
           </div>
-        `;
+        `);
         overlay.classList.add('active');
       } catch (err) {
         window.showToast('Error loading order details.', 'error');
@@ -534,7 +534,7 @@
         return;
       }
 
-      tbody.innerHTML = data.customers.map((c, i) => `
+      tbody.innerHTML = DOMPurify.sanitize(data.customers.map((c, i) => `
         <tr>
           <td style="font-family:var(--font-accent);font-size:0.65rem;color:var(--text-muted)">${((currentPage-1)*PAGE_SIZE)+i+1}</td>
           <td><div style="font-family:var(--font-display);font-size:0.9rem;color:var(--ivory)">${c.name}</div></td>
@@ -551,7 +551,7 @@
             </div>
           </td>
         </tr>
-      `).join('');
+      `).join(''));
     } catch (err) {
       tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;padding:2rem;color:#fc8181;font-family:var(--font-accent);font-size:0.75rem">Error loading customers.</td></tr>`;
     }
@@ -570,7 +570,7 @@
       const c = data.customer;
       const orders = data.recentOrders || [];
 
-      body.innerHTML = `
+      body.innerHTML = DOMPurify.sanitize(`
         <div style="display:grid;gap:var(--space-lg)">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:var(--space-md)">
             <div>
@@ -631,7 +631,7 @@
             <div style="font-family:var(--font-body);color:var(--text-muted);font-size:0.85rem">${c.internalNotes}</div>
           </div>` : ''}
         </div>
-      `;
+      `);
     } catch (err) {
       body.innerHTML = `<p style="color:#fc8181;font-family:var(--font-accent);font-size:0.75rem">Could not load customer details.</p>`;
     }
@@ -700,7 +700,7 @@
         return;
       }
 
-      tbody.innerHTML = data.tickets.map(t => `
+      tbody.innerHTML = DOMPurify.sanitize(data.tickets.map(t => `
         <tr>
           <td><span class="table-id">${t.ticketId||t._id?.slice(-6)}</span></td>
           <td>
@@ -718,7 +718,7 @@
             </div>
           </td>
         </tr>
-      `).join('');
+      `).join(''));
     } catch (err) {
       tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:2rem;color:#fc8181;font-family:var(--font-accent);font-size:0.75rem">Error: ${err.message}</td></tr>`;
     }
@@ -737,7 +737,7 @@
       const t = data.ticket;
       const messages = t.messages || [];
 
-      body.innerHTML = `
+      body.innerHTML = DOMPurify.sanitize(`
         <div style="display:grid;gap:var(--space-lg)">
           <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--space-md)">
             <div>
@@ -777,7 +777,7 @@
             </div>
           </div>` : `<div style="text-align:center;font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted)">This ticket is closed.</div>`}
         </div>
-      `;
+      `);
     } catch (err) {
       body.innerHTML = `<p style="color:#fc8181;font-family:var(--font-accent);font-size:0.75rem">Could not load ticket.</p>`;
     }
@@ -857,7 +857,7 @@
       if (chart && chartData.success) {
         const days_arr = chartData.data || [];
         const max = Math.max(...days_arr.map(d => d.revenue), 1);
-        chart.innerHTML = days_arr.map(day => {
+        chart.innerHTML = DOMPurify.sanitize(days_arr.map(day => {
           const pct = Math.max(2, Math.round((day.revenue / max) * 100));
           const label = new Date(day.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
           return `
@@ -866,7 +866,7 @@
               <div class="chart-bar-label">${label}</div>
             </div>
           `;
-        }).join('') || `<p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted);align-self:center;width:100%;text-align:center">No revenue data yet.</p>`;
+        }).join('') || `<p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted);align-self:center;width:100%;text-align:center">No revenue data yet.</p>`);
       }
 
       // Status Donut
@@ -888,15 +888,15 @@
           offset += dash;
           return arc;
         }).join('');
-        if (donutEl) donutEl.innerHTML = `${arcs}<text x="${cx}" y="${cy+5}" text-anchor="middle" font-family="var(--font-display)" font-size="14" fill="var(--gold)">${total}</text>`;
+        if (donutEl) donutEl.innerHTML = DOMPurify.sanitize(`${arcs}<text x="${cx}" y="${cy+5}" text-anchor="middle" font-family="var(--font-display)" font-size="14" fill="var(--gold)">${total}</text>`, { USE_PROFILES: { html: true, svg: true } });
 
-        legendEl.innerHTML = statuses.map(s => `
+        legendEl.innerHTML = DOMPurify.sanitize(statuses.map(s => `
           <div class="donut-legend-item">
             <div class="donut-legend-dot" style="background:${STATUS_COLORS[s._id]||'#4A5568'}"></div>
             <span class="donut-legend-label">${(s._id||'unknown').replace(/_/g,' ')}</span>
             <span class="donut-legend-pct">${s.count}</span>
           </div>
-        `).join('') || `<p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted)">No orders yet.</p>`;
+        `).join('') || `<p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted)">No orders yet.</p>`);
       }
 
       // Top Fabrics
@@ -904,7 +904,7 @@
       if (fabricsEl && fabricData.success) {
         const fabrics = fabricData.data || [];
         const maxCount = Math.max(...fabrics.map(f => f.count), 1);
-        fabricsEl.innerHTML = fabrics.map(f => `
+        fabricsEl.innerHTML = DOMPurify.sanitize(fabrics.map(f => `
           <div style="margin-bottom:var(--space-md)">
             <div style="display:flex;justify-content:space-between;margin-bottom:4px">
               <span style="font-family:var(--font-body);font-size:0.8rem;color:var(--ivory)">${f.name||f._id}</span>
@@ -914,7 +914,7 @@
               <div style="height:100%;width:${Math.round((f.count/maxCount)*100)}%;background:linear-gradient(to right,var(--gold),var(--gold-light));border-radius:3px;transition:width 0.6s ease"></div>
             </div>
           </div>
-        `).join('') || `<p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted)">No fabric data yet.</p>`;
+        `).join('') || `<p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted)">No fabric data yet.</p>`);
       }
 
     } catch (err) {
@@ -972,7 +972,7 @@
         return;
       }
 
-      tbody.innerHTML = data.fabrics.map(f => `
+      tbody.innerHTML = DOMPurify.sanitize(data.fabrics.map(f => `
         <tr>
           <td style="font-family:var(--font-display);font-size:0.9rem;color:var(--ivory)">${f.name}</td>
           <td style="font-family:var(--font-accent);font-size:0.7rem;text-transform:capitalize">${f.type||'—'}</td>
@@ -1002,7 +1002,7 @@
             </div>
           </td>
         </tr>
-      `).join('');
+      `).join(''));
     } catch (err) {
       tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:2rem;color:#fc8181;font-family:var(--font-accent);font-size:0.75rem">Error loading fabrics.</td></tr>`;
     }
@@ -1162,7 +1162,7 @@
     const container = document.getElementById(containerId);
     if (!container) return;
     const options = CUSTOMIZER_OPTIONS[type] || [];
-    container.innerHTML = options.map(opt => `
+    container.innerHTML = DOMPurify.sanitize(options.map(opt => `
       <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:var(--space-sm) var(--space-md);margin-bottom:var(--space-sm)">
         <div>
           <div style="font-family:var(--font-body);font-size:0.85rem;color:var(--ivory)">${opt.name}</div>
@@ -1170,7 +1170,7 @@
         </div>
         <span class="badge badge--success" style="font-size:0.55rem">Active</span>
       </div>
-    `).join('') || `<p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted)">No options configured.</p>`;
+    `).join('') || `<p style="font-family:var(--font-accent);font-size:0.75rem;color:var(--text-muted)">No options configured.</p>`);
   };
 
   renderOptionList('collarList', 'collar');

@@ -222,7 +222,7 @@
     container.style.transform = 'scale(0.97)';
 
     setTimeout(() => {
-      container.innerHTML = buildShirtSVG();
+      container.innerHTML = DOMPurify.sanitize(buildShirtSVG(), { USE_PROFILES: { svg: true, svgFilters: true } });
       container.style.opacity = '1';
       container.style.transform = 'scale(1)';
     }, 200);
@@ -287,7 +287,7 @@
       container.style.opacity = '0';
       container.style.transform = 'translateX(20px)';
       setTimeout(() => {
-        container.innerHTML = getStepHTML(step);
+        container.innerHTML = DOMPurify.sanitize(getStepHTML(step));
         container.style.opacity = '1';
         container.style.transform = 'translateX(0)';
         attachStepListeners(step);

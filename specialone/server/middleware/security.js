@@ -24,7 +24,7 @@ const helmetConfig = helmet({
         "'self'",
         "'unsafe-inline'",       // Needed for inline JS in HTML files
         'https://checkout.razorpay.com',  // Razorpay checkout script
-        'https://fonts.googleapis.com',
+        'https://cdnjs.cloudflare.com', // For dompurify
       ],
       styleSrc: [
         "'self'",
@@ -36,9 +36,14 @@ const helmetConfig = helmet({
       imgSrc:   ["'self'", 'data:', 'blob:', 'https:'],
       connectSrc: ["'self'", 'https://api.razorpay.com', 'https://apiv2.shiprocket.in'],
       frameSrc: ['https://api.razorpay.com'],
+      upgradeInsecureRequests: [],
     },
   },
   crossOriginEmbedderPolicy: false, // Needed for Razorpay iframe
+  hsts: { maxAge: 31536000, includeSubDomains: true, preload: true }, // 1 year HSTS
+  xssFilter: true,
+  noSniff: true,
+  referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
 });
 
 // ── 2. CORS ───────────────────────────────────────────────────

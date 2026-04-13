@@ -86,7 +86,7 @@
 
     if (!container) return;
 
-    container.innerHTML = cart.map((item, i) => `
+    container.innerHTML = DOMPurify.sanitize(cart.map((item, i) => `
       <div class="cart-item" id="cart-item-${i}" style="border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:var(--space-xl);background:rgba(255,255,255,0.02);display:flex;gap:var(--space-xl);align-items:flex-start;margin-bottom:var(--space-lg);transition:border-color var(--transition-base)" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='var(--border-subtle)'">
         <!-- Mini shirt preview -->
         <div style="width:80px;height:100px;flex-shrink:0;border:1px solid var(--border-subtle);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;background:${item.fabric?.color || '#0A1628'};font-size:2rem;overflow:hidden">
@@ -123,7 +123,7 @@
           </div>
         </div>
       </div>
-    `).join('');
+    `).join(''));
 
     renderPricing();
   };

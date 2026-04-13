@@ -1,172 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>SPECIAL ONE | Shopping Cart</title>
-<meta name="description" content="Review your bespoke shirt selections and proceed to checkout at Special One."/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "background": "#fcf9f4","surface-container-low": "#f6f3ee","surface-container": "#f0ede9","surface-container-lowest": "#ffffff","on-primary-container": "#79849b","primary-container": "#101c2e","on-surface": "#1c1c19","primary": "#000000","outline-variant": "#c5c6cd","surface-variant": "#e5e2dd","surface": "#fcf9f4","surface-container-highest": "#e5e2dd","secondary": "#755b00","secondary-container": "#fed977","on-surface-variant": "#45474c","outline": "#75777d","surface-container-high": "#ebe8e3"
-        },
-        fontFamily: { "headline": ["Bebas Neue", "sans-serif"], "body": ["Cormorant Garamond", "serif"], "label": ["Montserrat", "sans-serif"] },
-        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
-      },
-    },
-  }
-</script>
-<style>
-  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24; font-size: 20px; }
-  .serif-italic { font-family: 'Cormorant Garamond'; font-style: italic; }
-  .bebas { font-family: 'Bebas Neue'; }
-  .montserrat { font-family: 'Montserrat'; }
-</style>
-</head>
-<body class="bg-background text-on-surface selection:bg-secondary-container">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart | SPECIAL ONE</title>
+  <meta name="description" content="Review your bespoke shirt selections and proceed to checkout at Special One.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/responsive.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>`n</head>
+<body>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
 
-<!-- Navigation -->
-<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-white/90 backdrop-blur-xl border-b border-[#C9A84C]/30">
-  <div class="text-xl font-semibold tracking-[0.2em] text-[#0A1628] montserrat">SPECIAL ONE</div>
-  <div class="hidden md:flex gap-8">
-    <a class="text-[#4A4A4A] hover:text-[#0A1628] hover:opacity-80 transition-opacity montserrat font-semibold uppercase tracking-[0.15em] text-[11px]" href="index.html">Home</a>
-    <a class="text-[#C9A84C] border-b border-[#C9A84C] pb-1 montserrat font-semibold uppercase tracking-[0.15em] text-[11px]" href="customizer.html">Customize</a>
-    <a class="text-[#4A4A4A] hover:text-[#0A1628] hover:opacity-80 transition-opacity montserrat font-semibold uppercase tracking-[0.15em] text-[11px]" href="about.html">About</a>
-    <a class="text-[#4A4A4A] hover:text-[#0A1628] hover:opacity-80 transition-opacity montserrat font-semibold uppercase tracking-[0.15em] text-[11px]" href="faq.html">FAQ</a>
-  </div>
-  <button class="bg-primary-container text-white px-6 py-2 montserrat font-semibold uppercase tracking-[0.15em] text-[11px] hover:opacity-80 transition-opacity active:scale-95">
-    Start Customizing
-  </button>
-</nav>
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <a href="index.html" class="nav__logo">SPECIAL <span>ONE</span></a>
+    
+    <div class="nav__hamburger" aria-label="Toggle Navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-<main class="pt-32 pb-24 px-8 max-w-7xl mx-auto">
-  <h1 class="text-8xl bebas tracking-tight mb-16 text-primary">YOUR CART</h1>
-  <div class="flex flex-col lg:flex-row gap-16">
-    <!-- Cart Items -->
-    <div class="lg:w-[65%] space-y-12">
-      <!-- Item 1 -->
-      <div class="flex flex-col sm:flex-row gap-8 pb-12 border-b border-surface-container-highest">
-        <div class="w-48 h-64 bg-surface-container overflow-hidden">
-          <img class="w-full h-full object-cover" alt="Tailored white oxford cotton shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZWbzyBBMSCsNGB3W0wi_5Ustvfz8r6yzml4UmZmLSLllTtj_Z9VvbGlf0fNx5YHVt6H1RUdfKDeNC9GiCosjl-oSUlKwT2hqaA4vRs13RltATS9fudKXGUkG2DS5tDSDMMPAEOeiF-PcIWKxKBO4N4LHPdP17-WbTClMTQJLt9vyd_6lgkDVuTvOTnspYMb8RCJjsKs-aQgbdofFyRs1w7KmGAyNbgd3HY7xrvxQ9GN9rxHMQUkzQmBEG6fTYBxbmBV4yBLdYU0I"/>
-        </div>
-        <div class="flex-1 flex flex-col justify-between">
-          <div>
-            <h3 class="text-3xl font-bold font-body mb-4">The Artisan Oxford</h3>
-            <div class="grid grid-cols-2 gap-y-2 text-on-surface-variant font-body text-lg">
-              <p><span class="serif-italic">Fabric:</span> Oxford White</p>
-              <p><span class="serif-italic">Collar:</span> Button Down</p>
-              <p><span class="serif-italic">Cuff:</span> Single Rounded</p>
-              <p><span class="serif-italic">Size:</span> 40 Regular</p>
+    <div class="nav__links">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="customizer.html" class="nav__link">Customize</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="faq.html" class="nav__link">FAQ</a>
+    </div>
+  </nav>
+
+  <main class="cart-page-wrapper">
+    <div class="cart-inner container">
+      
+      <div class="cart-header-row">
+        <h1 class="section__title">YOUR CART</h1>
+        <a href="customizer.html" class="btn btn--outline btn--sm">CONTINUE SHOPPING</a>
+      </div>
+      <div class="gold-line" style="margin-top: 0;"></div>
+
+      <div class="cart-layout">
+        <!-- Cart Items -->
+        <div>
+          <!-- Item 1 -->
+          <div class="cart-item">
+            <div style="width: 120px; height: 160px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-subtle);">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZWbzyBBMSCsNGB3W0wi_5Ustvfz8r6yzml4UmZmLSLllTtj_Z9VvbGlf0fNx5YHVt6H1RUdfKDeNC9GiCosjl-oSUlKwT2hqaA4vRs13RltATS9fudKXGUkG2DS5tDSDMMPAEOeiF-PcIWKxKBO4N4LHPdP17-WbTClMTQJLt9vyd_6lgkDVuTvOTnspYMb8RCJjsKs-aQgbdofFyRs1w7KmGAyNbgd3HY7xrvxQ9GN9rxHMQUkzQmBEG6fTYBxbmBV4yBLdYU0I" style="width:100%; height:100%; object-fit:cover;" alt="Tailored white oxford cotton shirt">
             </div>
+            <div class="cart-item-details">
+              <h3 class="cart-item-name">The Artisan Oxford</h3>
+              <div class="cart-item-specs">
+                <span class="cart-item-spec-tag">Oxford White</span>
+                <span class="cart-item-spec-tag">Button Down</span>
+                <span class="cart-item-spec-tag">Single Rounded</span>
+                <span class="cart-item-spec-tag">Size: 40 (R)</span>
+              </div>
+              <button class="cart-item-remove" style="text-align: left;">REMOVE ITEM</button>
+            </div>
+            <div class="cart-item-price">₹3,999</div>
           </div>
-          <div class="flex justify-between items-end mt-8">
-            <div class="flex gap-6">
-              <button class="text-secondary montserrat font-semibold uppercase tracking-widest text-[11px] hover:underline" onclick="window.location.href='customizer.html'">Edit</button>
-              <button class="text-secondary montserrat font-semibold uppercase tracking-widest text-[11px] hover:underline">Remove</button>
+
+          <!-- Item 2 -->
+          <div class="cart-item">
+            <div style="width: 120px; height: 160px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-subtle);">
+               <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNZ_ImqMhJlWDihrqDIXOMheBiy1J6dALFPaTugwcFPHWb300N7SVK-hDgfzIlIEpEjn8sgHojcSWRXFSrnMAV6bjWvCcMdOp_rdrA64jTb4vTrYo7Ojtnmz4W1KKT5eC6ZiP5MPk6QmGrypcOqbH0oN8U4oAGRuYNVTekJklUz0A5eze-2KeUlqs9vMXswhfPeQiGHhHkH56dXOupGzTLzmZdHZ0W4wBUakJSnYzIAPcxgTP_9kLCXCF1R1RuHymtSULqJWphZqw" style="width:100%; height:100%; object-fit:cover;" alt="Tailored navy shirt">
             </div>
-            <p class="text-2xl font-body font-bold">₹3,999</p>
+            <div class="cart-item-details">
+              <h3 class="cart-item-name">Summer Linen Azure</h3>
+              <div class="cart-item-specs">
+                <span class="cart-item-spec-tag">Fine Linen Blue</span>
+                <span class="cart-item-spec-tag">Mandarin</span>
+                <span class="cart-item-spec-tag">Short Sleeve</span>
+                <span class="cart-item-spec-tag">Size: 42 (S)</span>
+              </div>
+              <button class="cart-item-remove" style="text-align: left;">REMOVE ITEM</button>
+            </div>
+            <div class="cart-item-price">₹4,499</div>
+          </div>
+        </div>
+
+        <!-- Order Summary Sticky Panel -->
+        <div class="cart-summary-sticky">
+          <div class="glass-card">
+            <h2 style="font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.05em; margin-bottom: var(--space-lg); color: var(--ivory);">ORDER SUMMARY</h2>
+            
+            <div style="margin-bottom: var(--space-xl);">
+              <label class="form-label">Promo Code</label>
+              <div class="promo-row">
+                <input type="text" class="form-input" placeholder="ENTER CODE">
+                <button class="btn btn--outline" style="padding: 0 1rem; font-size: 0.6rem;">APPLY</button>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-sm); font-family: var(--font-body); color: var(--text-muted); padding-bottom: var(--space-sm); border-bottom: 1px dotted rgba(255,255,255,0.1);">
+              <span>Subtotal</span>
+              <span style="color: var(--ivory);">₹8,498</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-sm); font-family: var(--font-body); color: var(--text-muted); padding-bottom: var(--space-sm); border-bottom: 1px dotted rgba(255,255,255,0.1);">
+              <span>GST (18%)</span>
+              <span style="color: var(--ivory);">₹1,529</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-lg); font-family: var(--font-body); color: var(--text-muted);">
+              <span>Discount</span>
+              <span style="color: #68d391;">- ₹0</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-xl);">
+              <span style="font-family: var(--font-accent); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--ivory); font-weight: 700; text-transform: uppercase;">Total</span>
+              <span class="price-display" style="font-size: 2rem;">₹10,027</span>
+            </div>
+
+            <button class="btn btn--primary" style="width: 100%;" onclick="window.location.href='checkout.html'">
+              PROCEED TO CHECKOUT
+            </button>
           </div>
         </div>
       </div>
-      <!-- Item 2 -->
-      <div class="flex flex-col sm:flex-row gap-8 pb-12 border-b border-surface-container-highest">
-        <div class="w-48 h-64 bg-surface-container overflow-hidden">
-          <img class="w-full h-full object-cover" alt="Blue fine linen shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNZ_ImqMhJlWDihrqDIXOMheBiy1J6dALFPaTugwcFPHWb300N7SVK-hDgfzIlIEpEjn8sgHojcSWRXFSrnMAV6bjWvCcMdOp_rdrA64jTb4vTrYo7Ojtnmz4W1KKT5eC6ZiP5MPk6QmGrypcOqbH0oN8U4oAGRuYNVTekJklUz0A5eze-2KeUlqs9vMXswhfPeQiGHhHkH56dXOupGzTLzmZdHZ0W4wBUakJSnYzIAPcxgTP_9kLCXCF1R1RuHymtSULqJWphZqw"/>
+      
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-name">SPECIAL <span>ONE</span></div>
+        <p class="footer__tagline">Crafting identities, one stitch at a time. The digital atelier for the self-made individual.</p>
+      </div>
+      <div>
+        <h4 class="footer__heading">About</h4>
+        <div class="footer__links">
+          <a href="about.html">Our Story</a>
+          <a href="#">The Fabrics</a>
         </div>
-        <div class="flex-1 flex flex-col justify-between">
-          <div>
-            <h3 class="text-3xl font-bold font-body mb-4">Summer Linen Azure</h3>
-            <div class="grid grid-cols-2 gap-y-2 text-on-surface-variant font-body text-lg">
-              <p><span class="serif-italic">Fabric:</span> Fine Linen Blue</p>
-              <p><span class="serif-italic">Collar:</span> Mandarin</p>
-              <p><span class="serif-italic">Cuff:</span> Short Sleeve</p>
-              <p><span class="serif-italic">Size:</span> 42 Slim</p>
-            </div>
-          </div>
-          <div class="flex justify-between items-end mt-8">
-            <div class="flex gap-6">
-              <button class="text-secondary montserrat font-semibold uppercase tracking-widest text-[11px] hover:underline" onclick="window.location.href='customizer.html'">Edit</button>
-              <button class="text-secondary montserrat font-semibold uppercase tracking-widest text-[11px] hover:underline">Remove</button>
-            </div>
-            <p class="text-2xl font-body font-bold">₹4,499</p>
-          </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Policies</h4>
+        <div class="footer__links">
+          <a href="#">Fit Guarantee</a>
+          <a href="#">Returns</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Contact</h4>
+        <div class="footer__links">
+          <a href="mailto:concierge@specialone.com" style="color: var(--gold)">concierge@specialone.com</a>
         </div>
       </div>
     </div>
-
-    <!-- Order Summary -->
-    <div class="lg:w-[35%]">
-      <div class="bg-surface-container-low p-10 border border-[#C9A84C]/10 sticky top-32">
-        <h2 class="text-2xl font-body font-bold mb-8 uppercase tracking-widest">Order Summary</h2>
-        <div class="mb-8">
-          <label class="montserrat font-semibold uppercase tracking-widest text-[10px] mb-2 block text-on-surface-variant">Promo Code</label>
-          <div class="flex gap-2">
-            <input class="bg-transparent border border-outline-variant w-full px-4 py-3 focus:border-secondary focus:ring-0 outline-none montserrat text-xs tracking-widest" placeholder="ENTER CODE" type="text"/>
-            <button class="bg-outline-variant text-white px-6 py-3 montserrat text-[10px] font-bold uppercase tracking-widest hover:bg-secondary transition-colors">Apply</button>
-          </div>
-        </div>
-        <div class="space-y-4 font-body text-lg border-b border-surface-container-highest pb-8 mb-8">
-          <div class="flex justify-between"><span class="serif-italic">Subtotal</span><span>₹8,498</span></div>
-          <div class="flex justify-between"><span class="serif-italic">GST (18%)</span><span>₹1,529</span></div>
-          <div class="flex justify-between text-secondary"><span class="serif-italic">Discount</span><span>- ₹0</span></div>
-        </div>
-        <div class="flex justify-between items-baseline mb-10">
-          <span class="text-xl font-body font-bold uppercase tracking-widest">Total</span>
-          <span class="text-4xl font-body font-bold">₹10,027</span>
-        </div>
-        <button class="w-full bg-primary-container text-white py-5 montserrat font-semibold uppercase tracking-[0.2em] text-xs hover:opacity-90 transition-all flex items-center justify-center gap-3 active:scale-[0.98]" onclick="window.location.href='checkout.html'">
-          Proceed to Checkout
-          <span class="material-symbols-outlined">trending_flat</span>
-        </button>
+    <div class="footer__bottom">
+      <div class="footer__copyright">© 2026 SPECIAL ONE. ALL RIGHTS RESERVED.</div>
+      <div class="footer__policy-links">
+        <a href="#">POLICIES</a>
+        <a href="#">TERMS OF SERVICE</a>
       </div>
     </div>
-  </div>
-</main>
+  </footer>
 
-<!-- Footer -->
-<footer class="w-full py-20 px-12 grid grid-cols-1 md:grid-cols-4 gap-12 bg-[#0A1628] border-t border-[#C9A84C]/10 text-[#C9A84C]">
-  <div class="space-y-6">
-    <div class="text-[#C9A84C] text-3xl font-light tracking-[0.3em] montserrat">SPECIAL ONE</div>
-    <p class="cormorant italic text-[#C9A84C]/80 max-w-xs" style="font-family:'Cormorant Garamond',serif">Crafting unique identities through bespoke tailoring. Every stitch tells a story of personal excellence.</p>
-  </div>
-  <div class="space-y-6">
-    <h4 class="montserrat font-semibold uppercase tracking-widest text-xs text-white">Quick Links</h4>
-    <ul class="space-y-4" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.125rem">
-      <li><a class="hover:text-white transition-colors" href="customizer.html">Design Your Shirt</a></li>
-      <li><a class="hover:text-white transition-colors" href="#">Fabric Gallery</a></li>
-      <li><a class="hover:text-white transition-colors" href="#">Style Guide</a></li>
-    </ul>
-  </div>
-  <div class="space-y-6">
-    <h4 class="montserrat font-semibold uppercase tracking-widest text-xs text-white">Policies</h4>
-    <ul class="space-y-4" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.125rem">
-      <li><a class="hover:text-white transition-colors" href="#">Perfect Fit Guarantee</a></li>
-      <li><a class="hover:text-white transition-colors" href="#">Shipping &amp; Returns</a></li>
-      <li><a class="hover:text-white transition-colors" href="#">Privacy Policy</a></li>
-    </ul>
-  </div>
-  <div class="space-y-6">
-    <h4 class="montserrat font-semibold uppercase tracking-widest text-xs text-white">Contact</h4>
-    <ul class="space-y-4" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.125rem">
-      <li>Atelier New Delhi</li>
-      <li>+91 11 4050 6070</li>
-      <li>concierge@specialone.com</li>
-    </ul>
-  </div>
-  <div class="col-span-1 md:col-span-4 pt-12 border-t border-[#C9A84C]/10 flex flex-col md:flex-row justify-between items-center gap-4">
-    <p class="montserrat text-[10px] tracking-[0.2em] opacity-60">© 2024 SPECIAL ONE. ALL RIGHTS RESERVED.</p>
-    <div class="flex gap-8 montserrat text-[10px] tracking-[0.2em] opacity-60 uppercase">
-      <a class="hover:text-white transition-colors" href="#">Instagram</a>
-      <a class="hover:text-white transition-colors" href="#">Pinterest</a>
-      <a class="hover:text-white transition-colors" href="#">LinkedIn</a>
-    </div>
-  </div>
-</footer>
+  <script src="js/global.js"></script>
+  <script src="js/cart.js"></script>
 </body>
 </html>
+

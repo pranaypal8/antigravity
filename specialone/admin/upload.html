@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow"/>
 <title>Upload & Products | Special One Admin</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@400;600&family=Manrope:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@300;400;500;600;700&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
   tailwind.config = {
@@ -26,7 +26,7 @@
   .tab-inactive{border-bottom:2px solid transparent;color:#75777d}
   .panel-hidden{display:none}
 </style>
-</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>`n</head>
 <body class="bg-[#fcf9f4] font-body text-on-surface">
 
 <!-- Sidebar -->
@@ -406,7 +406,7 @@
     const empty = document.getElementById('fabric-empty');
     if (!state.fabrics.length) { list.innerHTML = ''; empty.classList.remove('hidden'); return; }
     empty.classList.add('hidden');
-    list.innerHTML = state.fabrics.map((f,i) => `
+    list.innerHTML = DOMPurify.sanitize(state.fabrics.map((f,i) => `
       <div class="flex items-center gap-4 bg-white border border-outline-variant/20 p-4 hover:border-[#C9A84C]/50 transition-colors">
         ${f.img ? `<img src="${f.img}" alt="${f.name}" class="w-16 h-16 object-cover border border-outline-variant/20 flex-shrink-0"/>` : `<div class="w-16 h-16 bg-surface-container flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-outline-variant">texture</span></div>`}
         <div class="flex-1 min-w-0">
@@ -420,7 +420,7 @@
         <button onclick="removeFabric(${i})" class="text-outline-variant hover:text-red-500 transition-colors p-2">
           <span class="material-symbols-outlined">delete</span>
         </button>
-      </div>`).join('');
+      </div>`).join(''));
   }
 
   function removeFabric(i) {
@@ -453,7 +453,7 @@
     const empty = document.getElementById(type + '-empty');
     if (!state[key].length) { list.innerHTML = ''; empty.classList.remove('hidden'); return; }
     empty.classList.add('hidden');
-    list.innerHTML = state[key].map((item, i) => `
+    list.innerHTML = DOMPurify.sanitize(state[key].map((item, i) => `
       <div class="flex items-center gap-4 bg-white border border-outline-variant/20 p-4 hover:border-[#C9A84C]/50 transition-colors">
         ${item.img ? `<img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover border border-outline-variant/20 flex-shrink-0"/>` : `<div class="w-16 h-16 bg-surface-container flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-outline-variant">apparel</span></div>`}
         <div class="flex-1 min-w-0">
@@ -463,7 +463,7 @@
         <button onclick="removeOption('${type}',${i})" class="text-outline-variant hover:text-red-500 transition-colors p-2">
           <span class="material-symbols-outlined">delete</span>
         </button>
-      </div>`).join('');
+      </div>`).join(''));
   }
 
   function removeOption(type, i) {
@@ -500,3 +500,4 @@
 </script>
 </body>
 </html>
+

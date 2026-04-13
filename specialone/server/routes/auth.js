@@ -19,6 +19,14 @@ const sanitizeHtml = require('sanitize-html');
 const AdminUser = require('../models/AdminUser');
 const AuditLog = require('../models/AuditLog');
 const { verifyToken, requireRole } = require('../middleware/auth');
+const { validate } = require('../middleware/validate');
+const {
+  loginValidator,
+  createAdminValidator,
+  updatePasswordValidator,
+  updateAdminValidator,
+  adminIdValidator,
+} = require('../validators/authValidator');
 
 const router = express.Router();
 
@@ -51,7 +59,7 @@ const setAuthCookie = (res, token) => {
 };
 
 // ── POST /api/auth/login ──────────────────────────────────────
-router.post('/login', async (req, res) => {
+router.post('/login', loginValidator, validate, async (req, res) => {
   try {
     const email    = sanitizeHtml(req.body.email || '').toLowerCase().trim();
     const password = req.body.password || '';
@@ -209,7 +217,7 @@ router.get('/me', verifyToken, (req, res) => {
 });
 
 // ── POST /api/auth/create-admin ───────────────────────────────
-router.post('/create-admin', verifyToken, requireRole(['superadmin']), async (req, res) => {
+router.post('/create-admin', verifyToken, requireRole(['superadmin']), createAdminValidator, validate, async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
 
@@ -260,7 +268,7 @@ router.post('/create-admin', verifyToken, requireRole(['superadmin']), async (re
 });
 
 // ── PATCH /api/auth/update-password ──────────────────────────
-router.patch('/update-password', verifyToken, async (req, res) => {
+router.patch('/update-password', verifyToken, updatePasswordValidator, validate, async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
 
@@ -307,7 +315,7 @@ router.get('/admins', verifyToken, requireRole(['superadmin']), async (req, res)
 });
 
 // ── PATCH /api/auth/admins/:id ────────────────────────────────
-router.patch('/admins/:id', verifyToken, requireRole(['superadmin']), async (req, res) => {
+router.patch('/admins/:id', verifyToken, requireRole(['superadmin']), updateAdminValidator, validate, async (req, res) => {
   try {
     const { isActive, role, name } = req.body;
 
@@ -343,7 +351,7 @@ router.patch('/admins/:id', verifyToken, requireRole(['superadmin']), async (req
 });
 
 // ── DELETE /api/auth/admins/:id ───────────────────────────────
-router.delete('/admins/:id', verifyToken, requireRole(['superadmin']), async (req, res) => {
+router.delete('/admins/:id', verifyToken, requireRole(['superadmin']), adminIdValidator, validate, async (req, res) => {
   try {
     if (req.params.id === req.admin._id.toString()) {
       return res.status(400).json({ success: false, message: 'You cannot delete your own account.' });

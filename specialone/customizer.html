@@ -1,209 +1,186 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Customize Your Masterpiece | SPECIAL ONE</title>
-<meta name="description" content="Build your bespoke shirt step by step — fabric, collar, cuffs, buttons, monogram and size. Special One custom shirts made fresh for you."/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400&family=Manrope:wght@600&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "inverse-on-surface": "#f3f0eb","on-secondary": "#ffffff","secondary-fixed": "#ffe08f","on-primary-fixed": "#101c2e","on-error-container": "#93000a","background": "#fcf9f4","on-tertiary-fixed-variant": "#474747","surface-container-low": "#f6f3ee","surface-container": "#f0ede9","surface-container-lowest": "#ffffff","tertiary": "#000000","tertiary-container": "#1b1c1c","on-primary-container": "#79849b","surface-tint": "#535f74","on-primary": "#ffffff","inverse-surface": "#31302d","on-primary-fixed-variant": "#3c475b","on-surface-variant": "#45474c","primary-fixed-dim": "#bbc7df","outline-variant": "#c5c6cd","primary-container": "#101c2e","secondary-fixed-dim": "#e6c364","surface-container-highest": "#e5e2dd","on-error": "#ffffff","on-surface": "#1c1c19","primary": "#000000","outline": "#75777d","tertiary-fixed-dim": "#c8c6c6","on-tertiary-fixed": "#1b1c1c","surface-variant": "#e5e2dd","surface-dim": "#dcdad5","error": "#ba1a1a","on-secondary-fixed": "#241a00","on-secondary-container": "#785d00","on-background": "#1c1c19","error-container": "#ffdad6","surface-bright": "#fcf9f4","surface-container-high": "#ebe8e3","on-tertiary-container": "#848483","primary-fixed": "#d7e3fc","secondary": "#755b00","surface": "#fcf9f4","inverse-primary": "#bbc7df","on-secondary-fixed-variant": "#584400","on-tertiary": "#ffffff","tertiary-fixed": "#e4e2e2","secondary-container": "#fed977"
-        },
-        fontFamily: { "headline": ["Newsreader"], "body": ["Newsreader"], "label": ["Manrope"] },
-        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
-      },
-    },
-  }
-</script>
-<style>
-  body { font-family: 'Cormorant Garamond', serif; }
-  .bebas { font-family: 'Bebas Neue', sans-serif; }
-  .montserrat { font-family: 'Montserrat', sans-serif; }
-  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-  .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-  .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-  .custom-scrollbar::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 10px; }
-</style>
-</head>
-<body class="bg-background text-on-background selection:bg-secondary-container">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customize Your Masterpiece | SPECIAL ONE</title>
+  <meta name="description" content="Build your bespoke shirt step by step — fabric, collar, cuffs, buttons, monogram and size. Special One custom shirts made fresh for you.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/customizer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>`n</head>
+<body>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
 
-<!-- Header -->
-<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-white/90 backdrop-blur-xl border-b border-[#C9A84C]/30">
-  <div class="text-xl font-semibold tracking-[0.2em] text-[#0A1628] montserrat">SPECIAL ONE</div>
-  <nav class="hidden md:flex gap-12 items-center">
-    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold uppercase tracking-[0.15em] text-[11px] transition-opacity duration-300" href="index.html">Home</a>
-    <a class="text-[#C9A84C] border-b border-[#C9A84C] pb-1 montserrat font-semibold uppercase tracking-[0.15em] text-[11px]" href="customizer.html">Customize</a>
-    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold uppercase tracking-[0.15em] text-[11px] transition-opacity duration-300" href="about.html">About</a>
-    <a class="text-[#4A4A4A] hover:text-[#0A1628] montserrat font-semibold uppercase tracking-[0.15em] text-[11px] transition-opacity duration-300" href="faq.html">FAQ</a>
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <a href="index.html" class="nav__logo">SPECIAL <span>ONE</span></a>
+    
+    <div class="nav__hamburger" aria-label="Toggle Navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="nav__links">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="customizer.html" class="nav__link" style="color: var(--ivory);">Customize</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="faq.html" class="nav__link">FAQ</a>
+    </div>
   </nav>
-  <button class="bg-primary-container text-white px-6 py-2 rounded-sm montserrat text-[11px] uppercase tracking-[0.15em] hover:opacity-80 transition-opacity duration-300 active:scale-95">
-    Start Customizing
-  </button>
-</header>
 
-<main class="flex h-screen pt-[72px] overflow-hidden">
-  <!-- Left Panel: Live Preview (60%) -->
-  <section class="w-3/5 bg-[#F5F2EE] relative flex flex-col items-center justify-center p-12 overflow-hidden border-r border-[#C9A84C]/10">
-    <div class="relative w-full max-w-2xl aspect-square flex items-center justify-center">
-      <div class="relative group">
-        <img alt="White dress shirt front view" class="w-[450px] object-contain mix-blend-multiply transition-all duration-500 drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb3ku7rtIbHKKjCM5iukQKbTstvX2vRld_vm_soPTa9pE4ltu-xPBSHOyF_9ffaXZYrWmXjlpLVYGdhvYBNycW9A-6j81HU0KRgX8Ajp7_NuU-QAhbuthjHMXVWxgklFOQb4eQIZ3oJ5FWBdKkLJwn7W9LbwRUnCF_tBBpaFjyWW2Mg8mVE-rKrnIh4F6aw26xeSgl8LjVJK2JACZAWFsLB0x202zfGlso8ltUiwFPelKOTKzpIIozVZo_nJTxgcqASkXcV64xXbs"/>
-        <!-- Monogram Preview -->
-        <div class="absolute top-[28%] left-[52%] transform -rotate-2 opacity-80">
-          <span class="text-[10px] montserrat font-bold text-[#101c2e] border-b border-[#C9A84C]/50 tracking-widest">JDW</span>
+  <main class="customizer-layout">
+    <!-- Left Panel: Live Preview -->
+    <section class="customizer-preview">
+      <div class="preview-canvas">
+        <div class="shirt-svg-container">
+          <!-- Placeholder image matching the visual of the shirt -->
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb3ku7rtIbHKKjCM5iukQKbTstvX2vRld_vm_soPTa9pE4ltu-xPBSHOyF_9ffaXZYrWmXjlpLVYGdhvYBNycW9A-6j81HU0KRgX8Ajp7_NuU-QAhbuthjHMXVWxgklFOQb4eQIZ3oJ5FWBdKkLJwn7W9LbwRUnCF_tBBpaFjyWW2Mg8mVE-rKrnIh4F6aw26xeSgl8LjVJK2JACZAWFsLB0x202zfGlso8ltUiwFPelKOTKzpIIozVZo_nJTxgcqASkXcV64xXbs" style="width:100%; height:100%; object-fit:contain; filter: drop-shadow(0 20px 60px rgba(0,0,0,0.5)); mix-blend-multiply; opacity: 0.8;" alt="Live Custom Shirt Preview">
+          
+          <div style="position: absolute; top: 28%; left: 52%; transform: rotate(-2deg); opacity: 0.8;">
+            <span style="font-family: var(--font-accent); font-size: 0.6rem; font-weight: 700; color: #101c2e; border-bottom: 1px solid rgba(201,168,76,0.5); letter-spacing: 0.2em;">JDW</span>
+          </div>
+        </div>
+        
+        <button class="btn btn--outline btn--sm" style="position: absolute; bottom: var(--space-xl); right: var(--space-xl); background: rgba(32, 31, 31, 0.88); border-color: var(--border-subtle); color: var(--text-muted); padding: 0.5rem 1rem;">
+          <span class="material-symbols-outlined" style="font-size: 1rem;">refresh</span>
+          <span style="font-size: 0.5rem; letter-spacing: 0.1em;">ROTATE</span>
+        </button>
+      </div>
+      
+      <!-- Preview Summary Panel -->
+      <div class="preview-summary">
+        <div class="preview-summary__price">
+          <div>
+            <span class="preview-price-label">Estimate</span>
+          </div>
+          <div class="preview-price-value">₹3,999</div>
+        </div>
+        <div class="preview-selections">
+          <div class="preview-sel">
+            <span class="preview-sel__label">Fabric</span>
+            <span class="preview-sel__value is-set">Egyptian Navy</span>
+          </div>
+          <div class="preview-sel">
+            <span class="preview-sel__label">Collar</span>
+            <span class="preview-sel__value is-set">Cutaway</span>
+          </div>
+          <div class="preview-sel">
+            <span class="preview-sel__label">Cuffs</span>
+            <span class="preview-sel__value is-set">Single Link</span>
+          </div>
+          <div class="preview-sel hide-mobile">
+            <span class="preview-sel__label">Buttons</span>
+            <span class="preview-sel__value is-set">Mother of Pearl</span>
+          </div>
+          <div class="preview-sel hide-mobile">
+            <span class="preview-sel__label">Monogram</span>
+            <span class="preview-sel__value is-set">JDW</span>
+          </div>
+          <div class="preview-sel">
+            <span class="preview-sel__label">Size</span>
+            <span class="preview-sel__value is-set">42 (L)</span>
+          </div>
         </div>
       </div>
-      <!-- Rotate Button -->
-      <button class="absolute bottom-8 right-8 flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-outline-variant/30 hover:bg-white transition-colors">
-        <span class="material-symbols-outlined text-sm">refresh</span>
-        <span class="montserrat text-[10px] uppercase tracking-widest">Rotate View</span>
-      </button>
-    </div>
-    <!-- Selection Summary -->
-    <div class="mt-8 w-full max-w-2xl">
-      <div class="grid grid-cols-6 gap-4 text-center">
-        <div class="group cursor-help">
-          <p class="montserrat text-[9px] uppercase tracking-tighter text-outline mb-1">Fabric</p>
-          <p class="text-sm font-semibold italic text-primary-container">Egyptian Navy</p>
+    </section>
+
+    <!-- Right Panel: Configurator Options -->
+    <section class="customizer-options custom-scrollbar">
+      
+      <!-- Progress Bar -->
+      <div class="progress-bar">
+        <div class="progress-step active">
+          <div class="progress-step__dot">01</div>
+          <div class="progress-step__line"></div>
         </div>
-        <div>
-          <p class="montserrat text-[9px] uppercase tracking-tighter text-outline mb-1">Collar</p>
-          <p class="text-sm font-semibold italic text-primary-container">Cutaway</p>
+        <div class="progress-step">
+          <div class="progress-step__dot">02</div>
+          <div class="progress-step__line"></div>
         </div>
-        <div>
-          <p class="montserrat text-[9px] uppercase tracking-tighter text-outline mb-1">Cuffs</p>
-          <p class="text-sm font-semibold italic text-primary-container">Single Link</p>
+        <div class="progress-step">
+          <div class="progress-step__dot">03</div>
+          <div class="progress-step__line"></div>
         </div>
-        <div>
-          <p class="montserrat text-[9px] uppercase tracking-tighter text-outline mb-1">Buttons</p>
-          <p class="text-sm font-semibold italic text-primary-container">Mother of Pearl</p>
+        <div class="progress-step">
+          <div class="progress-step__dot">04</div>
+          <div class="progress-step__line"></div>
         </div>
-        <div>
-          <p class="montserrat text-[9px] uppercase tracking-tighter text-outline mb-1">Monogram</p>
-          <p class="text-sm font-semibold italic text-primary-container">JDW</p>
+        <div class="progress-step">
+          <div class="progress-step__dot">05</div>
+          <div class="progress-step__line"></div>
         </div>
-        <div>
-          <p class="montserrat text-[9px] uppercase tracking-tighter text-outline mb-1">Size</p>
-          <p class="text-sm font-semibold italic text-primary-container">42 (L)</p>
+        <div class="progress-step">
+          <div class="progress-step__dot">06</div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Right Panel: Configurator (40%) -->
-  <section class="w-2/5 bg-surface-container-lowest flex flex-col">
-    <!-- Progress Stepper -->
-    <div class="px-10 pt-10 pb-6">
-      <div class="flex gap-2 mb-8">
-        <div class="h-1 flex-1 bg-[#C9A84C]"></div>
-        <div class="h-1 flex-1 bg-surface-container-highest"></div>
-        <div class="h-1 flex-1 bg-surface-container-highest"></div>
-        <div class="h-1 flex-1 bg-surface-container-highest"></div>
-        <div class="h-1 flex-1 bg-surface-container-highest"></div>
-        <div class="h-1 flex-1 bg-surface-container-highest"></div>
+      <!-- Step Info -->
+      <div class="step-info">
+        <span class="step-info__counter">Step 01 / 06</span>
+        <h2 class="step-info__title">THE FABRIC</h2>
+        <p class="step-info__subtitle">Select the soul of your shirt from our premium mill collection.</p>
       </div>
-      <h2 class="bebas text-5xl tracking-wider text-primary-container mb-2 uppercase">Step 01: The Fabric</h2>
-      <p class="italic text-on-surface-variant text-lg">Select the soul of your shirt from our premium mill collection.</p>
-    </div>
 
-    <!-- Scrollable Options -->
-    <div class="flex-1 overflow-y-auto px-10 custom-scrollbar pb-32">
-      <div class="grid grid-cols-2 gap-4">
+      <!-- Options Grid -->
+      <div class="options-grid">
         <!-- Selected Option -->
-        <div class="relative cursor-pointer group border-2 border-[#C9A84C] p-1">
-          <div class="aspect-square bg-surface-container overflow-hidden">
-            <img alt="Navy herringbone fabric texture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0PnT8MqRSlNDSTuQEhe8eSW8C0xIeCIph4_TacRa1gSqFq3PsK0odR-kYofaHqsnQMIuDPjQyax2C8vwDuWjOyQLTXJOHL5PuueS5ApBhWpcIlu4Go-8lCTIe1hJBYJFmoRhlp1RWlGb6PH8PDE07fAXxmJ7gC9TsUW-BYVbBBb31xJDtQwjzi3yAhFgKy5mVwYDdu4BwqKcs77-F8p5bvtq52-PFgerz18h1q_GRy_Sla6JyBeR3ua5M77ZF3KXeY2c8idQuZ7s"/>
+        <div class="option-card selected">
+          <div class="option-card__swatch">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0PnT8MqRSlNDSTuQEhe8eSW8C0xIeCIph4_TacRa1gSqFq3PsK0odR-kYofaHqsnQMIuDPjQyax2C8vwDuWjOyQLTXJOHL5PuueS5ApBhWpcIlu4Go-8lCTIe1hJBYJFmoRhlp1RWlGb6PH8PDE07fAXxmJ7gC9TsUW-BYVbBBb31xJDtQwjzi3yAhFgKy5mVwYDdu4BwqKcs77-F8p5bvtq52-PFgerz18h1q_GRy_Sla6JyBeR3ua5M77ZF3KXeY2c8idQuZ7s" style="width:100%; height:100%; object-fit:cover;">
           </div>
-          <div class="py-3 px-1 flex justify-between items-center">
-            <span class="montserrat text-[11px] uppercase tracking-wider">Egyptian Navy</span>
-            <span class="material-symbols-outlined text-[#C9A84C] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-          </div>
+          <h3 class="option-card__name">Egyptian Navy</h3>
         </div>
         <!-- Option 2 -->
-        <div class="relative cursor-pointer group border border-outline-variant/30 p-1 hover:border-[#C9A84C]/50 transition-colors">
-          <div class="aspect-square bg-surface-container overflow-hidden">
-            <img alt="White twill fabric texture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfC6yudmT03OfVapM2pPC0tuWAgYcnBVnBoDytjpHnjozxS7yohRkOEBRQd1VgfySP3eAEOTXFMIjKWZw2CFg6pkqoeDt3EF2_YQa5UZmMBlugANqkPPLYVFHNMdTVd4iEkzFegMjImQ3QwP45g1oD-qtpSD9jRX2XARJ6Elft1cLaU5U_n0UgBnjzuiWIhaG9tVr2xolHBFKhpDhekOuLGdAIhzVgNx6YIYN0rOW9HDHhyjUoyxk7j6nd7GLgsleMK4L99S-0Hds"/>
+        <div class="option-card">
+          <div class="option-card__swatch">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfC6yudmT03OfVapM2pPC0tuWAgYcnBVnBoDytjpHnjozxS7yohRkOEBRQd1VgfySP3eAEOTXFMIjKWZw2CFg6pkqoeDt3EF2_YQa5UZmMBlugANqkPPLYVFHNMdTVd4iEkzFegMjImQ3QwP45g1oD-qtpSD9jRX2XARJ6Elft1cLaU5U_n0UgBnjzuiWIhaG9tVr2xolHBFKhpDhekOuLGdAIhzVgNx6YIYN0rOW9HDHhyjUoyxk7j6nd7GLgsleMK4L99S-0Hds" style="width:100%; height:100%; object-fit:cover;">
           </div>
-          <div class="py-3 px-1"><span class="montserrat text-[11px] uppercase tracking-wider">Royal White Twill</span></div>
+          <h3 class="option-card__name">Royal White Twill</h3>
         </div>
         <!-- Option 3 -->
-        <div class="relative cursor-pointer group border border-outline-variant/30 p-1 hover:border-[#C9A84C]/50 transition-colors">
-          <div class="aspect-square bg-surface-container overflow-hidden">
-            <img alt="Blue stripe fabric texture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD55CQgybik_bHKXnlXgjIHY1-9GeC0lP68J7xRxbu_puPB1h0ANn9dgiOexb5a3QlZnkIElNGBHsCLaDmCWxFTW55n559rlnvbwX03ZKBj-iURr2b2CgNBO3I8r20rlEj7rUL1FtkuLKx6XHozympqgbOcpUzGkgeOtrsi2qZ_7hsHmNhhcgf4j1jocXvLH2rf96qCiWPuNEaKJzKM8rYqRk7_9e0QVbo5V93W7X4w7dJvBlDnne883DFAF6UgvZ1SRaX0AHny8MQ"/>
+        <div class="option-card">
+          <div class="option-card__swatch">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD55CQgybik_bHKXnlXgjIHY1-9GeC0lP68J7xRxbu_puPB1h0ANn9dgiOexb5a3QlZnkIElNGBHsCLaDmCWxFTW55n559rlnvbwX03ZKBj-iURr2b2CgNBO3I8r20rlEj7rUL1FtkuLKx6XHozympqgbOcpUzGkgeOtrsi2qZ_7hsHmNhhcgf4j1jocXvLH2rf96qCiWPuNEaKJzKM8rYqRk7_9e0QVbo5V93W7X4w7dJvBlDnne883DFAF6UgvZ1SRaX0AHny8MQ" style="width:100%; height:100%; object-fit:cover;">
           </div>
-          <div class="py-3 px-1"><span class="montserrat text-[11px] uppercase tracking-wider">Sky Pinstripe</span></div>
+          <h3 class="option-card__name">Sky Pinstripe</h3>
         </div>
         <!-- Option 4 -->
-        <div class="relative cursor-pointer group border border-outline-variant/30 p-1 hover:border-[#C9A84C]/50 transition-colors">
-          <div class="aspect-square bg-surface-container overflow-hidden">
-            <div class="w-full h-full bg-[#1c2e4a] flex items-center justify-center">
-              <span class="material-symbols-outlined text-white/20 text-4xl">texture</span>
-            </div>
+        <div class="option-card">
+          <div class="option-card__swatch" style="background: #1c2e4a; display: flex; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="color: rgba(255,255,255,0.2); font-size: 2rem;">texture</span>
           </div>
-          <div class="py-3 px-1"><span class="montserrat text-[11px] uppercase tracking-wider">Oxford Midnight</span></div>
+          <h3 class="option-card__name">Oxford Midnight</h3>
         </div>
       </div>
-    </div>
 
-    <!-- Fixed Footer Actions -->
-    <div class="bg-surface-container-lowest border-t border-[#C9A84C]/10 p-10 mt-auto">
-      <div class="flex items-end justify-between mb-8">
-        <div>
-          <p class="montserrat text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">Estimate</p>
-          <p class="bebas text-4xl text-primary-container">₹3,999</p>
-        </div>
-        <div class="flex gap-6">
-          <button class="montserrat text-[11px] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">arrow_back</span> Back
-          </button>
-          <button class="montserrat text-[11px] uppercase tracking-[0.2em] text-primary-container hover:text-secondary transition-colors flex items-center gap-2">
-            Next <span class="material-symbols-outlined text-sm">arrow_forward</span>
-          </button>
-        </div>
+      <!-- Step Navigation -->
+      <div class="step-nav">
+        <button class="btn btn--outline" disabled style="flex: 1; opacity: 0.5;">
+          BACK
+        </button>
+        <button class="btn btn--primary" style="flex: 1;">
+          NEXT STEP
+        </button>
       </div>
-      <button class="w-full bg-primary-container text-white py-5 montserrat text-xs uppercase tracking-[0.3em] font-bold hover:bg-[#1a2b45] transition-all transform active:scale-[0.98]" onclick="window.location.href='cart.html'">
-        Add to Cart
-      </button>
-    </div>
-  </section>
-</main>
 
-<!-- Footer -->
-<footer class="w-full py-16 px-12 grid grid-cols-4 gap-8 bg-[#0A1628] border-t border-[#C9A84C]/10">
-  <div class="col-span-1">
-    <div class="text-[#C9A84C] text-2xl font-light tracking-[0.3em] montserrat">SPECIAL ONE</div>
-    <p class="text-[#C9A84C]/60 italic mt-4 pr-8">The digital atelier for the modern gentleman. Crafted with precision, worn with pride.</p>
-  </div>
-  <div>
-    <h4 class="montserrat font-semibold uppercase tracking-widest text-[11px] text-[#C9A84C] mb-6">About</h4>
-    <ul class="space-y-3">
-      <li><a class="italic text-[#C9A84C]/80 hover:text-white transition-colors" href="about.html">Our Story</a></li>
-      <li><a class="italic text-[#C9A84C]/80 hover:text-white transition-colors" href="about.html">Craftsmanship</a></li>
-      <li><a class="italic text-[#C9A84C]/80 hover:text-white transition-colors" href="#">The Fabrics</a></li>
-    </ul>
-  </div>
-  <div>
-    <h4 class="montserrat font-semibold uppercase tracking-widest text-[11px] text-[#C9A84C] mb-6">Policies</h4>
-    <ul class="space-y-3">
-      <li><a class="italic text-[#C9A84C]/80 hover:text-white transition-colors" href="#">Fit Guarantee</a></li>
-      <li><a class="italic text-[#C9A84C]/80 hover:text-white transition-colors" href="#">Shipping</a></li>
-      <li><a class="italic text-[#C9A84C]/80 hover:text-white transition-colors" href="#">Returns</a></li>
-    </ul>
-  </div>
-  <div class="flex flex-col justify-between">
-    <h4 class="montserrat font-semibold uppercase tracking-widest text-[11px] text-[#C9A84C] mb-6">Connect</h4>
-    <div class="flex gap-4 mb-auto">
-      <span class="material-symbols-outlined text-[#C9A84C] cursor-pointer hover:text-white transition-colors">share</span>
-      <span class="material-symbols-outlined text-[#C9A84C] cursor-pointer hover:text-white transition-colors">mail</span>
-    </div>
-    <p class="text-[#C9A84C]/40 text-[9px] montserrat uppercase tracking-widest">© 2024 SPECIAL ONE. ALL RIGHTS RESERVED.</p>
-  </div>
-</footer>
+      <!-- Added margin to make sure user can scroll past the fixed footer if present on very small screens -->
+      <div style="margin-bottom: var(--space-2xl);"></div>
+      
+      <div style="border-top: 1px solid var(--border-subtle); padding-top: var(--space-lg); margin-top: var(--space-xl);">
+         <button class="btn btn--dark" style="width: 100%; border-color: var(--gold);" onclick="window.location.href='cart.html'">
+           ADD TO CART - ₹3,999
+         </button>
+      </div>
+      
+    </section>
+  </main>
+
+  <script src="js/global.js"></script>
+  <script src="js/customizer.js"></script>
 </body>
 </html>
+

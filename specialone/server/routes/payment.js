@@ -18,6 +18,13 @@ const { createOrder: rzpCreateOrder, verifySignature, initiateRefund, verifyWebh
 const { createOrder: srCreateOrder } = require('../services/shiprocket');
 const { sendOrderConfirmation } = require('../services/mailer');
 const { verifyToken, requireRole } = require('../middleware/auth');
+const { validate } = require('../middleware/validate');
+const {
+  createOrderValidator,
+  verifyPaymentValidator,
+  refundValidator,
+  transactionStatsValidator,
+} = require('../validators/paymentValidator');
 
 const router = express.Router();
 
@@ -34,7 +41,7 @@ const PROMO_CODES = {
 
 // ── POST /api/payment/create-order ───────────────────────────
 // Step 1: Customer clicks Pay → we create a Razorpay order ID
-router.post('/create-order', async (req, res) => {
+router.post('/create-order', createOrderValidator, validate, async (req, res) => {
   try {
     const { items, promoCode, customerDetails } = req.body;
 
@@ -100,7 +107,7 @@ router.post('/create-order', async (req, res) => {
 
 // ── POST /api/payment/verify ──────────────────────────────────
 // Step 2: After customer pays, verify the payment and save the order
-router.post('/verify', async (req, res) => {
+router.post('/verify', verifyPaymentValidator, validate, async (req, res) => {
   try {
     const {
       razorpayOrderId, razorpayPaymentId, razorpaySignature,
@@ -258,7 +265,7 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
 });
 
 // ── GET /api/payment/transactions (admin) ─────────────────────
-router.get('/transactions', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.get('/transactions', verifyToken, requireRole(['admin', 'superadmin']), transactionStatsValidator, validate, async (req, res) => {
   try {
     const { page = 1, limit = 20, status, startDate, endDate } = req.query;
 
@@ -287,7 +294,7 @@ router.get('/transactions', verifyToken, requireRole(['admin', 'superadmin']), a
 });
 
 // ── POST /api/payment/refund (admin) ─────────────────────────
-router.post('/refund', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.post('/refund', verifyToken, requireRole(['admin', 'superadmin']), refundValidator, validate, async (req, res) => {
   try {
     const { orderId, amount, reason } = req.body;
 
@@ -340,7 +347,7 @@ router.post('/refund', verifyToken, requireRole(['admin', 'superadmin']), async 
 });
 
 // ── GET /api/payment/stats (admin) ────────────────────────────
-router.get('/stats', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.get('/stats', verifyToken, requireRole(['admin', 'superadmin']), transactionStatsValidator, validate, async (req, res) => {
   try {
     const { period = 'month' } = req.query;
 

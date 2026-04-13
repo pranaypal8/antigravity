@@ -42,7 +42,7 @@
 
 /* Cart Item Card */
 .cart-item {
-  background: var(--charcoal);
+  background: var(--surface-highest);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
@@ -55,7 +55,7 @@
 }
 .cart-item:hover { border-color: var(--gold); }
 .cart-item-details { display: flex; flex-direction: column; gap: var(--space-sm); }
-.cart-item-name { font-family: var(--font-display); font-size: 1.2rem; color: var(--ivory); letter-spacing: 0.05em; }
+.cart-item-name { font-family: var(--font-display); font-size: 1.2rem; color: var(--charcoal); letter-spacing: 0.05em; }
 .cart-item-specs { font-family: var(--font-accent); font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.1em; }
 .cart-item-spec-tag {
   display: inline-block; background: rgba(255,255,255,0.04);
@@ -270,7 +270,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-xl) var(--space-md);
-  background: var(--navy);
+  background: var(--surface);
 }
 
 .admin-login-card {

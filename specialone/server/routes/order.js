@@ -16,11 +16,19 @@ const Customer = require('../models/Customer');
 const AuditLog = require('../models/AuditLog');
 const { verifyToken, requireRole } = require('../middleware/auth');
 const { sendShipmentDispatched }   = require('../services/mailer');
+const { validate } = require('../middleware/validate');
+const {
+  getOrdersValidator,
+  manualOrderValidator,
+  updateOrderStatusValidator,
+  paramIdValidator,
+  trackOrderValidator,
+} = require('../validators/orderValidator');
 
 const router = express.Router();
 
 // ── GET /api/orders ───────────────────────────────────────────
-router.get('/', verifyToken, requireRole(['admin', 'superadmin', 'support', 'vendor']), async (req, res) => {
+router.get('/', verifyToken, requireRole(['admin', 'superadmin', 'support', 'vendor']), getOrdersValidator, validate, async (req, res) => {
   try {
     const {
       page = 1, limit = 20,
@@ -80,7 +88,7 @@ router.get('/', verifyToken, requireRole(['admin', 'superadmin', 'support', 'ven
 });
 
 // ── GET /api/orders/export ────────────────────────────────────
-router.get('/export', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.get('/export', verifyToken, requireRole(['admin', 'superadmin']), getOrdersValidator, validate, async (req, res) => {
   try {
     const { startDate, endDate, status } = req.query;
 
@@ -137,7 +145,7 @@ router.get('/export', verifyToken, requireRole(['admin', 'superadmin']), async (
 
 // ── GET /api/orders/track/:orderId ────────────────────────────
 // Customer-facing: look up own order by order ID (public, no auth)
-router.get('/track/:orderId', async (req, res) => {
+router.get('/track/:orderId', trackOrderValidator, validate, async (req, res) => {
   try {
     const order = await Order.findOne({ orderId: req.params.orderId })
       .select('orderId orderStatus awbNumber courierName trackingUrl createdAt estimatedDelivery items customerSnapshot.name')
@@ -154,7 +162,7 @@ router.get('/track/:orderId', async (req, res) => {
 });
 
 // ── GET /api/orders/:id ───────────────────────────────────────
-router.get('/:id', verifyToken, requireRole(['admin', 'superadmin', 'support', 'vendor']), async (req, res) => {
+router.get('/:id', verifyToken, requireRole(['admin', 'superadmin', 'support', 'vendor']), paramIdValidator, validate, async (req, res) => {
   try {
     const order = await Order.findById(req.params.id)
       .populate('customer', 'name email phone totalOrders totalSpent isBlacklisted')
@@ -190,7 +198,7 @@ router.get('/:id', verifyToken, requireRole(['admin', 'superadmin', 'support', '
 });
 
 // ── PATCH /api/orders/:id/status ──────────────────────────────
-router.patch('/:id/status', verifyToken, requireRole(['admin', 'superadmin', 'vendor', 'support']), async (req, res) => {
+router.patch('/:id/status', verifyToken, requireRole(['admin', 'superadmin', 'vendor', 'support']), updateOrderStatusValidator, validate, async (req, res) => {
   try {
     const { status, note } = req.body;
 
@@ -251,7 +259,7 @@ router.patch('/:id/status', verifyToken, requireRole(['admin', 'superadmin', 've
 
 // ── POST /api/orders/manual ───────────────────────────────────
 // Create a manual order (for phone/WhatsApp orders)
-router.post('/manual', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.post('/manual', verifyToken, requireRole(['admin', 'superadmin']), manualOrderValidator, validate, async (req, res) => {
   try {
     const { customerDetails, items, paymentNote } = req.body;
 

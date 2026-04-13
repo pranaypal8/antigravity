@@ -6,14 +6,22 @@ const express = require('express');
 const sanitizeHtml = require('sanitize-html');
 const Product  = require('../models/Product');
 const Fabric   = require('../models/Fabric');
+const { param } = require('express-validator');
 const AuditLog = require('../models/AuditLog');
 const { verifyToken, requireRole } = require('../middleware/auth');
 const { uploadMultiple, uploadSingle } = require('../middleware/upload');
+const { validate } = require('../middleware/validate');
+const {
+  getProductsValidator,
+  productIdValidator,
+  createProductValidator,
+  updateProductValidator,
+} = require('../validators/productValidator');
 
 const router = express.Router();
 
 // GET /api/products — Public: get active products for customizer
-router.get('/', async (req, res) => {
+router.get('/', getProductsValidator, validate, async (req, res) => {
   try {
     const products = await Product.find({ isActive: true }).sort('sortOrder').lean();
     const fabrics  = await Fabric.find({ isActive: true }).sort('sortOrder').lean();
@@ -24,7 +32,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET /api/products/admin — Admin: all products including inactive
-router.get('/admin', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.get('/admin', verifyToken, requireRole(['admin', 'superadmin']), getProductsValidator, validate, async (req, res) => {
   try {
     const products = await Product.find().sort({ createdAt: -1 }).lean();
     res.json({ success: true, products });
@@ -34,7 +42,7 @@ router.get('/admin', verifyToken, requireRole(['admin', 'superadmin']), async (r
 });
 
 // POST /api/products — Create product (admin)
-router.post('/', verifyToken, requireRole(['admin', 'superadmin']), uploadMultiple, async (req, res) => {
+router.post('/', verifyToken, requireRole(['admin', 'superadmin']), uploadMultiple, createProductValidator, validate, async (req, res) => {
   try {
     const { name, description, fabricOptions, collarOptions, cuffOptions, buttonOptions } = req.body;
     if (!name) return res.status(400).json({ success: false, message: 'Product name is required.' });
@@ -59,7 +67,7 @@ router.post('/', verifyToken, requireRole(['admin', 'superadmin']), uploadMultip
 });
 
 // PATCH /api/products/:id — Update product (admin)
-router.patch('/:id', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.patch('/:id', verifyToken, requireRole(['admin', 'superadmin']), updateProductValidator, validate, async (req, res) => {
   try {
     const before  = await Product.findById(req.params.id).lean();
     if (!before) return res.status(404).json({ success: false, message: 'Product not found.' });
@@ -80,7 +88,7 @@ router.patch('/:id', verifyToken, requireRole(['admin', 'superadmin']), async (r
 });
 
 // DELETE /api/products/:id — Soft delete (set inactive)
-router.delete('/:id', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.delete('/:id', verifyToken, requireRole(['admin', 'superadmin']), productIdValidator, validate, async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, { isActive: false }, { new: true });
     if (!product) return res.status(404).json({ success: false, message: 'Product not found.' });
@@ -127,7 +135,7 @@ router.post('/fabrics', verifyToken, requireRole(['admin', 'superadmin']), uploa
 });
 
 // PATCH /api/products/fabrics/:id/stock — Update stock level
-router.patch('/fabrics/:id/stock', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.patch('/fabrics/:id/stock', verifyToken, requireRole(['admin', 'superadmin']), param('id').isMongoId(), validate, async (req, res) => {
   try {
     const { action, quantity, note } = req.body;
     if (!['add','remove','adjust'].includes(action) || quantity === undefined) {

@@ -7,11 +7,17 @@ const Order    = require('../models/Order');
 const AuditLog = require('../models/AuditLog');
 const { createOrder, trackShipment, cancelOrder, getAllShipments } = require('../services/shiprocket');
 const { verifyToken, requireRole } = require('../middleware/auth');
+const { validate } = require('../middleware/validate');
+const {
+  shippingOrderIdValidator,
+  trackAwbValidator,
+  allShipmentsValidator,
+} = require('../validators/shippingValidator');
 
 const router = express.Router();
 
 // POST /api/shipping/create/:orderId — Create Shiprocket order manually
-router.post('/create/:orderId', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.post('/create/:orderId', verifyToken, requireRole(['admin', 'superadmin']), shippingOrderIdValidator, validate, async (req, res) => {
   try {
     const order = await Order.findById(req.params.orderId);
     if (!order) return res.status(404).json({ success: false, message: 'Order not found.' });
@@ -35,7 +41,7 @@ router.post('/create/:orderId', verifyToken, requireRole(['admin', 'superadmin']
 });
 
 // GET /api/shipping/track/:awb
-router.get('/track/:awb', verifyToken, requireRole(['admin', 'superadmin', 'support']), async (req, res) => {
+router.get('/track/:awb', verifyToken, requireRole(['admin', 'superadmin', 'support']), trackAwbValidator, validate, async (req, res) => {
   try {
     const tracking = await trackShipment(req.params.awb);
     res.json({ success: true, tracking });
@@ -45,7 +51,7 @@ router.get('/track/:awb', verifyToken, requireRole(['admin', 'superadmin', 'supp
 });
 
 // GET /api/shipping/all
-router.get('/all', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.get('/all', verifyToken, requireRole(['admin', 'superadmin']), allShipmentsValidator, validate, async (req, res) => {
   try {
     const { page = 1 } = req.query;
     const shipments = await getAllShipments(Number(page), 20);
@@ -56,7 +62,7 @@ router.get('/all', verifyToken, requireRole(['admin', 'superadmin']), async (req
 });
 
 // POST /api/shipping/cancel/:orderId
-router.post('/cancel/:orderId', verifyToken, requireRole(['admin', 'superadmin']), async (req, res) => {
+router.post('/cancel/:orderId', verifyToken, requireRole(['admin', 'superadmin']), shippingOrderIdValidator, validate, async (req, res) => {
   try {
     const order = await Order.findById(req.params.orderId);
     if (!order) return res.status(404).json({ success: false, message: 'Order not found.' });

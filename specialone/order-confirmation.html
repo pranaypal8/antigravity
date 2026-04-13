@@ -6,7 +6,7 @@
 <title>Order Confirmed | SPECIAL ONE</title>
 <meta name="description" content="Your bespoke shirt order has been placed. Thank you for choosing Special One."/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@300;400;500;600;700&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
   tailwind.config = {
@@ -25,7 +25,7 @@
   @keyframes fadeUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
   .fade-up{animation:fadeUp 0.6s ease both}
 </style>
-</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>`n</head>
 <body class="bg-surface-container-low min-h-screen flex flex-col font-body">
 
 <header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-20 bg-white/90 backdrop-blur-xl border-b border-[#C9A84C]/30">
@@ -194,16 +194,18 @@
     document.getElementById('conf-total').textContent = order.total;
     const itemsEl = document.getElementById('conf-items');
     order.items.forEach(item => {
-      itemsEl.innerHTML += `
+      const safeHTML = DOMPurify.sanitize(`
         <div class="flex justify-between items-start gap-4 py-3 border-b border-outline-variant/10 last:border-0">
           <div>
             <p class="font-headline italic text-xl text-primary">${item.name}</p>
             <p class="font-body text-sm text-on-surface-variant">${item.details}</p>
           </div>
           <p class="font-display text-2xl text-primary flex-shrink-0">${item.price}</p>
-        </div>`;
+        </div>`);
+      itemsEl.insertAdjacentHTML('beforeend', safeHTML);
     });
   }
 </script>
 </body>
 </html>
+

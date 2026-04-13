@@ -10,11 +10,20 @@ const Order    = require('../models/Order');
 const AuditLog = require('../models/AuditLog');
 const { sendTicketUpdate } = require('../services/mailer');
 const { verifyToken, requireRole } = require('../middleware/auth');
+const { validate } = require('../middleware/validate');
+const {
+  createTicketValidator,
+  getTicketsValidator,
+  ticketIdValidator,
+  replyTicketValidator,
+  updateTicketValidator,
+  refundRequestValidator,
+} = require('../validators/supportValidator');
 
 const router = express.Router();
 
 // POST /api/support/tickets — Customer creates ticket (public)
-router.post('/tickets', async (req, res) => {
+router.post('/tickets', createTicketValidator, validate, async (req, res) => {
   try {
     const { name, email, phone, subject, message, orderId } = req.body;
     if (!name || !email || !subject || !message) {
@@ -56,7 +65,7 @@ router.post('/tickets', async (req, res) => {
 });
 
 // GET /api/support/tickets — Admin: list all tickets
-router.get('/tickets', verifyToken, requireRole(['admin', 'superadmin', 'support']), async (req, res) => {
+router.get('/tickets', verifyToken, requireRole(['admin', 'superadmin', 'support']), getTicketsValidator, validate, async (req, res) => {
   try {
     const { page = 1, limit = 20, status, priority, assignedTo } = req.query;
     const filter = {};
@@ -82,7 +91,7 @@ router.get('/tickets', verifyToken, requireRole(['admin', 'superadmin', 'support
 });
 
 // GET /api/support/tickets/:id — Ticket detail
-router.get('/tickets/:id', verifyToken, requireRole(['admin', 'superadmin', 'support']), async (req, res) => {
+router.get('/tickets/:id', verifyToken, requireRole(['admin', 'superadmin', 'support']), ticketIdValidator, validate, async (req, res) => {
   try {
     const ticket = await Ticket.findById(req.params.id)
       .populate('assignedTo', 'name email role')
@@ -96,7 +105,7 @@ router.get('/tickets/:id', verifyToken, requireRole(['admin', 'superadmin', 'sup
 });
 
 // POST /api/support/tickets/:id/reply — Support replies
-router.post('/tickets/:id/reply', verifyToken, requireRole(['admin', 'superadmin', 'support']), async (req, res) => {
+router.post('/tickets/:id/reply', verifyToken, requireRole(['admin', 'superadmin', 'support']), replyTicketValidator, validate, async (req, res) => {
   try {
     const { message, isInternal } = req.body;
     if (!message) return res.status(400).json({ success: false, message: 'Reply message is required.' });
@@ -129,7 +138,7 @@ router.post('/tickets/:id/reply', verifyToken, requireRole(['admin', 'superadmin
 });
 
 // PATCH /api/support/tickets/:id — Update ticket (status, priority, assign)
-router.patch('/tickets/:id', verifyToken, requireRole(['admin', 'superadmin', 'support']), async (req, res) => {
+router.patch('/tickets/:id', verifyToken, requireRole(['admin', 'superadmin', 'support']), updateTicketValidator, validate, async (req, res) => {
   try {
     const { status, priority, assignedTo, tags } = req.body;
     const updates = {};
@@ -151,7 +160,7 @@ router.patch('/tickets/:id', verifyToken, requireRole(['admin', 'superadmin', 's
 });
 
 // POST /api/support/tickets/:id/refund-request — Support raises refund
-router.post('/tickets/:id/refund-request', verifyToken, requireRole(['support', 'admin', 'superadmin']), async (req, res) => {
+router.post('/tickets/:id/refund-request', verifyToken, requireRole(['support', 'admin', 'superadmin']), refundRequestValidator, validate, async (req, res) => {
   try {
     const { amount, reason } = req.body;
     if (!amount || !reason) return res.status(400).json({ success: false, message: 'Amount and reason are required.' });
